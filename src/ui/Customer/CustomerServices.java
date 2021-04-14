@@ -6,6 +6,8 @@
 
 package ui.Customer;
 
+import ui.MainJFrame;
+
 /**
  *
  * @author harshikag
@@ -66,6 +68,8 @@ public class CustomerServices extends javax.swing.JFrame {
         HouseHoldCareButton = new javax.swing.JButton();
         HouseMaintainenceButton = new javax.swing.JButton();
         PersonalCareButton = new javax.swing.JButton();
+        HomeButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +81,7 @@ public class CustomerServices extends javax.swing.JFrame {
         );
         ServiceContainerMainPanelLayout.setVerticalGroup(
             ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 706, Short.MAX_VALUE)
         );
 
         servicesSplitPane.setRightComponent(ServiceContainerMainPanel);
@@ -166,6 +170,20 @@ public class CustomerServices extends javax.swing.JFrame {
             }
         });
 
+        HomeButton.setText("Home");
+        HomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButtonActionPerformed(evt);
+            }
+        });
+
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ServicesPanelLayout = new javax.swing.GroupLayout(ServicesPanel);
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
@@ -182,6 +200,8 @@ public class CustomerServices extends javax.swing.JFrame {
             .addComponent(PersonalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HouseMaintainenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
             .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +230,11 @@ public class CustomerServices extends javax.swing.JFrame {
                 .addComponent(HouseMaintainenceButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PersonalCareButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HomeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(logoutButton)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
@@ -281,11 +305,26 @@ public class CustomerServices extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PersonalCareButtonActionPerformed
 
+    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
+        // TODO add your handling code here:
+        CustDashboard dashboard = new CustDashboard();
+        this.dispose();
+        dashboard.setVisible(true);
+    }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        MainJFrame main = new MainJFrame();
+        this.dispose();
+        main.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CovidCareButton;
     private javax.swing.JButton GroceryDeliveryButton;
+    private javax.swing.JButton HomeButton;
     private javax.swing.JButton HomeHealthAideButton;
     private javax.swing.JButton HouseHoldCareButton;
     private javax.swing.JButton HouseMaintainenceButton;
@@ -299,6 +338,7 @@ public class CustomerServices extends javax.swing.JFrame {
     private javax.swing.JPanel ServicesPanel;
     private javax.swing.JButton TherapyButton;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JSplitPane servicesSplitPane;
     // End of variables declaration//GEN-END:variables
 
