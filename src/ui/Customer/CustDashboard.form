@@ -23,27 +23,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="1112" max="32767" attributes="0"/>
+          <Component id="dashboardJScrollPane" alignment="0" pref="1225" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="904" max="32767" attributes="0"/>
+          <Component id="dashboardJScrollPane" alignment="0" pref="904" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="dashboardJScrollPane">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="dashboardJPanel">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="HeaderPanel" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="containerPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -51,7 +51,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="HeaderPanel" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="containerPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -108,7 +108,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="containerPanel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e5" green="d7" red="b2" type="rgb"/>
@@ -127,32 +127,36 @@
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="ProtectiveServicesPanel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NursingServicesPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                  <Component id="ProtectiveServicesPanel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="CompanionServicesPanel" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="ProtectiveServicesPanel2" min="-2" pref="282" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="GroceryServicesPanel" min="-2" pref="282" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="79" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="logoutButton" min="-2" pref="135" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="ProtectiveServicesPanel3" pref="0" max="32767" attributes="0"/>
+                              <Component id="CompanionServicesPanel" pref="312" max="32767" attributes="0"/>
                               <Component id="PersonalCarePanel" max="32767" attributes="0"/>
-                              <Component id="ProtectiveServicesPanel1" max="32767" attributes="0"/>
+                              <Component id="NursingServicesPanel" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="ProtectiveServicesPanel" max="32767" attributes="0"/>
-                              <Component id="ProtectiveServicesPanel2" pref="0" max="32767" attributes="0"/>
+                              <Component id="GroceryServicesPanel" pref="312" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="92" max="32767" attributes="0"/>
                       </Group>
@@ -346,7 +350,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="ProtectiveServicesPanel1">
+                <Container class="javax.swing.JPanel" name="NursingServicesPanel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -363,11 +367,11 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ProtecticeCareImgPanel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="NursingImgPanel" alignment="0" max="32767" attributes="0"/>
                           <Component id="NursingServicesButton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel1" pref="0" max="32767" attributes="0"/>
+                              <Component id="NursingServicesLabel" pref="0" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -375,9 +379,9 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="ProtecticeCareImgPanel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="NursingImgPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel1" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="NursingServicesLabel" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="NursingServicesButton" max="32767" attributes="0"/>
                           </Group>
@@ -385,7 +389,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="ProtecticeCareImgPanel1">
+                    <Container class="javax.swing.JPanel" name="NursingImgPanel">
 
                       <Layout>
                         <DimensionLayout dim="0">
@@ -426,7 +430,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NursingServicesButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="ProtectiveServicesLabel1">
+                    <Component class="javax.swing.JLabel" name="NursingServicesLabel">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -439,7 +443,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="ProtectiveServicesPanel2">
+                <Container class="javax.swing.JPanel" name="GroceryServicesPanel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -457,14 +461,14 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="ProtectiveServicesPanelImg2" max="32767" attributes="0"/>
+                              <Component id="GroceryServicesPanelImg" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtecticeCareImgPanel2" max="32767" attributes="0"/>
+                              <Component id="GroceryImgPanel" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="MealsServicesButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="GroceryServicesButton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel2" pref="0" max="32767" attributes="0"/>
+                              <Component id="GroceryServicesLabel" pref="0" max="32767" attributes="0"/>
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -473,20 +477,20 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="ProtecticeCareImgPanel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ProtectiveServicesPanelImg2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="GroceryImgPanel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="GroceryServicesPanelImg" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel2" min="-2" pref="66" max="-2" attributes="0"/>
+                              <Component id="GroceryServicesLabel" min="-2" pref="66" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="MealsServicesButton" min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="GroceryServicesButton" min="-2" pref="49" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="ProtecticeCareImgPanel2">
+                    <Container class="javax.swing.JPanel" name="GroceryImgPanel">
 
                       <Layout>
                         <DimensionLayout dim="0">
@@ -501,7 +505,7 @@
                         </DimensionLayout>
                       </Layout>
                     </Container>
-                    <Component class="javax.swing.JButton" name="MealsServicesButton">
+                    <Component class="javax.swing.JButton" name="GroceryServicesButton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -515,10 +519,10 @@
                         <Property name="text" type="java.lang.String" value="Meals Services"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MealsServicesButtonActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroceryServicesButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="ProtectiveServicesLabel2">
+                    <Component class="javax.swing.JLabel" name="GroceryServicesLabel">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -529,7 +533,7 @@
                         <Property name="text" type="java.lang.String" value="&lt;html&gt;For those who just need a little &lt;br&gt; extra help getting their groceries, we do the shopping for you and deliver the items to your door.&lt;/html&gt;"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="ProtectiveServicesPanelImg2">
+                    <Component class="javax.swing.JLabel" name="GroceryServicesPanelImg">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/Resources/meals.jpeg"/>
@@ -538,7 +542,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="ProtectiveServicesPanel3">
+                <Container class="javax.swing.JPanel" name="CompanionServicesPanel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -555,11 +559,11 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ProtecticeCareImgPanel3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ProtectiveServicesButton3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CompanionServicesImgPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CompanionServicesButton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel3" pref="0" max="32767" attributes="0"/>
+                              <Component id="CompanionServicesLabel" pref="0" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -567,18 +571,18 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="ProtecticeCareImgPanel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CompanionServicesImgPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ProtectiveServicesLabel3" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="CompanionServicesLabel" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ProtectiveServicesButton3" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="CompanionServicesButton" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="ProtecticeCareImgPanel3">
+                    <Container class="javax.swing.JPanel" name="CompanionServicesImgPanel">
 
                       <Layout>
                         <DimensionLayout dim="0">
@@ -602,7 +606,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="ProtectiveServicesButton3">
+                    <Component class="javax.swing.JButton" name="CompanionServicesButton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -616,10 +620,10 @@
                         <Property name="text" type="java.lang.String" value="Companion Services"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProtectiveServicesButton3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CompanionServicesButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="ProtectiveServicesLabel3">
+                    <Component class="javax.swing.JLabel" name="CompanionServicesLabel">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -632,6 +636,20 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="logoutButton">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Logout"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

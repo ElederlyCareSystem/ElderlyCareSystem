@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/MainJFrame.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/CustomerDasboard.java</file>
+            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/NursingServices.java</file>
             <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/EcoSystem.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/TempFrame.java</file>
+            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/CustomerDasboard.java</file>
+            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/CustomerContent.java</file>
         </group>
     </open-files>
 </project-private>

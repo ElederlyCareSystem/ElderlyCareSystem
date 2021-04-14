@@ -17,11 +17,28 @@ public class CustomerServices extends javax.swing.JFrame {
     public CustomerServices(String orgName) {
         initComponents();
         this.setSize(1680, 1050);
-//        serviceName = orgName;
-//        if(orgName != null) {
+        serviceName = orgName;
+        if(orgName != null) {
+            switch(orgName) {
+                case "Nursing":
+                    NursingServices nurse = new NursingServices();
+                    servicesSplitPane.setRightComponent(nurse);
+                break;
+                case "Grocery":
+                    break;
+                case "Profile":
+                    break;
+                case "PersonalCare":
+                    break;
+                case "Companion":
+                    break;
+                case "Legal":
+                    break;
+                default: break;
+            }
 //            NursingServices nurse = new NursingServices();
 //            servicesSplitPane.setRightComponent(nurse);
-//        }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -37,8 +54,18 @@ public class CustomerServices extends javax.swing.JFrame {
         servicesSplitPane = new javax.swing.JSplitPane();
         ServiceContainerMainPanel = new javax.swing.JPanel();
         ServicesPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ProfileButton = new javax.swing.JButton();
+        NursingButton = new javax.swing.JButton();
+        TherapyButton = new javax.swing.JButton();
+        CovidCareButton = new javax.swing.JButton();
+        HomeHealthAideButton = new javax.swing.JButton();
+        MoneyManagementButton = new javax.swing.JButton();
+        LegalServicesButton = new javax.swing.JButton();
+        MealDeliveryButton = new javax.swing.JButton();
+        GroceryDeliveryButton = new javax.swing.JButton();
+        HouseHoldCareButton = new javax.swing.JButton();
+        HouseMaintainenceButton = new javax.swing.JButton();
+        PersonalCareButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,26 +73,96 @@ public class CustomerServices extends javax.swing.JFrame {
         ServiceContainerMainPanel.setLayout(ServiceContainerMainPanelLayout);
         ServiceContainerMainPanelLayout.setHorizontalGroup(
             ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1223, Short.MAX_VALUE)
+            .addGap(0, 1136, Short.MAX_VALUE)
         );
         ServiceContainerMainPanelLayout.setVerticalGroup(
             ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         servicesSplitPane.setRightComponent(ServiceContainerMainPanel);
 
-        jButton1.setText("Profile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ProfileButton.setText("Profile");
+        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ProfileButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Medical");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        NursingButton.setText("Nursing");
+        NursingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                NursingButtonActionPerformed(evt);
+            }
+        });
+
+        TherapyButton.setText("Therapy");
+        TherapyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TherapyButtonActionPerformed(evt);
+            }
+        });
+
+        CovidCareButton.setText("Covid Care");
+        CovidCareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CovidCareButtonActionPerformed(evt);
+            }
+        });
+
+        HomeHealthAideButton.setText("Home Health Aide");
+        HomeHealthAideButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeHealthAideButtonActionPerformed(evt);
+            }
+        });
+
+        MoneyManagementButton.setText("Funds");
+        MoneyManagementButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoneyManagementButtonActionPerformed(evt);
+            }
+        });
+
+        LegalServicesButton.setText("Legal");
+        LegalServicesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LegalServicesButtonActionPerformed(evt);
+            }
+        });
+
+        MealDeliveryButton.setText("Meals");
+        MealDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MealDeliveryButtonActionPerformed(evt);
+            }
+        });
+
+        GroceryDeliveryButton.setText("Grocery");
+        GroceryDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroceryDeliveryButtonActionPerformed(evt);
+            }
+        });
+
+        HouseHoldCareButton.setText("Household Chore");
+        HouseHoldCareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HouseHoldCareButtonActionPerformed(evt);
+            }
+        });
+
+        HouseMaintainenceButton.setText("Household Maintainence");
+        HouseMaintainenceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HouseMaintainenceButtonActionPerformed(evt);
+            }
+        });
+
+        PersonalCareButton.setText("Personal Care");
+        PersonalCareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersonalCareButtonActionPerformed(evt);
             }
         });
 
@@ -73,17 +170,47 @@ public class CustomerServices extends javax.swing.JFrame {
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+            .addComponent(ProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(NursingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CovidCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HomeHealthAideButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TherapyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MoneyManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(LegalServicesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(GroceryDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MealDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PersonalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HouseMaintainenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+            .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServicesPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addGap(110, 110, 110)
+                .addComponent(ProfileButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addComponent(NursingButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CovidCareButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HomeHealthAideButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TherapyButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MoneyManagementButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LegalServicesButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(GroceryDeliveryButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MealDeliveryButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HouseHoldCareButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HouseMaintainenceButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PersonalCareButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
@@ -104,23 +231,73 @@ public class CustomerServices extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
         // TODO add your handling code here:
-        NewCustomerJPanel profile = new NewCustomerJPanel();
-        servicesSplitPane.setRightComponent(profile);
-    }//GEN-LAST:event_jButton1ActionPerformed
+//        NewCustomerJPanel profile = new NewCustomerJPanel();
+//        servicesSplitPane.setRightComponent(profile);
+    }//GEN-LAST:event_ProfileButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void NursingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_NursingButtonActionPerformed
+
+    private void TherapyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TherapyButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TherapyButtonActionPerformed
+
+    private void MoneyManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoneyManagementButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MoneyManagementButtonActionPerformed
+
+    private void LegalServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalServicesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LegalServicesButtonActionPerformed
+
+    private void HomeHealthAideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeHealthAideButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeHealthAideButtonActionPerformed
+
+    private void CovidCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CovidCareButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CovidCareButtonActionPerformed
+
+    private void MealDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealDeliveryButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MealDeliveryButtonActionPerformed
+
+    private void GroceryDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroceryDeliveryButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GroceryDeliveryButtonActionPerformed
+
+    private void HouseHoldCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseHoldCareButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HouseHoldCareButtonActionPerformed
+
+    private void HouseMaintainenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseMaintainenceButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HouseMaintainenceButtonActionPerformed
+
+    private void PersonalCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalCareButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PersonalCareButtonActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CovidCareButton;
+    private javax.swing.JButton GroceryDeliveryButton;
+    private javax.swing.JButton HomeHealthAideButton;
+    private javax.swing.JButton HouseHoldCareButton;
+    private javax.swing.JButton HouseMaintainenceButton;
+    private javax.swing.JButton LegalServicesButton;
+    private javax.swing.JButton MealDeliveryButton;
+    private javax.swing.JButton MoneyManagementButton;
+    private javax.swing.JButton NursingButton;
+    private javax.swing.JButton PersonalCareButton;
+    private javax.swing.JButton ProfileButton;
     private javax.swing.JPanel ServiceContainerMainPanel;
     private javax.swing.JPanel ServicesPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton TherapyButton;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane servicesSplitPane;
     // End of variables declaration//GEN-END:variables
