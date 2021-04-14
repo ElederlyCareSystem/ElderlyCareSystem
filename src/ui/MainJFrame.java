@@ -78,11 +78,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton1.setText("Login");
         jButton1.setBorderPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(118, 35));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton1);
         jButton1.setBounds(530, 500, 190, 40);
 

@@ -17,11 +17,11 @@ public class CustomerServices extends javax.swing.JFrame {
     public CustomerServices(String orgName) {
         initComponents();
         this.setSize(1680, 1050);
-        serviceName = orgName;
-        if(orgName != null) {
-            NursingServices nurse = new NursingServices();
-            servicesSplitPane.setRightComponent(nurse);
-        }
+//        serviceName = orgName;
+//        if(orgName != null) {
+//            NursingServices nurse = new NursingServices();
+//            servicesSplitPane.setRightComponent(nurse);
+//        }
     }
 
     /** This method is called from within the constructor to
@@ -46,7 +46,7 @@ public class CustomerServices extends javax.swing.JFrame {
         ServiceContainerMainPanel.setLayout(ServiceContainerMainPanelLayout);
         ServiceContainerMainPanelLayout.setHorizontalGroup(
             ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 1223, Short.MAX_VALUE)
         );
         ServiceContainerMainPanelLayout.setVerticalGroup(
             ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,12 +73,8 @@ public class CustomerServices extends javax.swing.JFrame {
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ServicesPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +83,7 @@ public class CustomerServices extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
@@ -97,7 +93,7 @@ public class CustomerServices extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(servicesSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(servicesSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,6 +106,8 @@ public class CustomerServices extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        NewCustomerJPanel profile = new NewCustomerJPanel();
+        servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
