@@ -54,7 +54,6 @@ public class CustomerServices extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         servicesSplitPane = new javax.swing.JSplitPane();
-        ServiceContainerMainPanel = new javax.swing.JPanel();
         ServicesPanel = new javax.swing.JPanel();
         ProfileButton = new javax.swing.JButton();
         NursingButton = new javax.swing.JButton();
@@ -70,21 +69,9 @@ public class CustomerServices extends javax.swing.JFrame {
         PersonalCareButton = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout ServiceContainerMainPanelLayout = new javax.swing.GroupLayout(ServiceContainerMainPanel);
-        ServiceContainerMainPanel.setLayout(ServiceContainerMainPanelLayout);
-        ServiceContainerMainPanelLayout.setHorizontalGroup(
-            ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1136, Short.MAX_VALUE)
-        );
-        ServiceContainerMainPanelLayout.setVerticalGroup(
-            ServiceContainerMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
-        );
-
-        servicesSplitPane.setRightComponent(ServiceContainerMainPanel);
 
         ProfileButton.setText("Profile");
         ProfileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +226,19 @@ public class CustomerServices extends javax.swing.JFrame {
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 627, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 706, Short.MAX_VALUE)
+        );
+
+        servicesSplitPane.setRightComponent(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,8 +257,8 @@ public class CustomerServices extends javax.swing.JFrame {
 
     private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
         // TODO add your handling code here:
-//        NewCustomerJPanel profile = new NewCustomerJPanel();
-//        servicesSplitPane.setRightComponent(profile);
+        NewCustomerJPanel profile = new NewCustomerJPanel();
+        servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
     private void NursingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingButtonActionPerformed
@@ -287,6 +287,8 @@ public class CustomerServices extends javax.swing.JFrame {
 
     private void MealDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealDeliveryButtonActionPerformed
         // TODO add your handling code here:
+        OrderMeal profile = new OrderMeal();
+        servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_MealDeliveryButtonActionPerformed
 
     private void GroceryDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroceryDeliveryButtonActionPerformed
@@ -334,9 +336,9 @@ public class CustomerServices extends javax.swing.JFrame {
     private javax.swing.JButton NursingButton;
     private javax.swing.JButton PersonalCareButton;
     private javax.swing.JButton ProfileButton;
-    private javax.swing.JPanel ServiceContainerMainPanel;
     private javax.swing.JPanel ServicesPanel;
     private javax.swing.JButton TherapyButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JSplitPane servicesSplitPane;
