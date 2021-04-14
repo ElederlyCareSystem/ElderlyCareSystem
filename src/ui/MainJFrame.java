@@ -13,8 +13,6 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import ui.Customer.CustDashboard;
-import ui.Customer.CustomerDasboard;
 
 /**
  *
@@ -71,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Palatino", 1, 25)); // NOI18N
         jLabel3.setText("Username");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(530, 340, 130, 30);
+        jLabel3.setBounds(530, 340, 120, 30);
 
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
@@ -79,11 +77,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton1.setText("Login");
         jButton1.setBorderPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(118, 35));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton1);
         jButton1.setBounds(530, 500, 190, 40);
 
@@ -151,16 +144,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-//        CustomerDasboard student = new CustomerDasboard();
-//        this.dispose();
-//        student.setVisible(true);
-          CustDashboard cust = new CustDashboard();
-          cust.setVisible(true);
-         
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
