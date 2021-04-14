@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.Customer.CustDashboard;
 
 /**
  *
@@ -77,6 +78,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton1.setText("Login");
         jButton1.setBorderPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(118, 35));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(530, 500, 190, 40);
 
@@ -144,6 +150,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CustDashboard dashboard = new CustDashboard();
+        this.dispose();
+        dashboard.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
