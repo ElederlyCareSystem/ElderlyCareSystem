@@ -19,15 +19,26 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private ArrayList<Network> networkList;
+    private Network network;
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+    
     public static EcoSystem getInstance(){
         if(business==null){
+            System.out.println("here....");
             business=new EcoSystem();
         }
         return business;
     }
     
     public Network createAndAddNetwork(){
-        Network network=new Network();
+        network =new Network();
         networkList.add(network);
         return network;
     }

@@ -266,6 +266,8 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void NursingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingButtonActionPerformed
         // TODO add your handling code here:
+        NursingServices nurse = new NursingServices(userProcessContainer,system);
+        servicesSplitPane.setRightComponent(nurse);
     }//GEN-LAST:event_NursingButtonActionPerformed
 
     private void TherapyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TherapyButtonActionPerformed

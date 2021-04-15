@@ -5,6 +5,7 @@
 package Business.Organization;
 
 import Business.Organization.Organization.Type;
+import Business.Role.HealthAidRole;
 import java.util.ArrayList;
 
 /**
@@ -28,9 +29,17 @@ public class OrganizationDirectory {
         if (type.getValue().equals(Type.Doctor.getValue())){
             organization = new DoctorOrganization();
             organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.Lab.getValue())){
-            organization = new LabOrganization();
+        } else if (type.getValue().equals(Type.Nurse.getValue())){
+            organization = new NursingOrganization();
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.CovidCare.getValue())){
+            organization = new CovidCareOrganization();
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.HealthAid.getValue())){
+            organization = new HealthAidOrganization();
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Therapy.getValue())){
+            organization = new TherapyOrganization();
             organizationList.add(organization);
         }
         return organization;

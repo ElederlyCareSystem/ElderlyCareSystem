@@ -30,6 +30,9 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
+        System.out.println("network list "+ system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().size());
+        
+//        system.getNetworkList();
         this.setSize(1680, 1050);
         initLoginPage();
     }

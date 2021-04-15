@@ -1,6 +1,9 @@
 package Business;
 
 import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Role.CustomerRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
@@ -16,15 +19,19 @@ public class ConfigureASystem {
         EcoSystem system = EcoSystem.getInstance();
         
         //Create a network
+        Network network = system.createAndAddNetwork();
         //create an enterprise
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise("Medical", Enterprise.EnterpriseType.Medical);
         //initialize some organizations
+        Organization nurseOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Nurse);        
+        Organization covidCareOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.CovidCare);
+        Organization therapyOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Therapy);
+        Organization healthAidOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.HealthAid);
+
         //have some employees 
-        //create user account
-        
-        
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
         Employee employee1 = system.getEmployeeDirectory().createEmployee("customer");
-        
+        //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
         
