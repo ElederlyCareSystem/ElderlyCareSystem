@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import ui.LoginJpanel;
 
 /**
  *
@@ -26,18 +27,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Organization organization;
     
-    public CustomerDashboard() {
-        initComponents();
-    }
     
-//    public CustomerDashboard(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-//        initComponents();
-//        this.userProcessContainer = userProcessContainer;
-//        this.userAccount = account;
-//        this.business = business;
-//        this.organization = organization;
-//    }
-
     public CustomerDashboard(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -472,9 +462,6 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void NursingServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingServicesButtonActionPerformed
         // TODO add your handling code here:
-        //        CustomerServicess mj = new CustomerServicess("Nursing");
-        //        this.dispose();
-        //        mj.setVisible(true);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("customerServices",new CustomerService("Nursing", userProcessContainer, business) );
         layout.next(userProcessContainer);
@@ -490,9 +477,9 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-//        MainJFrame main = new MainJFrame();
-//        this.dispose();
-//        main.setVisible(true);
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
 

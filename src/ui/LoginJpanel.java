@@ -35,6 +35,10 @@ public class LoginJpanel extends javax.swing.JPanel {
         this.system = system;
     }
 
+    public LoginJpanel(JPanel userProcessContainer) {
+        this.mainWorkArea = userProcessContainer;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,23 +207,10 @@ public class LoginJpanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) mainWorkArea.getLayout();
                 mainWorkArea.add("workarea",userAccount.getRole().createWorkArea(mainWorkArea, userAccount, inOrganization, inEnterprise, system));
                 layout.next(mainWorkArea);
-                
-               
-            //            CustomerDasboard student = new CustomerDasboard();
-            
-            //            CardLayout layout=(CardLayout)containelPanel.getLayout();
-            //            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
-            //            layout.next(container);
+                jTextField_username.setText("");
+                jPasswordField_password.setText("");
         }
 
-        //        loginJButton.setEnabled(false);
-        //        logoutJButton.setEnabled(true);
-        //        userNameJTextField.setEnabled(false);
-        //        passwordField.setEnabled(false);
-
-        //        CustomerDasboard student = new CustomerDasboard();
-        //        this.dispose();
-        //        student.setVisible(true);
     }//GEN-LAST:event_jButton_loginActionPerformed
 
 
