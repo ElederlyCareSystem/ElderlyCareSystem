@@ -8,6 +8,8 @@ package ui.Customer;
 import Business.EcoSystem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import ui.LoginJpanel;
+import ui.MainJFrame;
 
 /**
  *
@@ -32,11 +34,7 @@ public class CustomerService extends javax.swing.JPanel {
                 case "Nursing":
                     NursingServices nurse = new NursingServices(userProcessContainer,system);
                     servicesSplitPane.setRightComponent(nurse);
-                    
-//                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//                    userProcessContainer.add("nursingServices",new NursingServices(userProcessContainer,system));
-//                    layout.next(userProcessContainer);
-                break;
+                    break;
                 case "Grocery":
                     break;
                 case "Profile":
@@ -49,8 +47,7 @@ public class CustomerService extends javax.swing.JPanel {
                     break;
                 default: break;
             }
-//            NursingServices nurse = new NursingServices();
-//            servicesSplitPane.setRightComponent(nurse);
+
         }
     }
 
@@ -315,16 +312,16 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         // TODO add your handling code here:
-        //        CustDashboard dashboard = new CustDashboard();
-        //        this.dispose();
-        //        dashboard.setVisible(true);
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_HomeButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-//        MainJFrame main = new MainJFrame();
-//        this.dispose();
-//        main.setVisible(true);
+        userProcessContainer.remove(this);
+        new MainJFrame();
+        
     }//GEN-LAST:event_logoutButtonActionPerformed
 
 
