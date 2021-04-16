@@ -34,7 +34,7 @@ public class CustomerService extends javax.swing.JPanel {
         if(serviceName != null) {
             switch(serviceName) {
                 case "Nursing":
-                    NursingServices nurse = new NursingServices(userProcessContainer,system);
+                    NursingServices nurse = new NursingServices(userProcessContainer,system, userAccount);
                     servicesSplitPane.setRightComponent(nurse);
                     break;
                 case "Grocery":
@@ -268,7 +268,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void NursingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingButtonActionPerformed
         // TODO add your handling code here:
-        NursingServices nurse = new NursingServices(userProcessContainer,system);
+        NursingServices nurse = new NursingServices(userProcessContainer,system, userAccount);
         servicesSplitPane.setRightComponent(nurse);
     }//GEN-LAST:event_NursingButtonActionPerformed
 

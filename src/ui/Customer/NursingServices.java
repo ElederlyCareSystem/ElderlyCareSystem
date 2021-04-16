@@ -6,7 +6,13 @@
 package ui.Customer;
 
 import Business.EcoSystem;
+import Business.Organization.NursingOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.NursingWorkRequest;
+import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,15 +25,34 @@ public class NursingServices extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-    
-//    public NursingServices() {
-//        initComponents();
-//    }
-
-    NursingServices(JPanel userProcessContainer, EcoSystem business) {
+    DefaultTableModel model;
+    NursingOrganization org;
+    UserAccount userAccount;
+    NursingServices(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount) {
         initComponents();
+        this.userAccount = userAccount;
+        model = new DefaultTableModel();
+        servicesTable.setModel(model);
+        model.addColumn("Category");
+        model.addColumn("Price");
         this.userProcessContainer = userProcessContainer;
         this.system = business;
+//        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
+        org = new NursingOrganization();
+        Color ivory = new Color(255, 255, 208);
+        servicesTable.setOpaque(false);
+        servicesTable.setBackground(ivory);
+        viewServices();
+    }
+    
+    public void viewServices() {
+        if (org.getServicesList().size() > 0) {
+            for (String i : org.getServicesList().keySet()) {
+                model.addRow(new Object[]{
+                    i, org.getServicesList().get(i)
+                });
+            }
+        }
     }
 
     /**
@@ -46,11 +71,12 @@ public class NursingServices extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         ImageHeader1 = new javax.swing.JLabel();
         Title1 = new javax.swing.JLabel();
-        ServicesJCombo = new javax.swing.JComboBox<>();
         fromDateText = new com.toedter.calendar.JDateChooser();
         toLabel = new javax.swing.JLabel();
         toDateText = new com.toedter.calendar.JDateChooser();
         submitBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        servicesTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -61,7 +87,7 @@ public class NursingServices extends javax.swing.JPanel {
         fromLabel.setText("From");
 
         durationLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
-        durationLabel.setText("Time Duration");
+        durationLabel.setText("Time Duration in days");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -88,12 +114,28 @@ public class NursingServices extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
-        ServicesJCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Home Care", "Alzheimer’s Care", "Dementia Care", "Hospice Care", "Walking and rehab exercises", "Feeding", "All" }));
-
         toLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         toLabel.setText("To");
 
         submitBtn.setText("Add Service");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+
+        servicesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(servicesTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,29 +146,32 @@ public class NursingServices extends javax.swing.JPanel {
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(serviceCatLabel)
-                    .addComponent(durationLabel)
                     .addComponent(fromLabel)
-                    .addComponent(toLabel))
-                .addGap(25, 25, 25)
+                    .addComponent(toLabel)
+                    .addComponent(durationLabel))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ServicesJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(durationText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(submitBtn)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(durationText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(toDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(254, 254, 254)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(serviceCatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ServicesJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,21 +186,57 @@ public class NursingServices extends javax.swing.JPanel {
                     .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(submitBtn)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        String selectedCategory = String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 0));
+        Double selectedPrice = Double.parseDouble(String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1)));
+        System.out.println("row selected " + selectedCategory + " proce " + selectedPrice + " date "+ fromDateText.getDate());
+        NursingWorkRequest request = new NursingWorkRequest();
+        request.setMessage("Book a nurse");
+        request.setSender(userAccount);
+        request.setStatus("Sent");
+        request.setFromDate(fromDateText.getDate());     
+        request.setToDate(toDateText.getDate());
+        request.setNoOfDays(Integer.parseInt(durationText.getText()));
+        request.setServiceCategory(selectedCategory);
+        request.setPrice(selectedPrice);
+
+//        request.setDoctorName(doctor.getName());
+        
+//        Organization org = null;
+                Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
+
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof NursingOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+        if (foodOrg!=null){
+            foodOrg.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+            System.out.println("get work request " + foodOrg.getWorkQueue().getWorkRequestList().get(0).getSender());
+        }
+        
+//        servicesTable.getSelectedRow();
+    }//GEN-LAST:event_submitBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageHeader1;
-    private javax.swing.JComboBox<String> ServicesJCombo;
     private javax.swing.JLabel Title1;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JTextField durationText;
     private com.toedter.calendar.JDateChooser fromDateText;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel serviceCatLabel;
+    private javax.swing.JTable servicesTable;
     private javax.swing.JButton submitBtn;
     private com.toedter.calendar.JDateChooser toDateText;
     private javax.swing.JLabel toLabel;
