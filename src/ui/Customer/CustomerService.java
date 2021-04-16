@@ -6,6 +6,7 @@
 package ui.Customer;
 
 import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import ui.LoginJpanel;
@@ -23,7 +24,8 @@ public class CustomerService extends javax.swing.JPanel {
     private String serviceName;
     private JPanel userProcessContainer;
     private EcoSystem system;
-    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system) {
+    private UserAccount userAccount;
+    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.setSize(1680, 1050);
         serviceName = orgName;
@@ -292,7 +294,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void MealDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealDeliveryButtonActionPerformed
         // TODO add your handling code here:
-        OrderMeal profile = new OrderMeal();
+        OrderMeal profile = new OrderMeal(userProcessContainer, system, userAccount);
         servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_MealDeliveryButtonActionPerformed
 

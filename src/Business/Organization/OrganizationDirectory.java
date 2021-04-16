@@ -4,6 +4,7 @@
  */
 package Business.Organization;
 
+import Business.Enterprise.Enterprise;
 import Business.Organization.Organization.Type;
 import Business.Role.HealthAidRole;
 import java.util.ArrayList;
@@ -41,7 +42,23 @@ public class OrganizationDirectory {
         } else if (type.getValue().equals(Type.Therapy.getValue())){
             organization = new TherapyOrganization();
             organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Food.getValue())){
+                    System.out.println("if create" + type);
+            organization = new FoodOrganization();
+            organizationList.add(organization);
         }
         return organization;
+    }
+    
+    public Organization getOrganizationByType(Enterprise enterprise, String type){
+        Organization organization=null;
+        for(int i=0; i < enterprise.getOrganizationDirectory().getOrganizationList().size(); i++){
+            System.out.println("orgo>>>"+enterprise.getOrganizationDirectory().getOrganizationList().get(i).getName());
+            if(enterprise.getOrganizationDirectory().getOrganizationList().get(i).getName() == type){
+                organization = enterprise.getOrganizationDirectory().getOrganizationList().get(i);
+            }
+        }
+        return organization;
+        
     }
 }

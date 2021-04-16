@@ -30,7 +30,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        System.out.println("network list "+ system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().size());
+        System.out.println("network list "+ system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().size());
+        System.out.println("org>>>> "+ system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().size());
         
 //        system.getNetworkList();
         this.setSize(1680, 1050);

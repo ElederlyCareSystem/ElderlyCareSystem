@@ -3,6 +3,7 @@ package Business;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
 import Business.Role.CustomerRole;
 import Business.Role.SystemAdminRole;
@@ -27,6 +28,14 @@ public class ConfigureASystem {
         Organization covidCareOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.CovidCare);
         Organization therapyOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Therapy);
         Organization healthAidOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.HealthAid);
+        
+         //create an enterprise - food and essentials
+        Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
+        //initialize some organizations
+        //FoodOrganization foodOrganization = new FoodOrganization();
+        Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
+        //enterprise2.getOrganizationDirectory().getOrganizationList().add(foodOrganization);
+        System.out.println("enterprise config " + enterprise2.getOrganizationDirectory().getOrganizationList().get(0).getName());
 
         //have some employees 
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
