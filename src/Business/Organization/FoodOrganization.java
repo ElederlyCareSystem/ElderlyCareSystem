@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import Business.FoodOrganization.FoodItems;
 import Business.FoodOrganization.Lunch;
 import Business.Role.AdminRole;
+import Business.WorkQueue.FoodOrganizationWorkQueue;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class FoodOrganization extends Organization{
     Breakfast bf = new Breakfast();
     Lunch lunch = new Lunch();
     Dinner dinner = new Dinner();
+    FoodOrganizationWorkQueue workQueue = new FoodOrganizationWorkQueue();
     
     public FoodOrganization() {
         super(Type.Food.getValue());
@@ -87,6 +89,68 @@ public class FoodOrganization extends Organization{
 
     public List<FoodItems> getNonvegDinnerList() {
         return nonvegDinnerList;
+    }
+    
+    public FoodItems getFoodItemByName(String meal, String type, String name){
+        FoodItems foodItem = null;
+        
+        if(meal.equals("Breakfast") && type.equals("Veg")){
+            for(int i = 0; i < vegBreakfastList.size(); i++){
+                if(vegBreakfastList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = vegBreakfastList.get(i);
+                }
+            }
+        }else if(meal.equals("Breakfast") && type.equals("Vegan")){
+            for(int i = 0; i < veganBreakfastList.size(); i++){
+                if(veganBreakfastList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = veganBreakfastList.get(i);
+                }
+            }
+        }else if(meal.equals("Breakfast") && type.equals("Non-Veg")){
+            for(int i = 0; i < nonvegBreakfastList.size(); i++){
+                if(nonvegBreakfastList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = nonvegBreakfastList.get(i);
+                }
+            }
+        }else if(meal.equals("Lunch") && type.equals("Veg")){
+            for(int i = 0; i < vegLunchList.size(); i++){
+                if(vegLunchList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = vegLunchList.get(i);
+                }
+            }
+        }else if(meal.equals("Lunch") && type.equals("Vegan")){
+            for(int i = 0; i < veganLunchList.size(); i++){
+                if(veganLunchList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = veganLunchList.get(i);
+                }
+            }
+        }else if(meal.equals("Lunch") && type.equals("Non-Veg")){
+            for(int i = 0; i < nonvegLunchList.size(); i++){
+                if(nonvegLunchList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = nonvegLunchList.get(i);
+                }
+            }
+        }else if(meal.equals("Dinner") && type.equals("Veg")){
+            for(int i = 0; i < vegDinnerList.size(); i++){
+                if(vegDinnerList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = vegDinnerList.get(i);
+                }
+            }
+        }else if(meal.equals("Dinner") && type.equals("Vegan")){
+            for(int i = 0; i < veganDinnerList.size(); i++){
+                if(veganDinnerList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = veganDinnerList.get(i);
+                }
+            }
+        }else if(meal.equals("Dinner") && type.equals("Non-Veg")){
+            for(int i = 0; i < nonvegDinnerList.size(); i++){
+                if(nonvegDinnerList.get(i).getFoodItemsName().equals(name)){
+                    foodItem = nonvegDinnerList.get(i);
+                }
+            }
+        }
+        
+        return foodItem;
     }
     
 }

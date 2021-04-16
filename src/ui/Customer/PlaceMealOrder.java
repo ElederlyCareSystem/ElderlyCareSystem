@@ -35,6 +35,11 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         SubmitjButton = new javax.swing.JButton();
         RemovejButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        InstructionsjTextArea = new javax.swing.JTextArea();
+
+        setBackground(new java.awt.Color(178, 215, 229));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -88,6 +93,13 @@ public class PlaceMealOrder extends javax.swing.JPanel {
 
         RemovejButton.setText("Remove");
 
+        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel6.setText("Instructions:");
+
+        InstructionsjTextArea.setColumns(20);
+        InstructionsjTextArea.setRows(5);
+        jScrollPane2.setViewportView(InstructionsjTextArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,14 +111,20 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(BackButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(301, 301, 301)
+                        .addGap(298, 298, 298)
                         .addComponent(SubmitjButton)
-                        .addGap(69, 69, 69)
-                        .addComponent(RemovejButton)))
-                .addContainerGap(339, Short.MAX_VALUE))
+                        .addGap(103, 103, 103)
+                        .addComponent(RemovejButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(388, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,11 +134,15 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                 .addComponent(BackButton)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitjButton)
                     .addComponent(RemovejButton))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(70, 70, 70))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,11 +150,14 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel ImageHeader1;
+    private javax.swing.JTextArea InstructionsjTextArea;
     private javax.swing.JButton RemovejButton;
     private javax.swing.JButton SubmitjButton;
     private javax.swing.JLabel Title1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

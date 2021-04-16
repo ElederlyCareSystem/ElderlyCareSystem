@@ -16,6 +16,7 @@ public class FoodItems {
     private String foodItemsName;
     private Double price;
     private int quantity;
+    private String instructions;
 
     public FoodItems(String meal, String type, String foodItemsName, Double price) {
         this.meal = meal;
@@ -63,6 +64,16 @@ public class FoodItems {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+    
+    
     
     
 }

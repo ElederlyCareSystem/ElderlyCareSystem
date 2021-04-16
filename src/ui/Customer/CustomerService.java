@@ -404,7 +404,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void MealDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealDeliveryButtonActionPerformed
         // TODO add your handling code here:
-        OrderMeal profile = new OrderMeal(userProcessContainer, system, userAccount);
+        OrderMeal profile = new OrderMeal(userProcessContainer, system, userAccount, servicesSplitPane);
         servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_MealDeliveryButtonActionPerformed
 

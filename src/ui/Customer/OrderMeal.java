@@ -11,8 +11,10 @@ import Business.FoodOrganization.FoodItems;
 import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FoodOrganizationWorkRequest;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,12 +31,20 @@ public class OrderMeal extends javax.swing.JPanel {
     private UserAccount userAccount;
     DefaultTableModel model;
     FoodOrganization foodOrg;
+    String meal;
+    String type;
+    String food;
+    Double price;
+    FoodItems selectedFoodItem;
+    FoodOrganizationWorkRequest request;
+    JSplitPane servicesSplitPane;
     
-    public OrderMeal(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount) {
+    public OrderMeal(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount,JSplitPane servicesSplitPane) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = business;
         this.userAccount = userAccount;
+        this.servicesSplitPane = servicesSplitPane;
         model = new DefaultTableModel();
         MenujTable1.setModel(model);
         model.addColumn("Meal");
@@ -69,9 +79,6 @@ public class OrderMeal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         MenujTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        InstructionsjTextArea = new javax.swing.JTextArea();
         PlaceOrder = new javax.swing.JButton();
         OKjButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -117,6 +124,11 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel4.setText("Quantity:");
 
         jButton1.setText("Add To Cart");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         MenujTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,11 +142,16 @@ public class OrderMeal extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        MenujTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenujTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(MenujTable1);
@@ -142,14 +159,12 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Meal:");
 
-        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
-        jLabel6.setText("Instructions:");
-
-        InstructionsjTextArea.setColumns(20);
-        InstructionsjTextArea.setRows(5);
-        jScrollPane2.setViewportView(InstructionsjTextArea);
-
         PlaceOrder.setText("Place Order");
+        PlaceOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlaceOrderActionPerformed(evt);
+            }
+        });
 
         OKjButton.setText("Search");
         OKjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,18 +190,15 @@ public class OrderMeal extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(275, 275, 275)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(QuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(382, 382, 382)
                         .addComponent(OKjButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -232,13 +244,9 @@ public class OrderMeal extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(QuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(jButton1)
-                .addGap(112, 112, 112))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -348,10 +356,64 @@ public class OrderMeal extends javax.swing.JPanel {
 //        });
     }//GEN-LAST:event_OKjButtonActionPerformed
 
+    private void MenujTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenujTable1MouseClicked
+        // TODO add your handling code here:
+        int index = MenujTable1.getSelectedRow();
+        System.out.println("selectedrow>>>>"+index);
+        DefaultTableModel model = (DefaultTableModel) MenujTable1.getModel();
+       // updateName.setText(model.getValueAt(index, 0).toString());
+        meal = model.getValueAt(index, 0).toString();
+        type = model.getValueAt(index, 1).toString();
+        food = model.getValueAt(index, 2).toString();
+        price = Double.parseDouble(model.getValueAt(index, 3).toString());
+        
+        selectedFoodItem = foodOrg.getFoodItemByName(meal, type, type);
+        
+        System.out.println(">>>"+meal+" >>>"+type+" >>>"+food);
+    }//GEN-LAST:event_MenujTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int workQueueSize = userAccount.getWorkQueue().getWorkRequestList().size();
+        
+        if(workQueueSize == 0){
+            request = new FoodOrganizationWorkRequest();
+            request.setReqType(foodOrg.getName());
+            request.setSender(userAccount);
+            request.getFoodList().add(selectedFoodItem);
+            request.setTotal(price);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }else{
+            for(int i = workQueueSize; i >= 0; i--){
+                if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
+                    if(!userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("completed")){
+                        request = (FoodOrganizationWorkRequest)userAccount.getWorkQueue().getWorkRequestList().get(i);
+                        request.getFoodList().add(selectedFoodItem);
+                        double total = request.getTotal() + price;
+                        request.setTotal(total);
+                    }else if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("completed")){
+                        request = new FoodOrganizationWorkRequest();
+                        request.setReqType(foodOrg.getName());
+                        request.setSender(userAccount);
+                        request.getFoodList().add(selectedFoodItem);
+                        request.setTotal(price);
+                        userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    }
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void PlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaceOrderActionPerformed
+        // TODO add your handling code here:
+        PlaceMealOrder placeOrder = new PlaceMealOrder();
+        servicesSplitPane.setRightComponent(placeOrder);
+    }//GEN-LAST:event_PlaceOrderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageHeader1;
-    private javax.swing.JTextArea InstructionsjTextArea;
     private javax.swing.JTable MenujTable1;
     private javax.swing.JButton OKjButton;
     private javax.swing.JButton PlaceOrder;
@@ -366,9 +428,7 @@ public class OrderMeal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
