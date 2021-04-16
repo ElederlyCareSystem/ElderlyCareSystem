@@ -28,6 +28,7 @@ public class CustomerService extends javax.swing.JPanel {
     public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.setSize(1680, 1050);
+        this.userAccount = userAccount;
         serviceName = orgName;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -274,10 +275,14 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void TherapyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TherapyButtonActionPerformed
         // TODO add your handling code here:
+        TherapyServices therapy = new TherapyServices(userProcessContainer,system, userAccount);
+        servicesSplitPane.setRightComponent(therapy);
     }//GEN-LAST:event_TherapyButtonActionPerformed
 
     private void CovidCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CovidCareButtonActionPerformed
         // TODO add your handling code here:
+        CovidCareServices care = new CovidCareServices(userProcessContainer,system, userAccount);
+        servicesSplitPane.setRightComponent(care);
     }//GEN-LAST:event_CovidCareButtonActionPerformed
 
     private void HomeHealthAideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeHealthAideButtonActionPerformed

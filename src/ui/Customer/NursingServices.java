@@ -28,6 +28,7 @@ public class NursingServices extends javax.swing.JPanel {
     DefaultTableModel model;
     NursingOrganization org;
     UserAccount userAccount;
+
     NursingServices(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount) {
         initComponents();
         this.userAccount = userAccount;
@@ -37,14 +38,13 @@ public class NursingServices extends javax.swing.JPanel {
         model.addColumn("Price");
         this.userProcessContainer = userProcessContainer;
         this.system = business;
-//        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
         org = new NursingOrganization();
         Color ivory = new Color(255, 255, 208);
         servicesTable.setOpaque(false);
         servicesTable.setBackground(ivory);
         viewServices();
     }
-    
+
     public void viewServices() {
         if (org.getServicesList().size() > 0) {
             for (String i : org.getServicesList().keySet()) {
@@ -149,26 +149,22 @@ public class NursingServices extends javax.swing.JPanel {
                     .addComponent(fromLabel)
                     .addComponent(toLabel)
                     .addComponent(durationLabel))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                    .addComponent(submitBtn)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitBtn)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(durationText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(toDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(durationText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(254, 254, 254)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(serviceCatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,7 +182,7 @@ public class NursingServices extends javax.swing.JPanel {
                     .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(submitBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,35 +190,22 @@ public class NursingServices extends javax.swing.JPanel {
         // TODO add your handling code here:
         String selectedCategory = String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 0));
         Double selectedPrice = Double.parseDouble(String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1)));
-        System.out.println("row selected " + selectedCategory + " proce " + selectedPrice + " date "+ fromDateText.getDate());
         NursingWorkRequest request = new NursingWorkRequest();
         request.setMessage("Book a nurse");
         request.setSender(userAccount);
         request.setStatus("Sent");
-        request.setFromDate(fromDateText.getDate());     
+        request.setFromDate(fromDateText.getDate());
         request.setToDate(toDateText.getDate());
         request.setNoOfDays(Integer.parseInt(durationText.getText()));
         request.setServiceCategory(selectedCategory);
         request.setPrice(selectedPrice);
-
-//        request.setDoctorName(doctor.getName());
-        
-//        Organization org = null;
-                Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
-
-//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//            if (organization instanceof NursingOrganization){
-//                org = organization;
-//                break;
-//            }
-//        }
-        if (foodOrg!=null){
+        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
+        if (foodOrg != null) {
             foodOrg.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
             System.out.println("get work request " + foodOrg.getWorkQueue().getWorkRequestList().get(0).getSender());
         }
-        
-//        servicesTable.getSelectedRow();
+
     }//GEN-LAST:event_submitBtnActionPerformed
 
 

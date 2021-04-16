@@ -8,14 +8,29 @@ package Business.Organization;
 import Business.Role.Role;
 import Business.Role.TherapistRole;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author harshikag
  */
 public class TherapyOrganization extends Organization {
+    HashMap<String, Double> servicesList = new HashMap<String, Double>();
+
+    public HashMap<String, Double> getServicesList() {
+        return servicesList;
+    }
+
+    public void setServicesList(HashMap<String, Double> servicesList) {
+        this.servicesList = servicesList;
+    }
     public TherapyOrganization() {
         super(Organization.Type.Therapy.getValue());
+        servicesList.put("Geriatric Physical Therapy", 100.00);
+        servicesList.put("Orthopedic Physical Therapy", 120.00);
+        servicesList.put("Cardiopulmonary Physical Therapy", 110.00);
+        servicesList.put("Neurological Physical Therapy", 115.00);
+        servicesList.put("Occupational Therapy", 119.00);
     }
 
     @Override
