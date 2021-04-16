@@ -8,6 +8,7 @@ package ui.Customer;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 import ui.LoginJpanel;
 import ui.MainJFrame;
@@ -32,11 +33,13 @@ public class CustomerService extends javax.swing.JPanel {
         serviceName = orgName;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        profileNameText.setText(userAccount.getEmployee().getName());
         if(serviceName != null) {
             switch(serviceName) {
                 case "Nursing":
                     NursingServices nurse = new NursingServices(userProcessContainer,system, userAccount);
                     servicesSplitPane.setRightComponent(nurse);
+                    NursingButton.setBorderPainted(true);
                     break;
                 case "Grocery":
                     break;
@@ -79,129 +82,229 @@ public class CustomerService extends javax.swing.JPanel {
         PersonalCareButton = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
+        profileIcon = new javax.swing.JLabel();
+        profileNameText = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
 
+        servicesSplitPane.setBorder(null);
+        servicesSplitPane.setDividerSize(0);
+
+        ServicesPanel.setBackground(new java.awt.Color(102, 102, 102));
+
+        ProfileButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        ProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         ProfileButton.setText("Profile");
+        ProfileButton.setBorderPainted(false);
+        ProfileButton.setContentAreaFilled(false);
+        ProfileButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileButtonActionPerformed(evt);
             }
         });
 
+        NursingButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        NursingButton.setForeground(new java.awt.Color(255, 255, 255));
         NursingButton.setText("Nursing");
+        NursingButton.setBorderPainted(false);
+        NursingButton.setContentAreaFilled(false);
+        NursingButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         NursingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NursingButtonActionPerformed(evt);
             }
         });
 
+        TherapyButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        TherapyButton.setForeground(new java.awt.Color(255, 255, 255));
         TherapyButton.setText("Therapy");
+        TherapyButton.setBorderPainted(false);
+        TherapyButton.setContentAreaFilled(false);
+        TherapyButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         TherapyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TherapyButtonActionPerformed(evt);
             }
         });
 
+        CovidCareButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        CovidCareButton.setForeground(new java.awt.Color(255, 255, 255));
         CovidCareButton.setText("Covid Care");
+        CovidCareButton.setBorderPainted(false);
+        CovidCareButton.setContentAreaFilled(false);
+        CovidCareButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         CovidCareButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CovidCareButtonActionPerformed(evt);
             }
         });
 
+        HomeHealthAideButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        HomeHealthAideButton.setForeground(new java.awt.Color(255, 255, 255));
         HomeHealthAideButton.setText("Home Health Aide");
+        HomeHealthAideButton.setBorderPainted(false);
+        HomeHealthAideButton.setContentAreaFilled(false);
+        HomeHealthAideButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HomeHealthAideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeHealthAideButtonActionPerformed(evt);
             }
         });
 
+        MoneyManagementButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        MoneyManagementButton.setForeground(new java.awt.Color(255, 255, 255));
         MoneyManagementButton.setText("Funds");
+        MoneyManagementButton.setBorderPainted(false);
+        MoneyManagementButton.setContentAreaFilled(false);
+        MoneyManagementButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MoneyManagementButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MoneyManagementButtonActionPerformed(evt);
             }
         });
 
+        LegalServicesButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        LegalServicesButton.setForeground(new java.awt.Color(255, 255, 255));
         LegalServicesButton.setText("Legal");
+        LegalServicesButton.setBorderPainted(false);
+        LegalServicesButton.setContentAreaFilled(false);
+        LegalServicesButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LegalServicesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LegalServicesButtonActionPerformed(evt);
             }
         });
 
+        MealDeliveryButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        MealDeliveryButton.setForeground(new java.awt.Color(255, 255, 255));
         MealDeliveryButton.setText("Meals");
+        MealDeliveryButton.setBorderPainted(false);
+        MealDeliveryButton.setContentAreaFilled(false);
+        MealDeliveryButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MealDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MealDeliveryButtonActionPerformed(evt);
             }
         });
 
+        GroceryDeliveryButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        GroceryDeliveryButton.setForeground(new java.awt.Color(255, 255, 255));
         GroceryDeliveryButton.setText("Grocery");
+        GroceryDeliveryButton.setBorderPainted(false);
+        GroceryDeliveryButton.setContentAreaFilled(false);
+        GroceryDeliveryButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         GroceryDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GroceryDeliveryButtonActionPerformed(evt);
             }
         });
 
+        HouseHoldCareButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        HouseHoldCareButton.setForeground(new java.awt.Color(255, 255, 255));
         HouseHoldCareButton.setText("Household Chore");
+        HouseHoldCareButton.setBorderPainted(false);
+        HouseHoldCareButton.setContentAreaFilled(false);
+        HouseHoldCareButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HouseHoldCareButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HouseHoldCareButtonActionPerformed(evt);
             }
         });
 
-        HouseMaintainenceButton.setText("Household Maintainence");
+        HouseMaintainenceButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        HouseMaintainenceButton.setForeground(new java.awt.Color(255, 255, 255));
+        HouseMaintainenceButton.setText("<html>Household <br>Maintainence</html>");
+        HouseMaintainenceButton.setBorderPainted(false);
+        HouseMaintainenceButton.setContentAreaFilled(false);
+        HouseMaintainenceButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HouseMaintainenceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HouseMaintainenceButtonActionPerformed(evt);
             }
         });
 
+        PersonalCareButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        PersonalCareButton.setForeground(new java.awt.Color(255, 255, 255));
         PersonalCareButton.setText("Personal Care");
+        PersonalCareButton.setBorderPainted(false);
+        PersonalCareButton.setContentAreaFilled(false);
+        PersonalCareButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         PersonalCareButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PersonalCareButtonActionPerformed(evt);
             }
         });
 
+        HomeButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        HomeButton.setForeground(new java.awt.Color(255, 255, 255));
         HomeButton.setText("Home");
+        HomeButton.setBorderPainted(false);
+        HomeButton.setContentAreaFilled(false);
+        HomeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        HomeButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeButtonActionPerformed(evt);
             }
         });
 
+        logoutButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setText("Logout");
+        logoutButton.setBorderPainted(false);
+        logoutButton.setContentAreaFilled(false);
+        logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutButtonActionPerformed(evt);
             }
         });
 
+        profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/download_1_75x75.jpeg"))); // NOI18N
+
+        profileNameText.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
+        profileNameText.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout ServicesPanelLayout = new javax.swing.GroupLayout(ServicesPanel);
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(NursingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CovidCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(HomeHealthAideButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HomeHealthAideButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
             .addComponent(TherapyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MoneyManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(LegalServicesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(GroceryDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MealDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(PersonalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(HouseMaintainenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+            .addComponent(HouseMaintainenceButton)
             .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ServicesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(profileNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(ProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServicesPanelLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addGroup(ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ServicesPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ServicesPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(profileNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProfileButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NursingButton)
@@ -222,27 +325,29 @@ public class CustomerService extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HouseHoldCareButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(HouseMaintainenceButton)
+                .addComponent(HouseMaintainenceButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PersonalCareButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HomeButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(logoutButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 706));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 735, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGap(0, 706, Short.MAX_VALUE)
         );
 
         servicesSplitPane.setRightComponent(jPanel1);
@@ -257,7 +362,7 @@ public class CustomerService extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(servicesSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(servicesSplitPane)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -350,7 +455,10 @@ public class CustomerService extends javax.swing.JPanel {
     private javax.swing.JPanel ServicesPanel;
     private javax.swing.JButton TherapyButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JLabel profileIcon;
+    private javax.swing.JLabel profileNameText;
     private javax.swing.JSplitPane servicesSplitPane;
     // End of variables declaration//GEN-END:variables
 }

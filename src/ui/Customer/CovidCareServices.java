@@ -103,6 +103,7 @@ public class CovidCareServices extends javax.swing.JPanel {
         schduleDoctorTitle = new javax.swing.JLabel();
         scheduleVaccineLabel = new javax.swing.JLabel();
         websiteText = new javax.swing.JLabel();
+        serviceTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -167,7 +168,9 @@ public class CovidCareServices extends javax.swing.JPanel {
         contactNoRadioBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         contactNoRadioBtn.setText("No");
 
+        wellNessSubmitBtn.setBackground(new java.awt.Color(0, 0, 0));
         wellNessSubmitBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        wellNessSubmitBtn.setForeground(new java.awt.Color(255, 255, 255));
         wellNessSubmitBtn.setText("Submit");
         wellNessSubmitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +185,9 @@ public class CovidCareServices extends javax.swing.JPanel {
         dateLabel.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         dateLabel.setText("Date");
 
+        doctorAppointmentBtn.setBackground(new java.awt.Color(0, 0, 0));
         doctorAppointmentBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        doctorAppointmentBtn.setForeground(new java.awt.Color(255, 255, 255));
         doctorAppointmentBtn.setText("Submit");
         doctorAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +210,9 @@ public class CovidCareServices extends javax.swing.JPanel {
         vaccineNoRadioBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         vaccineNoRadioBtn.setText("No");
 
+        vaccineSubmitBtn.setBackground(new java.awt.Color(0, 0, 0));
         vaccineSubmitBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        vaccineSubmitBtn.setForeground(new java.awt.Color(255, 255, 255));
         vaccineSubmitBtn.setText("Submit");
         vaccineSubmitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +232,10 @@ public class CovidCareServices extends javax.swing.JPanel {
         websiteText.setForeground(new java.awt.Color(0, 51, 255));
         websiteText.setText("<html><u>https://www.mass.gov/covid-19-vaccine</u></html>");
 
+        serviceTitle.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
+        serviceTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        serviceTitle.setText("Covid Care Services");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -237,7 +248,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(vaccineTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scheduleVaccineTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -246,52 +257,60 @@ public class CovidCareServices extends javax.swing.JPanel {
                         .addComponent(websiteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(symptonsLabel)
-                    .addComponent(contactsLabel))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vaccineSubmitBtn)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(symptonsLabel)
+                            .addComponent(contactsLabel))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(yesRadioBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(noRadioBtn))
-                            .addComponent(wellNessSubmitBtn))
-                        .addGap(164, 164, 164)
-                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(doctorAppointmentBtn)
-                            .addComponent(appointmentDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(vaccineYesRadioBtn)
-                            .addGap(18, 18, 18)
-                            .addComponent(vaccineNoRadioBtn))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(contactYesRadioBtn)
-                            .addGap(18, 18, 18)
-                            .addComponent(contactNoRadioBtn))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(wellNessCheckTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(676, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(655, Short.MAX_VALUE)
-                    .addComponent(schduleDoctorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(62, 62, 62)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(yesRadioBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(noRadioBtn)
+                                        .addGap(164, 164, 164)
+                                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(wellNessSubmitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(247, 247, 247)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(appointmentDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(doctorAppointmentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(vaccineSubmitBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(vaccineYesRadioBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(vaccineNoRadioBtn))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(contactYesRadioBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(contactNoRadioBtn))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(wellNessCheckTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(124, 124, 124)
+                        .addComponent(schduleDoctorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(serviceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addGap(30, 30, 30)
+                .addComponent(serviceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(wellNessCheckTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(schduleDoctorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(symptonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,17 +344,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                             .addComponent(websiteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33)
                 .addComponent(vaccineSubmitBtn)
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(wellNessCheckTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(390, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(schduleDoctorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(390, Short.MAX_VALUE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -414,6 +423,7 @@ public class CovidCareServices extends javax.swing.JPanel {
     private javax.swing.JLabel schduleDoctorTitle;
     private javax.swing.JLabel scheduleVaccineLabel;
     private javax.swing.JLabel scheduleVaccineTitle;
+    private javax.swing.JLabel serviceTitle;
     private javax.swing.JLabel symptonsLabel;
     private javax.swing.JLabel vaccineLabel;
     private javax.swing.JRadioButton vaccineNoRadioBtn;
