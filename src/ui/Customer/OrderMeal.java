@@ -174,6 +174,11 @@ public class OrderMeal extends javax.swing.JPanel {
         });
 
         jButton2.setText("Track Order");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Breakfast", "Lunch", "Dinner" }));
 
@@ -367,36 +372,43 @@ public class OrderMeal extends javax.swing.JPanel {
         food = model.getValueAt(index, 2).toString();
         price = Double.parseDouble(model.getValueAt(index, 3).toString());
         
-        selectedFoodItem = foodOrg.getFoodItemByName(meal, type, type);
+        selectedFoodItem = foodOrg.getFoodItemByName(meal, type, food);
         
-        System.out.println(">>>"+meal+" >>>"+type+" >>>"+food);
+        System.out.println(">>>"+selectedFoodItem.getMeal()+" >>>"+selectedFoodItem.getType()+" >>>"+selectedFoodItem.getFoodItemsName()+ " >>>"+selectedFoodItem.getPrice());
     }//GEN-LAST:event_MenujTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int workQueueSize = userAccount.getWorkQueue().getWorkRequestList().size();
-        
+        System.out.println("workQueueSize>>>>>"+workQueueSize);
         if(workQueueSize == 0){
             request = new FoodOrganizationWorkRequest();
             request.setReqType(foodOrg.getName());
             request.setSender(userAccount);
             request.getFoodList().add(selectedFoodItem);
-            request.setTotal(price);
+            System.out.println("holla>>"+request.getFoodList().get(0).getFoodItemsName());
+            request.getFoodList().get(0).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
+            System.out.println("holla>>"+request.getFoodList().get(0).getPrice());
+            request.setStatus("Incomplete");
+            request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
             userAccount.getWorkQueue().getWorkRequestList().add(request);
+            System.out.println("added>>>>>"+userAccount.getWorkQueue().getWorkRequestList().size());
         }else{
-            for(int i = workQueueSize; i >= 0; i--){
+            for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0; i--){
                 if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
-                    if(!userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("completed")){
+                    if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("Incomplete")){
                         request = (FoodOrganizationWorkRequest)userAccount.getWorkQueue().getWorkRequestList().get(i);
                         request.getFoodList().add(selectedFoodItem);
-                        double total = request.getTotal() + price;
+                        request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
+                        double total = request.getTotal() + (price * Integer.parseInt(QuantityjTextField.getText()));
                         request.setTotal(total);
                     }else if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("completed")){
                         request = new FoodOrganizationWorkRequest();
                         request.setReqType(foodOrg.getName());
                         request.setSender(userAccount);
                         request.getFoodList().add(selectedFoodItem);
-                        request.setTotal(price);
+                        request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
+                        request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
                         userAccount.getWorkQueue().getWorkRequestList().add(request);
                     }
                     break;
@@ -407,9 +419,15 @@ public class OrderMeal extends javax.swing.JPanel {
 
     private void PlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaceOrderActionPerformed
         // TODO add your handling code here:
-        PlaceMealOrder placeOrder = new PlaceMealOrder();
+        PlaceMealOrder placeOrder = new PlaceMealOrder(userProcessContainer, system ,userAccount,foodOrg, request,servicesSplitPane);
         servicesSplitPane.setRightComponent(placeOrder);
     }//GEN-LAST:event_PlaceOrderActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        TrackFoodOrderStatus track = new TrackFoodOrderStatus();
+        servicesSplitPane.setRightComponent(track);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

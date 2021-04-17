@@ -4,6 +4,7 @@
  */
 package Business.UserAccount;
 
+import Business.BankTranscations.CardDetails;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
@@ -19,6 +20,15 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private CardDetails cardDetails;
+
+    public CardDetails getCardDetails() {
+        return cardDetails;
+    }
+
+    public void setCardDetails(CardDetails cardDetails) {
+        this.cardDetails = cardDetails;
+    }
 
     public UserAccount() {
         workQueue = new WorkQueue();

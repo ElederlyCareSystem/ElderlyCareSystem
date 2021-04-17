@@ -49,7 +49,10 @@ public class MoneyManagement extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButtonAppointment = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        image = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(178, 215, 229));
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,10 +86,14 @@ public class MoneyManagement extends javax.swing.JPanel {
         jLabel1.setText("Money Management");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Financial security goes hand-in-hand with peace of mind.\n\nFor many people, however, such security is elusive. Minor physical limitations, normal to the aging process, can be a threat to one's financial status. \nWe recognize that monthly bill paying and budgeting can sometimes be overwhelming. \nWith visual and/or dexterity impairments or short-term memory lapses,household bills pile up and credit card debt soon mounts. \nThe Money Management program helps people maintain their independence at home. \nTrained and insured volunteers work one-on-one with the consumer for a few hours each month to: \n\nestablish a list of monthly income and expenses\nset up a budget as needed, avoiding debt collector calls and shut-off notices\nsort (financial) mail and organize bills for payment\nbalance checkbook and reconcile to bank statement\nwrite checks from a designated account for consumer to sign\nperform other related tasks as agreed by consumer, volunteer, and program coordinator.\nFor more information about this program, Just Contact Us!");
+        jTextArea1.setText("Financial security goes hand-in-hand with peace of mind.\n\nFor many people, however, such security is elusive. Minor physical limitations, normal to the aging process, can be a threat to one's financial status. \nWe recognize that monthly bill paying and budgeting can sometimes be overwhelming. \nWith visual and/or dexterity impairments or short-term memory lapses,household bills pile up and credit card debt soon mounts. \nThe Money Management program helps people maintain their independence at home. \nTrained and insured volunteers work one-on-one with the consumer for a few hours each month to: ");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButtonAppointment.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAppointment.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        jButtonAppointment.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAppointment.setText("Book your Appointment");
         jButtonAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +101,17 @@ public class MoneyManagement extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Book your Apointment now !");
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Add Bank Details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/moneyDesktop.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,21 +122,22 @@ public class MoneyManagement extends javax.swing.JPanel {
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1365, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(361, 361, 361)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(318, 318, 318)
-                                .addComponent(jLabel2)
-                                .addGap(156, 156, 156)
-                                .addComponent(jButtonAppointment)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(361, 361, 361)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(176, 176, 176)
+                        .addComponent(jButtonAppointment))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(104, 104, 104)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,29 +145,38 @@ public class MoneyManagement extends javax.swing.JPanel {
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAppointment)
-                    .addComponent(jLabel2))
-                .addGap(0, 96, Short.MAX_VALUE))
+                    .addComponent(jButtonAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppointmentActionPerformed
         // TODO add your handling code here:
-        MoneyAdviceAppointment adviceApointment = new MoneyAdviceAppointment(userProcessContainer,system,userAccount);
+        MoneyAdviceAppointment adviceApointment = new MoneyAdviceAppointment(userProcessContainer,system,userAccount,servicesSplitPane);
         servicesSplitPane.setRightComponent(adviceApointment);
     }//GEN-LAST:event_jButtonAppointmentActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        BankDetails bankDetails = new BankDetails(userProcessContainer,system,userAccount,servicesSplitPane);
+        servicesSplitPane.setRightComponent(bankDetails);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageHeader;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel image;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAppointment;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
