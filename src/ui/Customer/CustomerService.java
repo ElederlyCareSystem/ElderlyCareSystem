@@ -72,7 +72,6 @@ public class CustomerService extends javax.swing.JPanel {
         NursingButton = new javax.swing.JButton();
         TherapyButton = new javax.swing.JButton();
         CovidCareButton = new javax.swing.JButton();
-        HomeHealthAideButton = new javax.swing.JButton();
         MoneyManagementButton = new javax.swing.JButton();
         LegalServicesButton = new javax.swing.JButton();
         MealDeliveryButton = new javax.swing.JButton();
@@ -85,6 +84,7 @@ public class CustomerService extends javax.swing.JPanel {
         profileIcon = new javax.swing.JLabel();
         profileNameText = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        CartBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         servicesSplitPane.setBorder(null);
@@ -137,18 +137,6 @@ public class CustomerService extends javax.swing.JPanel {
         CovidCareButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CovidCareButtonActionPerformed(evt);
-            }
-        });
-
-        HomeHealthAideButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
-        HomeHealthAideButton.setForeground(new java.awt.Color(255, 255, 255));
-        HomeHealthAideButton.setText("Home Health Aide");
-        HomeHealthAideButton.setBorderPainted(false);
-        HomeHealthAideButton.setContentAreaFilled(false);
-        HomeHealthAideButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        HomeHealthAideButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeHealthAideButtonActionPerformed(evt);
             }
         });
 
@@ -266,13 +254,24 @@ public class CustomerService extends javax.swing.JPanel {
         profileNameText.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
         profileNameText.setForeground(new java.awt.Color(255, 255, 255));
 
+        CartBtn.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        CartBtn.setForeground(new java.awt.Color(255, 255, 255));
+        CartBtn.setText("Cart");
+        CartBtn.setBorderPainted(false);
+        CartBtn.setContentAreaFilled(false);
+        CartBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CartBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CartBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ServicesPanelLayout = new javax.swing.GroupLayout(ServicesPanel);
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(NursingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CovidCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(HomeHealthAideButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
             .addComponent(TherapyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MoneyManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(LegalServicesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -280,7 +279,7 @@ public class CustomerService extends javax.swing.JPanel {
             .addComponent(MealDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(PersonalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HouseMaintainenceButton)
-            .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ServicesPanelLayout.createSequentialGroup()
@@ -291,6 +290,7 @@ public class CustomerService extends javax.swing.JPanel {
                 .addContainerGap())
             .addComponent(ProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1)
+            .addComponent(CartBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,12 +306,12 @@ public class CustomerService extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProfileButton)
+                .addGap(12, 12, 12)
+                .addComponent(CartBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NursingButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CovidCareButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(HomeHealthAideButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TherapyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -390,10 +390,6 @@ public class CustomerService extends javax.swing.JPanel {
         servicesSplitPane.setRightComponent(care);
     }//GEN-LAST:event_CovidCareButtonActionPerformed
 
-    private void HomeHealthAideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeHealthAideButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HomeHealthAideButtonActionPerformed
-
     private void MoneyManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoneyManagementButtonActionPerformed
         // TODO add your handling code here:
         MoneyManagement money = new MoneyManagement(userProcessContainer,system,userAccount,servicesSplitPane);
@@ -440,12 +436,18 @@ public class CustomerService extends javax.swing.JPanel {
         
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void CartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartBtnActionPerformed
+        // TODO add your handling code here:
+        ServiceCart cart = new ServiceCart(userProcessContainer, system, userAccount);
+        servicesSplitPane.setRightComponent(cart);
+    }//GEN-LAST:event_CartBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CartBtn;
     private javax.swing.JButton CovidCareButton;
     private javax.swing.JButton GroceryDeliveryButton;
     private javax.swing.JButton HomeButton;
-    private javax.swing.JButton HomeHealthAideButton;
     private javax.swing.JButton HouseHoldCareButton;
     private javax.swing.JButton HouseMaintainenceButton;
     private javax.swing.JButton LegalServicesButton;

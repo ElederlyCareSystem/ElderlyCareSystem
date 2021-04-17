@@ -14,6 +14,10 @@ public class WorkQueue {
     
     private ArrayList<WorkRequest> workRequestList;
 
+    public void setWorkRequestList(ArrayList<WorkRequest> workRequestList) {
+        this.workRequestList = workRequestList;
+    }
+
     public WorkQueue() {
         workRequestList = new ArrayList();
     }
