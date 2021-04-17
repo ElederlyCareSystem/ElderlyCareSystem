@@ -46,8 +46,23 @@ public class OrganizationDirectory {
                     System.out.println("if create" + type);
             organization = new FoodOrganization();
             organizationList.add(organization);
+        }else if(type.getValue().equals(Type.MoneyManagement.getValue())){
+            organization = new MoneyManagementOrganization();
+            organizationList.add(organization);
         }
         return organization;
+    }
+    
+    public Organization getOrganizationByType(Enterprise enterprise, String type){
+        Organization organization=null;
+        for(int i=0; i < enterprise.getOrganizationDirectory().getOrganizationList().size(); i++){
+            System.out.println("orgo>>>"+enterprise.getOrganizationDirectory().getOrganizationList().get(i).getName());
+            if(enterprise.getOrganizationDirectory().getOrganizationList().get(i).getName() == type){
+                organization = enterprise.getOrganizationDirectory().getOrganizationList().get(i);
+            }
+        }
+        return organization;
+        
     }
     
     public Organization getOrganizationByType(Enterprise enterprise, String type){

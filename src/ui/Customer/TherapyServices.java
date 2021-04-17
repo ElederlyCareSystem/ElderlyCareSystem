@@ -221,7 +221,7 @@ public class TherapyServices extends javax.swing.JPanel {
         request.setNoOfDays(Integer.parseInt(durationText.getText()));
         request.setServiceCategory(selectedCategory);
         request.setPrice(selectedPrice);
-        Organization therapyOrganization = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Therapy Organization");
+        Organization therapyOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Therapy Organization");
         if (therapyOrganization != null) {
             therapyOrganization.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);

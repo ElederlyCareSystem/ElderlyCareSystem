@@ -211,7 +211,7 @@ public class NursingServices extends javax.swing.JPanel {
         request.setNoOfDays(Integer.parseInt(durationText.getText()));
         request.setServiceCategory(selectedCategory);
         request.setPrice(selectedPrice);
-        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "Nurse Organization");
+        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
         if (foodOrg != null) {
             foodOrg.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);

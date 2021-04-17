@@ -26,7 +26,7 @@ public abstract class Organization {
     public enum Type{
         Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
         Nurse("Nurse Organization"), Therapy("Therapy Organization"), HealthAid("HealthAid Organization"), 
-        CovidCare("CovidCare Organization"), Food("Food Organization");
+        CovidCare("CovidCare Organization"), Food("Food Organization"),MoneyManagement("Money Management Organization");
         private String value;
         private Type(String value) {
             this.value = value;

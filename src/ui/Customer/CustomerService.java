@@ -396,6 +396,8 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void MoneyManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoneyManagementButtonActionPerformed
         // TODO add your handling code here:
+        MoneyManagement money = new MoneyManagement(userProcessContainer,system,userAccount,servicesSplitPane);
+        servicesSplitPane.setRightComponent(money);
     }//GEN-LAST:event_MoneyManagementButtonActionPerformed
 
     private void LegalServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalServicesButtonActionPerformed

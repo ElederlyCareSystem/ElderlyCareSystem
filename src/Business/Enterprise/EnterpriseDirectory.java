@@ -41,11 +41,16 @@ public class EnterpriseDirectory {
         } else if (type == Enterprise.EnterpriseType.FoodAndEssentials) {
             enterprise = new FoodAndEssentialsEnterprise(name);
             enterpriseList.add(enterprise);
+        }else if(type == Enterprise.EnterpriseType.Finance){
+            enterprise = new FinanceEnterprise(name);
+            enterpriseList.add(enterprise);
         }
         return enterprise;
     }
 
-    public Organization getEnterpriseByType(String type, String orgName) {
+    
+    
+    public Organization getOrganizationByType(String type, String orgName) {
         Enterprise enterprise = null;
         for (int i = 0; i < enterpriseList.size(); i++) {
             //System.out.println("en>>>" + enterpriseList.get(i).getEnterpriseType().getValue());
@@ -61,7 +66,16 @@ public class EnterpriseDirectory {
             }
         }
         return null;
-//        return enterprise;
+    }
 
+    public Enterprise getEnterprise(String type) {
+        Enterprise enterprise = null;
+        for (int i = 0; i < enterpriseList.size(); i++) {
+            if (enterpriseList.get(i).getEnterpriseType().getValue() == type) {
+                System.out.println("if>>>"+enterpriseList.get(i).getEnterpriseType().getValue());
+                return enterpriseList.get(i);
+            }
+        }
+        return null;
     }
 }

@@ -397,7 +397,7 @@ public class CovidCareServices extends javax.swing.JPanel {
         request.setSender(userAccount);
         request.setAppointmentDate(appointmentDateChooser.getDate());
         request.setStatus("Sent");
-        Organization covidOrganization = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Medical", "CovidCare Organization");
+        Organization covidOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "CovidCare Organization");
         if (covidOrganization != null) {
             covidOrganization.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
