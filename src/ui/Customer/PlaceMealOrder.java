@@ -5,6 +5,16 @@
  */
 package ui.Customer;
 
+import Business.EcoSystem;
+import Business.Organization.FoodOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FoodOrganizationWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mrudu
@@ -14,8 +24,33 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     /**
      * Creates new form PlaceMealOrder
      */
-    public PlaceMealOrder() {
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    DefaultTableModel model;
+    FoodOrganization foodOrg;
+    FoodOrganizationWorkRequest request;
+    JSplitPane servicesSplitPane;
+    int index;
+    String food;
+    
+    public PlaceMealOrder(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, FoodOrganization foodOrg, FoodOrganizationWorkRequest request, 
+    JSplitPane servicesSplitPane) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = business;
+        this.userAccount = userAccount; 
+        this.foodOrg = foodOrg;
+        this.request = request;
+        this.servicesSplitPane = servicesSplitPane;
+        model = new DefaultTableModel();
+        jTable1.setModel(model);
+        model.addColumn("Meal");
+        model.addColumn("Food Items");
+        model.addColumn("Price");
+        model.addColumn("Quantity");
+        
+        generateTable();
     }
 
     /**
@@ -38,6 +73,8 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         InstructionsjTextArea = new javax.swing.JTextArea();
+        TotalTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -67,6 +104,11 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         );
 
         BackButton.setText("<< BACK");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,25 +122,43 @@ public class PlaceMealOrder extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         SubmitjButton.setText("Submit");
+        SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitjButtonActionPerformed(evt);
+            }
+        });
 
         RemovejButton.setText("Remove");
+        RemovejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemovejButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
-        jLabel6.setText("Instructions:");
+        jLabel6.setText("Total:");
 
         InstructionsjTextArea.setColumns(20);
         InstructionsjTextArea.setRows(5);
         jScrollPane2.setViewportView(InstructionsjTextArea);
+
+        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel8.setText("Instructions:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,20 +171,25 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(BackButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(SubmitjButton)
-                        .addGap(103, 103, 103)
-                        .addComponent(RemovejButton))
+                        .addGap(280, 280, 280)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(388, Short.MAX_VALUE))
+                        .addGap(324, 324, 324)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(373, 373, 373)
+                        .addComponent(SubmitjButton)
+                        .addGap(123, 123, 123)
+                        .addComponent(RemovejButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 326, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(417, 417, 417))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,17 +199,59 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                 .addComponent(BackButton)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitjButton)
                     .addComponent(RemovejButton))
-                .addGap(70, 70, 70))
+                .addGap(41, 41, 41))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        index = jTable1.getSelectedRow();
+        System.out.println("selectedrow>>>>"+index);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        food = model.getValueAt(index, 1).toString();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0; i < request.getFoodList().size(); i++){
+            if(request.getFoodList().get(i).getFoodItemsName().equals(food)){
+                double total = request.getTotal() - (request.getFoodList().get(i).getPrice() * request.getFoodList().get(i).getQuantity());
+                request.setTotal(total);
+                request.getFoodList().remove(i);
+            }
+        }
+        
+        model.removeRow(index);
+        TotalTextField.setText(String.valueOf(request.getTotal()));
+    }//GEN-LAST:event_RemovejButtonActionPerformed
+
+    private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
+        // TODO add your handling code here:
+        foodOrg.getWorkQueue().getWorkRequestList().add(request);
+    }//GEN-LAST:event_SubmitjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -154,10 +261,30 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     private javax.swing.JButton RemovejButton;
     private javax.swing.JButton SubmitjButton;
     private javax.swing.JLabel Title1;
+    private javax.swing.JTextField TotalTextField;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void generateTable() {
+                        
+        for(int j = 0; j < request.getFoodList().size(); j++){
+        System.out.println("request place order>>>"+request.getFoodList().size());
+        System.out.println("request place order meal>>>"+request.getFoodList().get(j).getMeal());
+            model.addRow(new Object[]{
+                request.getFoodList().get(j).getMeal(),
+                request.getFoodList().get(j).getFoodItemsName(),
+                request.getFoodList().get(j).getPrice().toString(),
+                request.getFoodList().get(j).getQuantity()
+            });
+        }
+        
+        TotalTextField.setText(String.valueOf(request.getTotal()));
+    }
 }
+        
+  
