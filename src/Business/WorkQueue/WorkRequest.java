@@ -12,7 +12,8 @@ import java.util.Date;
  * @author raunak
  */
 public abstract class WorkRequest {
-
+    
+    private String reqType;
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
@@ -71,4 +72,13 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    public String getReqType() {
+        return reqType;
+    }
+
+    public void setReqType(String reqType) {
+        this.reqType = reqType;
+    }
+    
 }

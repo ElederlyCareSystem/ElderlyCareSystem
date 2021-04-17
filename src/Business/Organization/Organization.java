@@ -24,7 +24,9 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
+        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
+        Nurse("Nurse Organization"), Therapy("Therapy Organization"), HealthAid("HealthAid Organization"), 
+        CovidCare("CovidCare Organization"), Food("Food Organization"),MoneyManagement("Money Management Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -33,7 +35,7 @@ public abstract class Organization {
             return value;
         }
     }
-
+   
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
@@ -77,6 +79,5 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-    
     
 }
