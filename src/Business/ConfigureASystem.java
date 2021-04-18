@@ -35,7 +35,7 @@ public class ConfigureASystem {
         //initialize some organizations
         //FoodOrganization foodOrganization = new FoodOrganization();
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
-        //enterprise2.getOrganizationDirectory().getOrganizationList().add(foodOrganization);
+        Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         System.out.println("enterprise config " + enterprise2.getOrganizationDirectory().getOrganizationList().get(0).getName());
 
         //have some employees 

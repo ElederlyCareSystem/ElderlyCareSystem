@@ -49,6 +49,9 @@ public class OrganizationDirectory {
         }else if(type.getValue().equals(Type.MoneyManagement.getValue())){
             organization = new MoneyManagementOrganization();
             organizationList.add(organization);
+        }else if(type.getValue().equals(Type.GroceryAndEssentials.getValue())){
+            organization = new GroceryAndEssentialsOrganization();
+            organizationList.add(organization);
         }
         return organization;
     }
