@@ -371,7 +371,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
         // TODO add your handling code here:
-        NewCustomerJPanel profile = new NewCustomerJPanel();
+        NewCustomerJPanel profile = new NewCustomerJPanel(userProcessContainer, system, userAccount);
         servicesSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
@@ -413,6 +413,8 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void GroceryDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroceryDeliveryButtonActionPerformed
         // TODO add your handling code here:
+        GroceryAndEssentialsJPanel grocery = new GroceryAndEssentialsJPanel(userProcessContainer, system, userAccount, servicesSplitPane);
+        servicesSplitPane.setRightComponent(grocery);
     }//GEN-LAST:event_GroceryDeliveryButtonActionPerformed
 
     private void HouseHoldCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseHoldCareButtonActionPerformed

@@ -5,8 +5,11 @@
  */
 package Business.Organization;
 
+import Business.GroceryAndEssentialsOrganization.EssentialsList;
+import Business.GroceryAndEssentialsOrganization.ShoppingItem;
 import Business.Role.Role;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,13 +17,37 @@ import java.util.ArrayList;
  */
 public class GroceryAndEssentialsOrganization extends Organization{
     
+    List<ShoppingItem> shoppingList;
+    EssentialsList list = new EssentialsList();
+    
     public GroceryAndEssentialsOrganization() {
-        super(Type.GroceryAndEssentials.getValue());
+        super(Organization.Type.GroceryAndEssentials.getValue());
+        shoppingList = list.getShoppingList();
     }
 
     @Override
     public ArrayList<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<ShoppingItem> getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(List<ShoppingItem> shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+    
+    public ShoppingItem getItemByName(String name){
+        ShoppingItem item = null;
+        
+        for(int i = 0; i < shoppingList.size(); i++){
+            if(shoppingList.get(i).getItemName().equals(name)){
+                item = shoppingList.get(i);
+            }
+        }
+        
+        return item;
     }
     
 }

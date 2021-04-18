@@ -38,6 +38,7 @@ public class OrderMeal extends javax.swing.JPanel {
     FoodItems selectedFoodItem;
     FoodOrganizationWorkRequest request;
     JSplitPane servicesSplitPane;
+    boolean flag = false;
     
     public OrderMeal(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount,JSplitPane servicesSplitPane) {
         initComponents();
@@ -123,6 +124,8 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel4.setText("Quantity:");
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add To Cart");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +162,8 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Meal:");
 
+        PlaceOrder.setBackground(new java.awt.Color(0, 0, 0));
+        PlaceOrder.setForeground(new java.awt.Color(255, 255, 255));
         PlaceOrder.setText("Place Order");
         PlaceOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +171,8 @@ public class OrderMeal extends javax.swing.JPanel {
             }
         });
 
+        OKjButton.setBackground(new java.awt.Color(0, 0, 0));
+        OKjButton.setForeground(new java.awt.Color(255, 255, 255));
         OKjButton.setText("Search");
         OKjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,41 +386,40 @@ public class OrderMeal extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int workQueueSize = userAccount.getWorkQueue().getWorkRequestList().size();
-        System.out.println("workQueueSize>>>>>"+workQueueSize);
-        if(workQueueSize == 0){
+        
+        for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0 ; i-- ){
+            if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
+                if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("Completed")){
+                    request = new FoodOrganizationWorkRequest();
+                    request.setReqType(foodOrg.getName());
+                    request.setSender(userAccount);
+                    request.getFoodList().add(selectedFoodItem);
+                    request.setStatus("Incomplete");
+                    request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
+                    request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    flag = true;
+                }else if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("Incomplete")){
+                    request = (FoodOrganizationWorkRequest)userAccount.getWorkQueue().getWorkRequestList().get(i);
+                    request.getFoodList().add(selectedFoodItem);
+                    request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
+                    double total = request.getTotal() + (price * Integer.parseInt(QuantityjTextField.getText()));
+                    request.setTotal(total);
+                    flag = true;
+                }
+                break;
+            }
+        }
+        
+        if(flag == false){
             request = new FoodOrganizationWorkRequest();
             request.setReqType(foodOrg.getName());
             request.setSender(userAccount);
             request.getFoodList().add(selectedFoodItem);
-            System.out.println("holla>>"+request.getFoodList().get(0).getFoodItemsName());
-            request.getFoodList().get(0).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
-            System.out.println("holla>>"+request.getFoodList().get(0).getPrice());
             request.setStatus("Incomplete");
+            request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
             request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
             userAccount.getWorkQueue().getWorkRequestList().add(request);
-            System.out.println("added>>>>>"+userAccount.getWorkQueue().getWorkRequestList().size());
-        }else{
-            for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0; i--){
-                if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
-                    if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("Incomplete")){
-                        request = (FoodOrganizationWorkRequest)userAccount.getWorkQueue().getWorkRequestList().get(i);
-                        request.getFoodList().add(selectedFoodItem);
-                        request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
-                        double total = request.getTotal() + (price * Integer.parseInt(QuantityjTextField.getText()));
-                        request.setTotal(total);
-                    }else if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("completed")){
-                        request = new FoodOrganizationWorkRequest();
-                        request.setReqType(foodOrg.getName());
-                        request.setSender(userAccount);
-                        request.getFoodList().add(selectedFoodItem);
-                        request.getFoodList().get(request.getFoodList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
-                        request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-                    }
-                    break;
-                }
-            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

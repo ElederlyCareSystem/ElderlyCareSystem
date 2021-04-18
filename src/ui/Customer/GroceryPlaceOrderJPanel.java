@@ -6,10 +6,9 @@
 package ui.Customer;
 
 import Business.EcoSystem;
-import Business.Organization.FoodOrganization;
+import Business.Organization.GroceryAndEssentialsOrganization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.FoodOrganizationWorkRequest;
-import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.GroceryWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -19,33 +18,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mrudu
  */
-public class PlaceMealOrder extends javax.swing.JPanel {
+public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form PlaceMealOrder
+     * Creates new form GroceryPlaceOrderJPanel
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     DefaultTableModel model;
-    FoodOrganization foodOrg;
-    FoodOrganizationWorkRequest request;
+    GroceryAndEssentialsOrganization groceryOrg;
+    GroceryWorkRequest request;
     JSplitPane servicesSplitPane;
     int index;
     String food;
     
-    public PlaceMealOrder(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, FoodOrganization foodOrg, FoodOrganizationWorkRequest request, 
-    JSplitPane servicesSplitPane) {
+    public GroceryPlaceOrderJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, GroceryAndEssentialsOrganization groceryOrg,
+    GroceryWorkRequest request, JSplitPane servicesSplitPane) {
         initComponents();
+        
         this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
         this.system = business;
-        this.userAccount = userAccount; 
-        this.foodOrg = foodOrg;
-        this.request = request;
         this.servicesSplitPane = servicesSplitPane;
+        this.groceryOrg = groceryOrg;
+        this.request = request;
+        
         model = new DefaultTableModel();
         jTable1.setModel(model);
-        model.addColumn("Meal");
         model.addColumn("Food Items");
         model.addColumn("Price");
         model.addColumn("Quantity");
@@ -71,10 +71,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         SubmitjButton = new javax.swing.JButton();
         RemovejButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        InstructionsjTextArea = new javax.swing.JTextArea();
         TotalTextField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -114,17 +111,17 @@ public class PlaceMealOrder extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Meal", "Food Items", "Price", "Quantity"
+                "Items", "Price", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -159,68 +156,54 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel6.setText("Total:");
 
-        InstructionsjTextArea.setColumns(20);
-        InstructionsjTextArea.setRows(5);
-        jScrollPane2.setViewportView(InstructionsjTextArea);
-
-        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
-        jLabel8.setText("Instructions:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(376, 376, 376)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SubmitjButton)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BackButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(32, 32, 32)
                         .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addComponent(SubmitjButton)
-                        .addGap(123, 123, 123)
+                        .addGap(86, 86, 86)
                         .addComponent(RemovejButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 326, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(417, 417, 417))
+                .addGap(250, 250, 250)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(290, 290, 290))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(BackButton)
+                    .addContainerGap(944, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BackButton)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitjButton)
                     .addComponent(RemovejButton))
-                .addGap(41, 41, 41))
+                .addGap(125, 125, 125))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(139, 139, 139)
+                    .addComponent(BackButton)
+                    .addContainerGap(522, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -236,61 +219,54 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         index = jTable1.getSelectedRow();
         System.out.println("selectedrow>>>>"+index);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
-        food = model.getValueAt(index, 1).toString();
-    }//GEN-LAST:event_jTable1MouseClicked
 
-    private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed
-        // TODO add your handling code here:
-        for(int i = 0; i < request.getFoodList().size(); i++){
-            if(request.getFoodList().get(i).getFoodItemsName().equals(food)){
-                double total = request.getTotal() - (request.getFoodList().get(i).getPrice() * request.getFoodList().get(i).getQuantity());
-                request.setTotal(total);
-                request.getFoodList().remove(i);
-            }
-        }
-        
-        model.removeRow(index);
-        TotalTextField.setText(String.valueOf(request.getTotal()));
-    }//GEN-LAST:event_RemovejButtonActionPerformed
+        food = model.getValueAt(index, 0).toString();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
-        foodOrg.getWorkQueue().getWorkRequestList().add(request);
+        groceryOrg.getWorkQueue().getWorkRequestList().add(request);
     }//GEN-LAST:event_SubmitjButtonActionPerformed
+
+    private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0; i < request.getShoppingList().size(); i++){
+            if(request.getShoppingList().get(i).getItemName().equals(food)){
+                double total = request.getTotal() - (request.getShoppingList().get(i).getPrice() * request.getShoppingList().get(i).getQuantity());
+                request.setTotal(total);
+                request.getShoppingList().remove(i);
+            }
+        }
+
+        model.removeRow(index);
+        TotalTextField.setText(String.valueOf(request.getTotal()));
+    }//GEN-LAST:event_RemovejButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel ImageHeader1;
-    private javax.swing.JTextArea InstructionsjTextArea;
     private javax.swing.JButton RemovejButton;
     private javax.swing.JButton SubmitjButton;
     private javax.swing.JLabel Title1;
     private javax.swing.JTextField TotalTextField;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     private void generateTable() {
-                        
-        for(int j = 0; j < request.getFoodList().size(); j++){
-        System.out.println("request place order>>>"+request.getFoodList().size());
-        System.out.println("request place order meal>>>"+request.getFoodList().get(j).getMeal());
+        for(int j = 0; j < request.getShoppingList().size(); j++){
+        System.out.println("request place order>>>"+request.getShoppingList().size());
+        System.out.println("request place order meal>>>"+request.getShoppingList().get(j).getItemName());
             model.addRow(new Object[]{
-                request.getFoodList().get(j).getMeal(),
-                request.getFoodList().get(j).getFoodItemsName(),
-                request.getFoodList().get(j).getPrice().toString(),
-                request.getFoodList().get(j).getQuantity()
+                request.getShoppingList().get(j).getItemName(),
+                request.getShoppingList().get(j).getPrice(),
+                request.getShoppingList().get(j).getQuantity()
             });
         }
         
         TotalTextField.setText(String.valueOf(request.getTotal()));
     }
 }
-        
-  

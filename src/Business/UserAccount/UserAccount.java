@@ -21,6 +21,15 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private CardDetails cardDetails;
+    UserAccountDetails userDetails = new UserAccountDetails();
+
+    public UserAccountDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserAccountDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 
     public CardDetails getCardDetails() {
         return cardDetails;
