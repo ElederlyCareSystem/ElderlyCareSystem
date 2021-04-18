@@ -30,12 +30,13 @@ public class ConfigureASystem {
         Organization therapyOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Therapy);
         Organization healthAidOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.HealthAid);
         Organization MoneyManagementOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.MoneyManagement);
+        Organization LegalServicesOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalServices);
          //create an enterprise - food and essentials
         Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
         //initialize some organizations
         //FoodOrganization foodOrganization = new FoodOrganization();
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
-        //enterprise2.getOrganizationDirectory().getOrganizationList().add(foodOrganization);
+        Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         System.out.println("enterprise config " + enterprise2.getOrganizationDirectory().getOrganizationList().get(0).getName());
 
         //have some employees 

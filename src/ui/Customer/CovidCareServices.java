@@ -17,7 +17,9 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -25,11 +27,13 @@ import javax.swing.JPanel;
  * @author harshikag
  */
 public class CovidCareServices extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private EcoSystem system;
     UserAccount userAccount;
     CovidCareOrganization org;
     CovidCareWorkRequest request;
+
     /**
      * Creates new form CovidCareServices
      */
@@ -38,23 +42,30 @@ public class CovidCareServices extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = business;
         this.userAccount = userAccount;
-        org = new CovidCareOrganization();
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Medical").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof CovidCareOrganization) {
+                org = ((CovidCareOrganization) organization);
+                break;
+            }
+        }
         goWebsite(websiteText);
         showHideScheduleDoctorAppt(false);
         showHideVaccineBookingAppt(false);
     }
+
     public void showHideVaccineBookingAppt(Boolean value) {
         scheduleVaccineLabel.setVisible(value);
         scheduleVaccineTitle.setVisible(value);
         websiteText.setVisible(value);
-    } 
+    }
+
     public void showHideScheduleDoctorAppt(Boolean value) {
         schduleDoctorTitle.setVisible(value);
         dateLabel.setVisible(value);
         appointmentDateChooser.setVisible(value);
         doctorAppointmentBtn.setVisible(value);
     }
-    
+
     private void goWebsite(JLabel website) {
         website.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -369,39 +380,54 @@ public class CovidCareServices extends javax.swing.JPanel {
 
     private void wellNessSubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wellNessSubmitBtnActionPerformed
         // TODO add your handling code here:
-        request = new CovidCareWorkRequest();
-        request.setIsHealthy(!yesRadioBtn.isSelected() || !contactYesRadioBtn.isSelected());
-        if (yesRadioBtn.isSelected() || contactYesRadioBtn.isSelected()) {
-            showHideScheduleDoctorAppt(true);
+        if (yesRadioBtn.isSelected() || noRadioBtn.isSelected() && (contactYesRadioBtn.isSelected() || contactNoRadioBtn.isSelected())) {
+            request = new CovidCareWorkRequest();
+            request.setIsHealthy(!yesRadioBtn.isSelected() || !contactYesRadioBtn.isSelected());
+            if (yesRadioBtn.isSelected() || contactYesRadioBtn.isSelected()) {
+                showHideScheduleDoctorAppt(true);
+            } else {
+                showHideScheduleDoctorAppt(false);
+            }
+            JOptionPane.showMessageDialog(this, "Daily Wellness check updated successfully");
         } else {
-            showHideScheduleDoctorAppt(false);
+            JOptionPane.showMessageDialog(this, "Please select an option before submitting");
         }
     }//GEN-LAST:event_wellNessSubmitBtnActionPerformed
 
     private void vaccineSubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccineSubmitBtnActionPerformed
         // TODO add your handling code here:
-        if(request == null) {
-            request = new CovidCareWorkRequest();
-        }
-        request.setIsCovidVaccinated(vaccineYesRadioBtn.isSelected());
-        if(vaccineYesRadioBtn.isSelected()) {
-            showHideVaccineBookingAppt(true);
+        if (vaccineYesRadioBtn.isSelected() || vaccineNoRadioBtn.isSelected()) {
+            if (request == null) {
+                request = new CovidCareWorkRequest();
+            }
+            request.setIsCovidVaccinated(vaccineYesRadioBtn.isSelected());
+            if (vaccineYesRadioBtn.isSelected()) {
+                showHideVaccineBookingAppt(false);
+            } else {
+                showHideVaccineBookingAppt(true);
+            }
+            JOptionPane.showMessageDialog(this, "Vaccine Information submitted successfully");
         } else {
-            showHideVaccineBookingAppt(false);
+            JOptionPane.showMessageDialog(this, "Please select an option before submitting");
         }
+
     }//GEN-LAST:event_vaccineSubmitBtnActionPerformed
 
     private void doctorAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorAppointmentBtnActionPerformed
         // TODO add your handling code here:
+        if (appointmentDateChooser.getDate() == null || appointmentDateChooser.getDate().after(new Date())) {
+            JOptionPane.showMessageDialog(this, "Please select a date after today");
+        }
         request.setMessage("Schedule a doctor appointment");
         request.setSender(userAccount);
         request.setAppointmentDate(appointmentDateChooser.getDate());
         request.setStatus("Sent");
         Organization covidOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "CovidCare Organization");
         if (covidOrganization != null) {
-            covidOrganization.getWorkQueue().getWorkRequestList().add(request);
+//            covidOrganization.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
+        JOptionPane.showMessageDialog(this, "Appointment booked successfully");
     }//GEN-LAST:event_doctorAppointmentBtnActionPerformed
 
 

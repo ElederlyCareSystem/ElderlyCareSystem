@@ -458,6 +458,9 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void LegalServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalServicesButtonActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("customerServices",new CustomerService("Legal", userProcessContainer, business, userAccount) );
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_LegalServicesButtonActionPerformed
 
     private void NursingServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingServicesButtonActionPerformed

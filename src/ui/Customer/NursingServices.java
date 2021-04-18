@@ -10,7 +10,10 @@ import Business.Organization.NursingOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.NursingWorkRequest;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +41,12 @@ public class NursingServices extends javax.swing.JPanel {
         model.addColumn("Price");
         this.userProcessContainer = userProcessContainer;
         this.system = business;
-        org = new NursingOrganization();
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Medical").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof NursingOrganization) {
+                org = ((NursingOrganization) organization);
+                break;
+            }
+        }
         Color ivory = new Color(255, 255, 208);
         servicesTable.setOpaque(false);
         servicesTable.setBackground(ivory);
@@ -68,7 +76,7 @@ public class NursingServices extends javax.swing.JPanel {
         fromLabel = new javax.swing.JLabel();
         durationLabel = new javax.swing.JLabel();
         durationText = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
         ImageHeader1 = new javax.swing.JLabel();
         Title1 = new javax.swing.JLabel();
         fromDateText = new com.toedter.calendar.JDateChooser();
@@ -90,27 +98,27 @@ public class NursingServices extends javax.swing.JPanel {
         durationLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         durationLabel.setText("Time Duration in days");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        headerPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
         Title1.setFont(new java.awt.Font("Palatino", 1, 48)); // NOI18N
         Title1.setText("Helping Hands");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
                 .addComponent(ImageHeader1)
                 .addGap(20, 20, 20)
                 .addComponent(Title1)
                 .addGap(0, 553, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ImageHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(headerPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(Title1))
         );
@@ -148,7 +156,7 @@ public class NursingServices extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -173,7 +181,7 @@ public class NursingServices extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(serviceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -200,23 +208,40 @@ public class NursingServices extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
-        String selectedCategory = String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 0));
-        Double selectedPrice = Double.parseDouble(String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1)));
-        NursingWorkRequest request = new NursingWorkRequest();
-        request.setMessage("Book a nurse");
-        request.setSender(userAccount);
-        request.setStatus("Sent");
-        request.setFromDate(fromDateText.getDate());
-        request.setToDate(toDateText.getDate());
-        request.setNoOfDays(Integer.parseInt(durationText.getText()));
-        request.setServiceCategory(selectedCategory);
-        request.setPrice(selectedPrice);
-        Organization foodOrg = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
-        if (foodOrg != null) {
-            foodOrg.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-            System.out.println("get work request " + foodOrg.getWorkQueue().getWorkRequestList().get(0).getSender());
+        if (servicesTable.getSelectedRow() >= 0 && fromDateText.getDate() != null && toDateText.getDate() != null && !fromDateText.getDate().toString().isEmpty() && !toDateText.getDate().toString().isEmpty() && !durationText.getText().isEmpty()) {
+            if (fromDateText.getDate().before(new Date()) || toDateText.getDate().before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Start date and End date should be after today");
+                return;
+            }
+            if (!fromDateText.getDate().before(toDateText.getDate())) {
+                JOptionPane.showMessageDialog(this, "End date should be after start date");
+                return;
+            }
+            try {
+                int val = Integer.parseInt(durationText.getText());
+                String selectedCategory = String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 0));
+                Double selectedPrice = Double.parseDouble(String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1)));
+                NursingWorkRequest request = new NursingWorkRequest();
+                request.setMessage("Book a nurse");
+                request.setSender(userAccount);
+                request.setStatus("Sent");
+                request.setFromDate(fromDateText.getDate());
+                request.setToDate(toDateText.getDate());
+                request.setNoOfDays(Integer.parseInt(durationText.getText()));
+                request.setServiceCategory(selectedCategory);
+                request.setPrice(selectedPrice);
+                Organization nursingOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
+                if (nursingOrganization != null) {
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                }
+                JOptionPane.showMessageDialog(this, "Service added to cart successfully");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Input String cannot be parsed to Integer.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter all the details correctly");
         }
+
 
     }//GEN-LAST:event_submitBtnActionPerformed
 
@@ -228,7 +253,7 @@ public class NursingServices extends javax.swing.JPanel {
     private javax.swing.JTextField durationText;
     private com.toedter.calendar.JDateChooser fromDateText;
     private javax.swing.JLabel fromLabel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel serviceCatLabel;
     private javax.swing.JLabel serviceTitle;

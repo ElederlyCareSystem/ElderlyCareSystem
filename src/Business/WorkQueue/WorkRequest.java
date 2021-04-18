@@ -14,14 +14,26 @@ import java.util.Date;
 public abstract class WorkRequest {
     
     private String reqType;
+    private static int count = 1;
+    private int id;
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
     private Date requestDate;
     private Date resolveDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public WorkRequest(){
+        id = count;
+        count++;
         requestDate = new Date();
     }
 
