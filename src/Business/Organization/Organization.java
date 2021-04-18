@@ -27,7 +27,7 @@ public abstract class Organization {
         Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
         Nurse("Nurse Organization"), Therapy("Therapy Organization"), HealthAid("HealthAid Organization"), 
         CovidCare("CovidCare Organization"), Food("Food Organization"),MoneyManagement("Money Management Organization"),
-        GroceryAndEssentials("GroceryAndEssentials Organization");
+        GroceryAndEssentials("GroceryAndEssentials Organization"),LegalServices("Legal Services Organization");
         private String value;
         private Type(String value) {
             this.value = value;

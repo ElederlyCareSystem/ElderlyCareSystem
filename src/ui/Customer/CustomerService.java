@@ -50,6 +50,9 @@ public class CustomerService extends javax.swing.JPanel {
                 case "Companion":
                     break;
                 case "Legal":
+                    ElderLawFirm lawfirm = new ElderLawFirm(userProcessContainer, system, userAccount, servicesSplitPane);
+                    servicesSplitPane.setRightComponent(lawfirm);
+                    LegalServicesButton.setBorderPainted(true);
                     break;
                 default: break;
             }
@@ -398,6 +401,8 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void LegalServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalServicesButtonActionPerformed
         // TODO add your handling code here:
+        ElderLawFirm law = new ElderLawFirm(userProcessContainer, system, userAccount, servicesSplitPane);
+       servicesSplitPane.setRightComponent(law);
     }//GEN-LAST:event_LegalServicesButtonActionPerformed
 
     private void MealDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealDeliveryButtonActionPerformed

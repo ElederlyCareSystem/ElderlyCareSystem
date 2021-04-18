@@ -30,6 +30,7 @@ public class ConfigureASystem {
         Organization therapyOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Therapy);
         Organization healthAidOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.HealthAid);
         Organization MoneyManagementOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.MoneyManagement);
+        Organization LegalServicesOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalServices);
          //create an enterprise - food and essentials
         Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
         //initialize some organizations

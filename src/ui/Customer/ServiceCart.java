@@ -10,6 +10,8 @@ import Business.Organization.NursingOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CovidCareWorkRequest;
+import Business.WorkQueue.LawFirmWorkRequest;
+import Business.WorkQueue.MoneyWorkRequest;
 import Business.WorkQueue.NursingWorkRequest;
 import Business.WorkQueue.TherapyWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -30,11 +32,15 @@ public class ServiceCart extends javax.swing.JPanel {
     DefaultTableModel nurseModel;
     DefaultTableModel therapyModel;
     DefaultTableModel covidModel;
+    DefaultTableModel moneyAdviceModel;
+    DefaultTableModel lawfirmModel;
     NursingOrganization org;
     UserAccount userAccount;
     NursingWorkRequest nurseRequest;
     TherapyWorkRequest therapyRequest;
     CovidCareWorkRequest covidCareRequest;
+    MoneyWorkRequest moneyRequest;
+    LawFirmWorkRequest lawRequest;
 
     /**
      * Creates new form ServiceCart
@@ -47,10 +53,14 @@ public class ServiceCart extends javax.swing.JPanel {
         createModel();
         createTherapyModel();
         createCovidModel();
+        createMoneyApponitmentModel();
+        createLawfirmModel();
 
         viewNursingData();
         viewTherapyData();
         viewCovidCareData();
+        viewMoneyAppointmentDetails();
+        viewLawfirmDetails();
     }
 
     public void createCovidModel() {
@@ -150,6 +160,14 @@ public class ServiceCart extends javax.swing.JPanel {
         covidCareTable = new javax.swing.JTable();
         removeCovidCareReqBtn = new javax.swing.JButton();
         confirmBtn = new javax.swing.JButton();
+        removeMoneyReqBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        moneyTable = new javax.swing.JTable();
+        moneyTitle = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        legalTable = new javax.swing.JTable();
+        moneyTitle1 = new javax.swing.JLabel();
+        removeLegalReqBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -361,25 +379,100 @@ public class ServiceCart extends javax.swing.JPanel {
             }
         });
 
+        removeMoneyReqBtn.setBackground(new java.awt.Color(0, 0, 0));
+        removeMoneyReqBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        removeMoneyReqBtn.setForeground(new java.awt.Color(255, 255, 255));
+        removeMoneyReqBtn.setText("Remove Selected Request");
+        removeMoneyReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMoneyReqBtnActionPerformed(evt);
+            }
+        });
+
+        moneyTable.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        moneyTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(moneyTable);
+
+        moneyTitle.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        moneyTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyTitle.setText("Money Services");
+
+        legalTable.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        legalTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(legalTable);
+
+        moneyTitle1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        moneyTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        moneyTitle1.setText("Legal Services");
+
+        removeLegalReqBtn.setBackground(new java.awt.Color(0, 0, 0));
+        removeLegalReqBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        removeLegalReqBtn.setForeground(new java.awt.Color(255, 255, 255));
+        removeLegalReqBtn.setText("Remove Selected Request");
+        removeLegalReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeLegalReqBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cartTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmBtn)
-                .addGap(460, 460, 460))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cartTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(83, 83, 83)
+                                            .addComponent(removeMoneyReqBtn))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(moneyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(50, 50, 50)
+                                                .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(moneyTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(140, 140, 140)
+                                        .addComponent(removeLegalReqBtn))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(508, 508, 508)
+                        .addComponent(confirmBtn)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,7 +481,7 @@ public class ServiceCart extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(cartTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                             .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -396,9 +489,24 @@ public class ServiceCart extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(57, 57, 57)
-                .addComponent(confirmBtn)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addGap(92, 92, 92)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(moneyTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeMoneyReqBtn)
+                        .addGap(289, 289, 289))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(moneyTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeLegalReqBtn)
+                        .addGap(29, 29, 29)
+                        .addComponent(confirmBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -462,16 +570,40 @@ public class ServiceCart extends javax.swing.JPanel {
         setWorkRequest("Medical", "Therapy Organization");
         setWorkRequest("Medical", "Nurse Organization");
         setWorkRequest("Medical", "CovidCare Organization");
+        setWorkRequest("Finance", "Money Management Organization");
 
         if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
             setWorkRequest("Medical", "Therapy Organization");
             setWorkRequest("Medical", "Nurse Organization");
             setWorkRequest("Medical", "CovidCare Organization");
+            setWorkRequest("Finance", "Money Management Organization");
             JOptionPane.showMessageDialog(this, "Order Confirmed");
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
+
+    private void removeMoneyReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMoneyReqBtnActionPerformed
+        // TODO add your handling code here:
+        if (moneyTable.getSelectedRow() >= 0) {
+            int id = Integer.parseInt(String.valueOf(moneyTable.getValueAt(moneyTable.getSelectedRow(), 0)));
+            removeWorkRequest(moneyAdviceModel, moneyTable, id);
+            JOptionPane.showMessageDialog(this, "Entry removed successfully");
+        } else {
+            JOptionPane.showMessageDialog(this, "No service list to remove");
+        }
+    }//GEN-LAST:event_removeMoneyReqBtnActionPerformed
+
+    private void removeLegalReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLegalReqBtnActionPerformed
+        // TODO add your handling code here:
+        if (legalTable.getSelectedRow() >= 0) {
+            int id = Integer.parseInt(String.valueOf(legalTable.getValueAt(legalTable.getSelectedRow(), 0)));
+            removeWorkRequest(lawfirmModel, legalTable, id);
+            JOptionPane.showMessageDialog(this, "Entry removed successfully");
+        } else {
+            JOptionPane.showMessageDialog(this, "No service list to remove");
+        }
+    }//GEN-LAST:event_removeLegalReqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -489,12 +621,59 @@ public class ServiceCart extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable legalTable;
+    private javax.swing.JTable moneyTable;
+    private javax.swing.JLabel moneyTitle;
+    private javax.swing.JLabel moneyTitle1;
     private javax.swing.JTable nursingTable;
     private javax.swing.JLabel nursingTitle;
     private javax.swing.JButton removeCovidCareReqBtn;
+    private javax.swing.JButton removeLegalReqBtn;
+    private javax.swing.JButton removeMoneyReqBtn;
     private javax.swing.JButton removeNurseReqBtn;
     private javax.swing.JButton removeTherapyReqBtn;
     private javax.swing.JTable therapyTable;
     private javax.swing.JLabel therapyTitle;
     // End of variables declaration//GEN-END:variables
+
+    private void createMoneyApponitmentModel() {
+        moneyAdviceModel = new DefaultTableModel();
+        moneyTable.setModel(moneyAdviceModel);
+        moneyAdviceModel.addColumn("Request Id");
+        moneyAdviceModel.addColumn("Appointment Date");
+        moneyAdviceModel.addColumn("Appointment Time");
+    }
+
+    private void viewMoneyAppointmentDetails() {
+        for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (workrequest instanceof MoneyWorkRequest) {
+                moneyRequest = ((MoneyWorkRequest) workrequest);
+                moneyAdviceModel.addRow(new Object[]{
+                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot()
+                });
+            }
+        }
+    }
+
+    private void createLawfirmModel() {
+        lawfirmModel = new DefaultTableModel();
+        legalTable.setModel(lawfirmModel);
+        lawfirmModel.addColumn("Request Id");
+        lawfirmModel.addColumn("Appointment Date");
+        lawfirmModel.addColumn("Appointment Time");
+        lawfirmModel.addColumn("Appointment Type");
+    }
+
+    private void viewLawfirmDetails() {
+        for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (workrequest instanceof LawFirmWorkRequest) {
+                lawRequest = ((LawFirmWorkRequest) workrequest);
+                lawfirmModel.addRow(new Object[]{
+                    lawRequest.getId(), lawRequest.getDate(), lawRequest.getTimeSlot(), lawRequest.getConsultationType()
+                });
+            }
+        }
+    }
 }
