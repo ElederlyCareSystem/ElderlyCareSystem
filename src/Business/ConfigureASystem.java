@@ -38,7 +38,10 @@ public class ConfigureASystem {
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         System.out.println("enterprise config " + enterprise2.getOrganizationDirectory().getOrganizationList().get(0).getName());
-
+        // house hold enterprise
+        Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
+        // house hold organization
+        Organization houseHoldOrganization = houseHoldEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.HouseHold);        
         //have some employees 
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
         Employee employee1 = system.getEmployeeDirectory().createEmployee("customer");

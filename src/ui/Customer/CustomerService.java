@@ -419,6 +419,8 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void HouseHoldCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseHoldCareButtonActionPerformed
         // TODO add your handling code here:
+        HouseHoldChoreServices choreServices = new HouseHoldChoreServices(userProcessContainer, system, userAccount, servicesSplitPane);
+        servicesSplitPane.setRightComponent(choreServices);
     }//GEN-LAST:event_HouseHoldCareButtonActionPerformed
 
     private void HouseMaintainenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseMaintainenceButtonActionPerformed
