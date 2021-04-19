@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/HouseHoldChoreServices.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Enterprise/HouseHoldEnterprise.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/UserAccount/UserAccount.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Enterprise/Enterprise.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Enterprise/HospitalEnterprise.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Enterprise/EnterpriseDirectory.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Organization/HouseHoldOrganization.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/BookHouseHoldService.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Organization/OrganizationDirectory.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/NursingServices.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/Organization/Organization.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/Business/WorkQueue/HouseHoldWorkRequest.java</file>
-            <file>file:/Users/harshikag/NetBeansProjects/ElderlyCareSystem/src/ui/Customer/ServiceCart.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
