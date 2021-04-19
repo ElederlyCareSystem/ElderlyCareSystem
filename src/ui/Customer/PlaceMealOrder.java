@@ -103,6 +103,8 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
+        BackButton.setBackground(new java.awt.Color(0, 0, 0));
+        BackButton.setForeground(new java.awt.Color(255, 255, 255));
         BackButton.setText("<< BACK");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +138,8 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        SubmitjButton.setBackground(new java.awt.Color(0, 0, 0));
+        SubmitjButton.setForeground(new java.awt.Color(255, 255, 255));
         SubmitjButton.setText("Submit");
         SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +147,8 @@ public class PlaceMealOrder extends javax.swing.JPanel {
             }
         });
 
+        RemovejButton.setBackground(new java.awt.Color(0, 0, 0));
+        RemovejButton.setForeground(new java.awt.Color(255, 255, 255));
         RemovejButton.setText("Remove");
         RemovejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

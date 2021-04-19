@@ -9,6 +9,7 @@ import Business.EcoSystem;
 //import Business.Role.Customer;
 import Business.UserAccount.UserAccount;
 import java.util.List;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,12 +21,19 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
      * Creates new form NewCustomerJPanel
      */
     
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
     
-    public NewCustomerJPanel() {
+    
+    public NewCustomerJPanel(JPanel userProcessContainer,EcoSystem system, UserAccount userAccount) {
         initComponents();
-        //this.ecosystem = ecosystem;
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.system = system;
         
         addItemToComboBoxList();
+        displayDetails();
     }
 
     /**
@@ -80,8 +88,6 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Address:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
-
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel6.setText("Phone Number:");
 
@@ -91,6 +97,8 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel8.setText("Email Address:");
 
+        SubmitjButton.setBackground(new java.awt.Color(0, 0, 0));
+        SubmitjButton.setForeground(new java.awt.Color(255, 255, 255));
         SubmitjButton.setText("Submit");
         SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +195,7 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
+                .addGap(305, 305, 305)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,8 +212,8 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -241,8 +249,8 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailAddressTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -262,20 +270,25 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
         boolean flag = false;
-//        List<UserAccount> userList = ecosystem.getUserAccountDirectory().getUserAccountList();
-//        
-//        for(int i = 0; i < userList.size(); i++){
-//            if(userList.get(i).getUsername().equals(UsernamejTextField.getText())){
-//                flag = true;
-//            }
-//        }
-//        
-//        if(flag == false){
-//            ecosystem.getUserAccountDirectory().createCustomerUserAccount(Integer.parseInt(custIdTextField.getText()), 
-//                    custNameTextField.getText(), jDateChooser2.getDate().toString(), Integer.parseInt(ageTextField.getText()), AddressStreetTextField.getText() + AddressAptTextField.getText() + jComboBox1.getSelectedItem().toString()+ZipcodejTextField.getText(), 
-//                    PhoneNumberTextField.getText(), emailAddressTextField1.getText(), emergencyNameTextField1.getText(), emergencyNumberTextField.getText(), UsernamejTextField.getText(),
-//                    PasswordjTextField.getText(), new Customer());
-//        }
+        List<UserAccount> userList = system.getUserAccountDirectory().getUserAccountList();
+        
+        for(int i = 0; i < userList.size(); i++){
+            if(userList.get(i).getUsername().equals(userAccount.getUsername())){
+                flag = true;
+                userList.get(i).getUserDetails().setCustomerId(Integer.parseInt(custIdTextField.getText()));
+                userList.get(i).getUserDetails().setName(custNameTextField.getText());
+                userList.get(i).getUserDetails().setDob(jDateChooser1.getDate());
+                userList.get(i).getUserDetails().setAge(Integer.parseInt(ageTextField.getText()));
+                userList.get(i).getUserDetails().setAddressStreet(AddressStreetTextField.getText());
+                userList.get(i).getUserDetails().setAddressApt(AddressAptTextField.getText());
+                userList.get(i).getUserDetails().setAddressState(jComboBox1.getSelectedItem().toString());
+                userList.get(i).getUserDetails().setAddressZipcode(ZipcodejTextField.getText());
+                userList.get(i).getUserDetails().setPhoneNumber(Integer.parseInt(PhoneNumberTextField.getText()));
+                userList.get(i).getUserDetails().setEmailId(emailAddressTextField1.getText());
+                userList.get(i).getUserDetails().setEmergencyContactName(emergencyNameTextField1.getText());
+                userList.get(i).getUserDetails().setEmemergencyContactNumber(Integer.parseInt(emergencyNumberTextField.getText()));
+            }
+        }
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
 
@@ -311,19 +324,51 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void addItemToComboBoxList() {
-//        jComboBox1.addItem("Arizona");
-//        jComboBox1.addItem("California");
-//        jComboBox1.addItem("Connecticut");
-//        jComboBox1.addItem("Florida");
-//        jComboBox1.addItem("Georgia");
-//        jComboBox1.addItem("Indiana");
-//        jComboBox1.addItem("Maryland");
-//        jComboBox1.addItem("Massachusetts");
-//        jComboBox1.addItem("Michigan");
-//        jComboBox1.addItem("New Jersey");
-//        jComboBox1.addItem("New York");
-//        jComboBox1.addItem("Texas");
-//        jComboBox1.addItem("Washington");
+        jComboBox1.addItem("Arizona");
+        jComboBox1.addItem("California");
+        jComboBox1.addItem("Connecticut");
+        jComboBox1.addItem("Florida");
+        jComboBox1.addItem("Georgia");
+        jComboBox1.addItem("Indiana");
+        jComboBox1.addItem("Maryland");
+        jComboBox1.addItem("Massachusetts");
+        jComboBox1.addItem("Michigan");
+        jComboBox1.addItem("New Jersey");
+        jComboBox1.addItem("New York");
+        jComboBox1.addItem("Texas");
+        jComboBox1.addItem("Washington");
+    }
+
+    private void displayDetails() {
+        
+        if(userAccount.getUserDetails() == null){
+            System.out.println("details if>>>");
+            custIdTextField.setText("");
+            custNameTextField.setText("");
+            ageTextField.setText("");
+            AddressStreetTextField.setText("");
+            AddressAptTextField.setText("");
+            jComboBox1.setSelectedItem("None");
+            ZipcodejTextField.setText("");
+            PhoneNumberTextField.setText("");
+            emailAddressTextField1.setText("");
+            emergencyNameTextField1.setText("");
+            emergencyNumberTextField.setText("");
+        }else{
+            System.out.println("details if>>>");
+            custIdTextField.setText(String.valueOf(userAccount.getUserDetails().getCustomerId()));
+            custNameTextField.setText(userAccount.getUserDetails().getName());
+            jDateChooser1.setDate(userAccount.getUserDetails().getDob());
+            ageTextField.setText(String.valueOf(userAccount.getUserDetails().getAge()));
+            AddressStreetTextField.setText(userAccount.getUserDetails().getAddressStreet());
+            AddressAptTextField.setText(userAccount.getUserDetails().getAddressApt());
+            jComboBox1.setSelectedItem(userAccount.getUserDetails().getAddressState());
+            ZipcodejTextField.setText(userAccount.getUserDetails().getAddressZipcode());
+            PhoneNumberTextField.setText(String.valueOf(userAccount.getUserDetails().getPhoneNumber()));
+            emailAddressTextField1.setText(userAccount.getUserDetails().getEmailId());
+            emergencyNameTextField1.setText(userAccount.getUserDetails().getEmergencyContactName());
+            emergencyNumberTextField.setText(String.valueOf(userAccount.getUserDetails().getEmemergencyContactNumber()));
+        }
     }
 
     

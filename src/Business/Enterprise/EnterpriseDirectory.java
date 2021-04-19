@@ -44,6 +44,9 @@ public class EnterpriseDirectory {
         }else if(type == Enterprise.EnterpriseType.Finance){
             enterprise = new FinanceEnterprise(name);
             enterpriseList.add(enterprise);
+        } else if(type == Enterprise.EnterpriseType.HouseHold){
+            enterprise = new HouseHoldEnterprise(name);
+            enterpriseList.add(enterprise);
         }
         return enterprise;
     }
@@ -53,12 +56,9 @@ public class EnterpriseDirectory {
     public Organization getOrganizationByType(String type, String orgName) {
         Enterprise enterprise = null;
         for (int i = 0; i < enterpriseList.size(); i++) {
-            //System.out.println("en>>>" + enterpriseList.get(i).getEnterpriseType().getValue());
             if (enterpriseList.get(i).getEnterpriseType().getValue() == type) {
-                System.out.println("if>>>"+enterpriseList.get(i).getEnterpriseType().getValue());
                 enterprise = enterpriseList.get(i);
                 for (int j = 0; j < enterprise.getOrganizationDirectory().getOrganizationList().size(); j++) {
-                    System.out.println("orgo>>>" + enterprise.getOrganizationDirectory().getOrganizationList().get(j).getName());
                     if (enterprise.getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
                         return enterprise.getOrganizationDirectory().getOrganizationList().get(j);
                     }

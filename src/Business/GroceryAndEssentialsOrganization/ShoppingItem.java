@@ -19,8 +19,6 @@ public class ShoppingItem {
         this.itemName = itemName;
         this.price = price;
     }
-    
-    
 
     public String getItemName() {
         return itemName;

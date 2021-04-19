@@ -6,6 +6,7 @@ import Business.Network.Network;
 import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
 import Business.Role.CustomerRole;
+import Business.Role.MoneyAdvisorRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 
@@ -38,14 +39,19 @@ public class ConfigureASystem {
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         System.out.println("enterprise config " + enterprise2.getOrganizationDirectory().getOrganizationList().get(0).getName());
-
+        // house hold enterprise
+        Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
+        // house hold organization
+        Organization houseHoldOrganization = houseHoldEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.HouseHold);        
         //have some employees 
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
         Employee employee1 = system.getEmployeeDirectory().createEmployee("customer");
+        Employee employeeMoneyAdmin = system.getEmployeeDirectory().createEmployee("moneyAdmin");
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
-        
+        UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole());
+        MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
         return system;
     }
     
