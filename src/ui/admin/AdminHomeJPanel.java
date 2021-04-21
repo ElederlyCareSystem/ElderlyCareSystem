@@ -6,6 +6,7 @@
 package ui.admin;
 
 import Business.EcoSystem;
+import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -26,17 +27,30 @@ public class AdminHomeJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     UserAccount userAccount;
-    MoneyManagementOrganization organization;
+    MoneyManagementOrganization moneyOrganization;
+    LegalServicesOrganization legalOrganization;
     JSplitPane adminSplitPane;
+   Organization organization1;
 
     AdminHomeJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem system, Organization organization,JSplitPane adminSplitPane, Icon img) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.organization = (MoneyManagementOrganization) organization;
+//        this.organization = (MoneyManagementOrganization) organization;
+this.organization1 = organization;
+        String name = organization.getName();
         
         this.adminSplitPane = adminSplitPane;
+//        
+//        if(organization.getName().equals("MoneyManagement")){
+//            this.moneyOrganization = (MoneyManagementOrganization) organization;
+//            
+//            
+//        }else if(organization.getName().equals("LegalServices")){
+//            this.legalOrganization = (LegalServicesOrganization) organization;
+//        }
+        
         System.out.println("home jpanel..."+organization.getName());
         jLabel_OrganizationName.setText(organization.getName());
         jLabel_image.setIcon(img);

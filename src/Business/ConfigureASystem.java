@@ -6,6 +6,7 @@ import Business.Network.Network;
 import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
 import Business.Role.CustomerRole;
+import Business.Role.LegalAdvisorRole;
 import Business.Role.MoneyAdvisorRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
@@ -47,11 +48,14 @@ public class ConfigureASystem {
         Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
         Employee employee1 = system.getEmployeeDirectory().createEmployee("customer");
         Employee employeeMoneyAdmin = system.getEmployeeDirectory().createEmployee("moneyAdmin");
+        Employee employeeLegalAdmin = system.getEmployeeDirectory().createEmployee("legalAdmin");
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
         UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole());
+        UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole());
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
+        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal);
         return system;
     }
     
