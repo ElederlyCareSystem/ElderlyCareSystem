@@ -6,6 +6,8 @@
 package ui.admin;
 
 import Business.EcoSystem;
+import Business.Organization.LegalServicesOrganization;
+import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -18,29 +20,31 @@ import javax.swing.JPanel;
  *
  * @author snehalchavan
  */
-public class MoneyAdvisorAdmin extends javax.swing.JPanel {
+public class OrganizationAdminJpanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MoneyAdvisorAdmin
+     * Creates new form OrganizationAdminJpanel
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private Organization organization;
-    String img = "moneyManage.jpeg";
-    ImageIcon icon = new ImageIcon(img);
+    private MoneyManagementOrganization morg;
+    String img;
+    ImageIcon icon;
     
-    public MoneyAdvisorAdmin(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem system) {
+    public OrganizationAdminJpanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.system = system;
         this.organization = organization;
+        getImageforOrganization(this.organization);
         
+        icon = new ImageIcon(img);
         AdminHomeJPanel home = new AdminHomeJPanel(userProcessContainer,userAccount,system,organization,adminSplitPane,icon);
         adminSplitPane.setRightComponent(home);
         
-        System.out.println("in admin\\\\"+organization.getName());
     }
 
     /**
@@ -209,7 +213,7 @@ public class MoneyAdvisorAdmin extends javax.swing.JPanel {
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
-        img = "./Resources/moneyDesktop.jpeg";
+//        String imageforOrganization = getImageforOrganization(organization);
         AdminHomeJPanel home = new AdminHomeJPanel(userProcessContainer,userAccount,system,organization,adminSplitPane,icon);
         adminSplitPane.setRightComponent(home);
     }//GEN-LAST:event_homeButtonActionPerformed
@@ -252,4 +256,26 @@ public class MoneyAdvisorAdmin extends javax.swing.JPanel {
     private javax.swing.JLabel profileIcon;
     private javax.swing.JLabel profileNameText;
     // End of variables declaration//GEN-END:variables
+
+    private void getImageforOrganization(Organization organization1) {
+        System.out.println("in img fun"+organization1.getName());
+        if(organization1.getName().equals("Money Management Organization")){
+            img = "moneyManage.jpeg";
+        }else if(organization1.getName().equals("Legal Services Organization")){
+            img = "legalservices.jpeg";
+        }else if(organization1.getName().equals("GroceryAndEssentials Organization")){
+            img = "";
+        }else if(organization1.getName().equals("Food Organization")){
+            img = "";
+        }else if(organization1.getName().equals("CovidCare Organization")){
+            img = "";
+        }else if(organization1.getName().equals("HealthAid Organization")){
+            img = "";
+        }else if(organization1.getName().equals("Therapy Organization")){
+            img = "";
+        }else if(organization1.getName().equals("Nurse Organization")){
+            img = "";
+        }
+         
+    }
 }

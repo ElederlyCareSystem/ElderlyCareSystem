@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.admin.MoneyAdvisorAdmin;
+import ui.admin.OrganizationAdminJpanel;
 
 /**
  *
@@ -20,7 +20,7 @@ public class MoneyAdvisorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new MoneyAdvisorAdmin(userProcessContainer, account, organization, business);
+        return new OrganizationAdminJpanel(userProcessContainer, account, organization, business);
     }
     
 }
