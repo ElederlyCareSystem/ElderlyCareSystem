@@ -72,7 +72,12 @@ this.organization1 = organization;
         jLabel_OrganizationName = new javax.swing.JLabel();
         jLabel_image = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1480, 800));
+        setSize(new java.awt.Dimension(1480, 800));
+
         HeaderPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        HeaderPanel3.setPreferredSize(new java.awt.Dimension(1254, 116));
+        HeaderPanel3.setSize(new java.awt.Dimension(1254, 116));
 
         ImageHeader4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
@@ -87,7 +92,7 @@ this.organization1 = organization;
                 .addComponent(ImageHeader4)
                 .addGap(20, 20, 20)
                 .addComponent(Title4)
-                .addGap(0, 554, Short.MAX_VALUE))
+                .addGap(0, 977, Short.MAX_VALUE))
         );
         HeaderPanel3Layout.setVerticalGroup(
             HeaderPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +113,7 @@ this.organization1 = organization;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HeaderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1480, Short.MAX_VALUE)
             .addComponent(jLabel_OrganizationName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(215, 215, 215)
@@ -118,7 +123,7 @@ this.organization1 = organization;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(HeaderPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HeaderPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabel_OrganizationName)
                 .addGap(30, 30, 30)

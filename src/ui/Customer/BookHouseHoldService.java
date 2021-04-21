@@ -120,7 +120,11 @@ public class BookHouseHoldService extends javax.swing.JPanel {
         jCheckBox6 = new javax.swing.JCheckBox();
         jCheckBox7 = new javax.swing.JCheckBox();
 
+        setPreferredSize(new java.awt.Dimension(1254, 800));
+        setSize(new java.awt.Dimension(1254, 800));
+
         HeaderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        HeaderPanel.setPreferredSize(new java.awt.Dimension(1254, 116));
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
@@ -149,6 +153,8 @@ public class BookHouseHoldService extends javax.swing.JPanel {
         );
 
         HouseHoldServicePanel.setBackground(new java.awt.Color(178, 215, 229));
+        HouseHoldServicePanel.setPreferredSize(new java.awt.Dimension(1254, 401));
+        HouseHoldServicePanel.setSize(new java.awt.Dimension(1254, 401));
 
         serviceCatLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         serviceCatLabel.setText("Choose a Category of Service");
@@ -263,8 +269,8 @@ public class BookHouseHoldService extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
+            .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

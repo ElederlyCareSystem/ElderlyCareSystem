@@ -40,7 +40,6 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         this.system = system;
         this.organization = organization;
         getImageforOrganization(this.organization);
-        
         icon = new ImageIcon(img);
         AdminHomeJPanel home = new AdminHomeJPanel(userProcessContainer,userAccount,system,organization,adminSplitPane,icon);
         adminSplitPane.setRightComponent(home);
@@ -68,8 +67,14 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         profileButton = new javax.swing.JButton();
         jPanelAdmin = new javax.swing.JPanel();
 
+        setPreferredSize(new java.awt.Dimension(1480, 800));
+        setRequestFocusEnabled(false);
+        setSize(new java.awt.Dimension(1480, 800));
+
         adminSplitPane.setBorder(null);
         adminSplitPane.setDividerSize(0);
+        adminSplitPane.setPreferredSize(new java.awt.Dimension(1480, 800));
+        adminSplitPane.setSize(new java.awt.Dimension(1480, 800));
 
         ServicesPanel.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -177,22 +182,22 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
                 .addComponent(OrdersButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogoutButton)
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap(498, Short.MAX_VALUE))
         );
 
         adminSplitPane.setLeftComponent(ServicesPanel);
 
-        jPanelAdmin.setPreferredSize(new java.awt.Dimension(800, 706));
+        jPanelAdmin.setPreferredSize(new java.awt.Dimension(1254, 800));
 
         javax.swing.GroupLayout jPanelAdminLayout = new javax.swing.GroupLayout(jPanelAdmin);
         jPanelAdmin.setLayout(jPanelAdminLayout);
         jPanelAdminLayout.setHorizontalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1093, Short.MAX_VALUE)
+            .addGap(0, 1254, Short.MAX_VALUE)
         );
         jPanelAdminLayout.setVerticalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
 
         adminSplitPane.setRightComponent(jPanelAdmin);
@@ -202,12 +207,12 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(adminSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adminSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+            .addComponent(adminSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,5 +282,9 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
             img = "";
         }
          
+    }
+
+    private void setAssignedOrganization(Organization organization) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

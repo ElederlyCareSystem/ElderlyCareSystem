@@ -138,7 +138,7 @@ public class LoginJpanel extends javax.swing.JPanel {
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(1480, 1000));
         jPanel_loginarea.add(jLabel1);
-        jLabel1.setBounds(-110, 100, 1690, 1000);
+        jLabel1.setBounds(-110, 100, 1500, 1000);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
