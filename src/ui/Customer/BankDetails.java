@@ -64,8 +64,12 @@ public class BankDetails extends javax.swing.JPanel {
         jComboBox_year = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setPreferredSize(new java.awt.Dimension(1254, 800));
+        setSize(new java.awt.Dimension(1254, 800));
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHeader.setPreferredSize(new java.awt.Dimension(1254, 116));
+        jPanelHeader.setSize(new java.awt.Dimension(1254, 116));
 
         ImageHeader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
@@ -80,7 +84,7 @@ public class BankDetails extends javax.swing.JPanel {
                 .addComponent(ImageHeader)
                 .addGap(20, 20, 20)
                 .addComponent(Title)
-                .addGap(0, 977, Short.MAX_VALUE))
+                .addGap(0, 751, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
