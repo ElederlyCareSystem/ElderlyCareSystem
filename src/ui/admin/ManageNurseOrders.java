@@ -61,7 +61,7 @@ public class ManageNurseOrders extends javax.swing.JPanel {
     }
 
     public void showUpdateList() {
-        System.out.println("nursingOrganization.getNurseEmployeeList() " + nursingOrganization.getNurseEmployeeList().get(0).getUsername());
+//        System.out.println("nursingOrganization.getNurseEmployeeList() " + nursingOrganization.getNurseEmployeeList().get(0).getUsername());
         for (int i = 0; i < nursingOrganization.getNurseEmployeeList().size(); i++) {
             assignCombo.addItem(nursingOrganization.getNurseEmployeeList().get(i).getUsername());
         }

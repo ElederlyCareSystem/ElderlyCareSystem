@@ -29,7 +29,7 @@ public class NurseRole extends Role {
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, DB4OUtil dB4OUtil) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         if (type.equalsIgnoreCase("admin")) {
             return new OrganizationAdminJpanel(userProcessContainer, account, organization, business);
         }

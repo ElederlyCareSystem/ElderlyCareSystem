@@ -29,11 +29,9 @@ public class CustomerService extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount, DB4OUtil dB4OUtil) {
+    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.setSize(1680, 1050);
-        System.out.println(dB4OUtil+ "dB4OUtil");
-//        this.dB4OUtil = dB4OUtil;
         this.userAccount = userAccount;
         serviceName = orgName;
         this.userProcessContainer = userProcessContainer;

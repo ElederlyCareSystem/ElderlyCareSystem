@@ -6,6 +6,7 @@
 package ui.admin;
 
 import Business.EcoSystem;
+import Business.Organization.Organization;
 
 /**
  *
@@ -17,7 +18,12 @@ public class EmployeeOperations extends javax.swing.JPanel {
      * Creates new form EmployeeOperations
      */
     EcoSystem system;
-    public EmployeeOperations(EcoSystem system) {
+//    public EmployeeOperations(EcoSystem system, Organization organization) {
+//        initComponents();
+//        this.system = system;
+//    }
+
+    public EmployeeOperations(EcoSystem system, Organization organization) {
         initComponents();
         this.system = system;
     }
