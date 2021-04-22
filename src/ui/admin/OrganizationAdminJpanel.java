@@ -16,6 +16,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import ui.LoginJpanel;
 
 /**
  *
@@ -244,10 +245,13 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        userProcessContainer.removeAll();
         dB4OUtil.storeSystem(system);
+        EcoSystem system1 = dB4OUtil.retrieveSystem();
+        JPanel loginPage = new LoginJpanel(userProcessContainer, system1);
+        userProcessContainer.add("loginPage",loginPage);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
 

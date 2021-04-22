@@ -5,6 +5,7 @@
  */
 package ui.Customer;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
@@ -26,7 +27,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Organization organization;
-    
+    DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     public CustomerDashboard(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
@@ -490,9 +491,13 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
+        userProcessContainer.removeAll();
+        dB4OUtil.storeSystem(business);
+        EcoSystem system1 = dB4OUtil.retrieveSystem();
+        JPanel loginPage = new LoginJpanel(userProcessContainer, system1);
+        userProcessContainer.add("loginPage",loginPage);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
 

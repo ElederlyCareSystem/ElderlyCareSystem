@@ -442,10 +442,13 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        NursingOrganization org = (NursingOrganization) system.getNetworkList().get(0).getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
+        userProcessContainer.removeAll();
         dB4OUtil.storeSystem(system);
-        new MainJFrame(); 
+        EcoSystem system1 = dB4OUtil.retrieveSystem();
+        JPanel loginPage = new LoginJpanel(userProcessContainer, system1);
+        userProcessContainer.add("loginPage",loginPage);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void CartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartBtnActionPerformed

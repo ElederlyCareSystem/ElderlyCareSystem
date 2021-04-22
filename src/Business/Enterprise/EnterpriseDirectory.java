@@ -56,10 +56,10 @@ public class EnterpriseDirectory {
     public Organization getOrganizationByType(String type, String orgName) {
         Enterprise enterprise = null;
         for (int i = 0; i < enterpriseList.size(); i++) {
-            if (enterpriseList.get(i).getEnterpriseType().getValue() == type) {
+            if (enterpriseList.get(i).getName().equals(type)) {
                 enterprise = enterpriseList.get(i);
                 for (int j = 0; j < enterprise.getOrganizationDirectory().getOrganizationList().size(); j++) {
-                    if (enterprise.getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
+                    if (enterprise.getOrganizationDirectory().getOrganizationList().get(j).getName().equals(orgName)) {
                         return enterprise.getOrganizationDirectory().getOrganizationList().get(j);
                     }
                 }
@@ -71,8 +71,7 @@ public class EnterpriseDirectory {
     public Enterprise getEnterprise(String type) {
         Enterprise enterprise = null;
         for (int i = 0; i < enterpriseList.size(); i++) {
-            if (enterpriseList.get(i).getEnterpriseType().getValue() == type) {
-                System.out.println("if>>>"+enterpriseList.get(i).getEnterpriseType().getValue());
+            if (enterpriseList.get(i).getName().equals(type)) {
                 return enterpriseList.get(i);
             }
         }
