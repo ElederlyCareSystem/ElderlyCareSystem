@@ -5,6 +5,7 @@
  */
 package ui.admin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
@@ -32,7 +33,7 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
     private MoneyManagementOrganization morg;
     String img;
     ImageIcon icon;
-    
+    DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public OrganizationAdminJpanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -225,13 +226,14 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
 
     private void EmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeButtonActionPerformed
         // TODO add your handling code here:
-        EmployeeOperations employee = new EmployeeOperations(system);
+        EmployeeOperations employee = new EmployeeOperations(system, organization);
         adminSplitPane.setRightComponent(employee);
     }//GEN-LAST:event_EmployeeButtonActionPerformed
 
     private void OrdersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersButtonActionPerformed
         // TODO add your handling code here:
-        
+        ManageNurseOrders profile = new ManageNurseOrders(userProcessContainer, userAccount, system, organization, adminSplitPane);
+        adminSplitPane.setRightComponent(profile);
     }//GEN-LAST:event_OrdersButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
@@ -245,6 +247,7 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
 
@@ -263,7 +266,6 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void getImageforOrganization(Organization organization1) {
-        System.out.println("in img fun"+organization1.getName());
         if(organization1.getName().equals("Money Management Organization")){
             img = "moneyManage.jpeg";
         }else if(organization1.getName().equals("Legal Services Organization")){
@@ -273,13 +275,15 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         }else if(organization1.getName().equals("Food Organization")){
             img = "";
         }else if(organization1.getName().equals("CovidCare Organization")){
-            img = "";
+            img = "covidcareOrganization_630x375.jpeg";
         }else if(organization1.getName().equals("HealthAid Organization")){
             img = "";
         }else if(organization1.getName().equals("Therapy Organization")){
-            img = "";
+            img = "therapyOrganization_630x375.jpeg";
         }else if(organization1.getName().equals("Nurse Organization")){
-            img = "";
+            img = "nurseOrganization_630x375.jpeg";
+        } else if(organization1.getName().equals("HouseHold Organization")){
+            img = "houseHoldOrganization_630x375.jpeg";
         }
          
     }

@@ -7,6 +7,7 @@ package Business.Organization;
 
 import Business.Role.NurseRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,6 +17,15 @@ import java.util.HashMap;
  */
 public class NursingOrganization extends Organization{
     HashMap<String, Double> servicesList = new HashMap<String, Double>();
+    ArrayList<UserAccount> nurseEmployeeList = new ArrayList<UserAccount>();
+
+    public ArrayList<UserAccount> getNurseEmployeeList() {
+        return nurseEmployeeList;
+    }
+
+    public void setNurseEmployeeList(ArrayList<UserAccount> nurseEmployeeList) {
+        this.nurseEmployeeList = nurseEmployeeList;
+    }
 
     public HashMap<String, Double> getServicesList() {
         return servicesList;
@@ -28,6 +38,7 @@ public class NursingOrganization extends Organization{
     
     public NursingOrganization() {
         super(Organization.Type.Nurse.getValue());
+        System.out.println("new instance..");
         servicesList.put("General Home Care", 100.00);
         servicesList.put("Alzheimer’s Care", 120.00);
         servicesList.put("Demantia Care", 110.00);

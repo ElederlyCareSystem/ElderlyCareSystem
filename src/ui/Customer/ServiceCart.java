@@ -6,8 +6,12 @@
 package ui.Customer;
 
 import Business.EcoSystem;
+import Business.Organization.CovidCareOrganization;
+import Business.Organization.HouseHoldOrganization;
+import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.NursingOrganization;
 import Business.Organization.Organization;
+import Business.Organization.TherapyOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CovidCareWorkRequest;
 import Business.WorkQueue.HouseHoldWorkRequest;
@@ -17,6 +21,7 @@ import Business.WorkQueue.NursingWorkRequest;
 import Business.WorkQueue.TherapyWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -666,23 +671,54 @@ public class ServiceCart extends javax.swing.JPanel {
     }//GEN-LAST:event_removeCovidCareReqBtnActionPerformed
 
     public void setWorkRequest(String enterprise, String organization) {
-        Organization therapyOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType(enterprise, organization);
-        if (therapyOrganization != null) {
-            therapyOrganization.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        Organization org = system.getNetwork().getEnterpriseDirectory().getOrganizationByType(enterprise, organization);
+        if(org.getName().equals("Money Management Organization")){
+            MoneyManagementOrganization organization1 = (MoneyManagementOrganization) org;
+//            ArrayList<MoneyWorkRequest> workrequest = (MoneyWorkRequest) userAccount.getWorkQueue().getWorkRequestList();
+            organization1.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
         }
+        if(org.getName().equals("Therapy Organization")){
+            TherapyOrganization organization2 = (TherapyOrganization) org;
+            organization2.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        if(org.getName().equals("Nurse Organization")){
+            NursingOrganization organization3 = (NursingOrganization) org;
+//            organization3.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization3.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization3.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
+            System.out.println("cart " + organization3.getWorkQueue().getWorkRequestList().size());
+        }
+        if(org.getName().equals("CovidCare Organization")){
+            CovidCareOrganization organization4 = (CovidCareOrganization) org;
+            organization4.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        if(org.getName().equals("HouseHold Organization")) {
+            HouseHoldOrganization organization5 = (HouseHoldOrganization) org;
+            organization5.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        
+//        if (therapyOrganization != null) {
+//            for (int j = 0; j < therapyOrganization.getWorkQueue().getWorkRequestList().size(); j++) {
+//                therapyOrganization.getWorkQueue().getWorkRequestList().get(j).setStatus("Orfered");
+//            }
+////            therapyOrganization.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+////            System.out.println(therapyOrganization.getWorkQueue().getWorkRequestList().get(0).ge)
+//        }
     }
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
-        setWorkRequest("Medical", "Therapy Organization");
-        setWorkRequest("Medical", "Nurse Organization");
-        setWorkRequest("Medical", "CovidCare Organization");
-        setWorkRequest("Finance", "Money Management Organization");
+//        setWorkRequest("Medical", "Therapy Organization");
+//        setWorkRequest("Medical", "Nurse Organization");
+//        setWorkRequest("Medical", "CovidCare Organization");
+//        setWorkRequest("Finance", "Money Management Organization");
 
         if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
             setWorkRequest("Medical", "Therapy Organization");
             setWorkRequest("Medical", "Nurse Organization");
             setWorkRequest("Medical", "CovidCare Organization");
-            setWorkRequest("Finance", "Money Management Organization");
+            setWorkRequest("Finance", "Money Management Organization");            
+            setWorkRequest("HouseHold", "HouseHold Organization");
             JOptionPane.showMessageDialog(this, "Order Confirmed");
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");

@@ -5,7 +5,9 @@
  */
 package ui.Customer;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Organization.NursingOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -26,9 +28,12 @@ public class CustomerService extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount) {
+    DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount, DB4OUtil dB4OUtil) {
         initComponents();
         this.setSize(1680, 1050);
+        System.out.println(dB4OUtil+ "dB4OUtil");
+//        this.dB4OUtil = dB4OUtil;
         this.userAccount = userAccount;
         serviceName = orgName;
         this.userProcessContainer = userProcessContainer;
@@ -440,8 +445,9 @@ public class CustomerService extends javax.swing.JPanel {
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        new MainJFrame();
-        
+        NursingOrganization org = (NursingOrganization) system.getNetworkList().get(0).getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
+        dB4OUtil.storeSystem(system);
+        new MainJFrame(); 
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void CartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartBtnActionPerformed
