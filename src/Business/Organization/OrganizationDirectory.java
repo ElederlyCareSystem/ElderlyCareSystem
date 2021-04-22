@@ -55,6 +55,9 @@ public class OrganizationDirectory {
         }else if(type.getValue().equals(Type.LegalServices.getValue())){
             organization = new LegalServicesOrganization();
             organizationList.add(organization);
+        } else if(type.getValue().equals(Type.HouseHold.getValue())){
+            organization = new HouseHoldOrganization();
+            organizationList.add(organization);
         }
         return organization;
     }

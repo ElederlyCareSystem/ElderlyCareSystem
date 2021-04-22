@@ -173,16 +173,16 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(RemovejButton)))
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addContainerGap(393, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addGap(150, 150, 150)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(290, 290, 290))
+                .addGap(431, 431, 431))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(BackButton)
-                    .addContainerGap(944, Short.MAX_VALUE)))
+                    .addContainerGap(950, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,6 +226,7 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
         groceryOrg.getWorkQueue().getWorkRequestList().add(request);
+        request.setStatus("Order Placed");
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
     private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed

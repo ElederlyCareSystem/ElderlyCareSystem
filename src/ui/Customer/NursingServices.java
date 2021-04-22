@@ -41,9 +41,11 @@ public class NursingServices extends javax.swing.JPanel {
         model.addColumn("Price");
         this.userProcessContainer = userProcessContainer;
         this.system = business;
+        System.out.println("constructor " + system.getNetwork().getEnterpriseDirectory().getEnterprise("Medical"));
         for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Medical").getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof NursingOrganization) {
                 org = ((NursingOrganization) organization);
+                System.out.println("or list " + org.getWorkQueue().getWorkRequestList().size());
                 break;
             }
         }
@@ -230,9 +232,10 @@ public class NursingServices extends javax.swing.JPanel {
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
                 request.setPrice(selectedPrice);
-                Organization nursingOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
-                if (nursingOrganization != null) {
+//                Organization nursingOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
+                if (org != null) {
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    org.getWorkQueue().getWorkRequestList().add(request);
                 }
                 JOptionPane.showMessageDialog(this, "Service added to cart successfully");
             } catch (NumberFormatException e) {

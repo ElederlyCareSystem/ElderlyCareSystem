@@ -9,6 +9,9 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,12 +25,14 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
+    private Map<List<String>, Double> revenueMap = new LinkedHashMap<>();
     
     public enum Type{
         Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
         Nurse("Nurse Organization"), Therapy("Therapy Organization"), HealthAid("HealthAid Organization"), 
         CovidCare("CovidCare Organization"), Food("Food Organization"),MoneyManagement("Money Management Organization"),
-        GroceryAndEssentials("GroceryAndEssentials Organization"),LegalServices("Legal Services Organization");
+        GroceryAndEssentials("GroceryAndEssentials Organization"),LegalServices("Legal Services Organization"),
+        HouseHold("HouseHold Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -79,6 +84,21 @@ public abstract class Organization {
     @Override
     public String toString() {
         return name;
+    }
+    
+    public void generateMap(){
+        revenueMap = new LinkedHashMap<>();
+    }
+    
+    public void generateRevenue(){
+    }
+
+    public Map<List<String>, Double> getRevenueMap() {
+        return revenueMap;
+    }
+
+    public void setRevenueMap(Map<List<String>, Double> revenueMap) {
+        this.revenueMap = revenueMap;
     }
     
 }

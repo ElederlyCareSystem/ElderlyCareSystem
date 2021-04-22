@@ -5,7 +5,9 @@
  */
 package ui.Customer;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Organization.NursingOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -26,6 +28,7 @@ public class CustomerService extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
+    DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public CustomerService(String orgName,JPanel userProcessContainer, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.setSize(1680, 1050);
@@ -92,6 +95,7 @@ public class CustomerService extends javax.swing.JPanel {
 
         servicesSplitPane.setBorder(null);
         servicesSplitPane.setDividerSize(0);
+        servicesSplitPane.setPreferredSize(new java.awt.Dimension(1480, 1000));
 
         ServicesPanel.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -282,7 +286,7 @@ public class CustomerService extends javax.swing.JPanel {
             .addComponent(MealDeliveryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(PersonalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HouseMaintainenceButton)
-            .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+            .addComponent(HouseHoldCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ServicesPanelLayout.createSequentialGroup()
@@ -309,48 +313,48 @@ public class CustomerService extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProfileButton)
-                .addGap(12, 12, 12)
+                .addGap(0, 0, 0)
                 .addComponent(CartBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(NursingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(CovidCareButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(TherapyButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(MoneyManagementButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(LegalServicesButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(GroceryDeliveryButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(MealDeliveryButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(HouseHoldCareButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(HouseMaintainenceButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(PersonalCareButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(HomeButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(logoutButton)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         servicesSplitPane.setLeftComponent(ServicesPanel);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 706));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1254, 1000));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 1290, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
 
         servicesSplitPane.setRightComponent(jPanel1);
@@ -360,12 +364,12 @@ public class CustomerService extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(servicesSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(servicesSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(servicesSplitPane)
+            .addComponent(servicesSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -419,15 +423,13 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void HouseHoldCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseHoldCareButtonActionPerformed
         // TODO add your handling code here:
+        HouseHoldChoreServices choreServices = new HouseHoldChoreServices(userProcessContainer, system, userAccount, servicesSplitPane);
+        servicesSplitPane.setRightComponent(choreServices);
     }//GEN-LAST:event_HouseHoldCareButtonActionPerformed
 
     private void HouseMaintainenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HouseMaintainenceButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HouseMaintainenceButtonActionPerformed
-
-    private void PersonalCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalCareButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PersonalCareButtonActionPerformed
 
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         // TODO add your handling code here:
@@ -438,9 +440,13 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        new MainJFrame();
-        
+        userProcessContainer.removeAll();
+        dB4OUtil.storeSystem(system);
+        EcoSystem system1 = dB4OUtil.retrieveSystem();
+        JPanel loginPage = new LoginJpanel(userProcessContainer, system1);
+        userProcessContainer.add("loginPage",loginPage);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void CartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartBtnActionPerformed
@@ -448,6 +454,10 @@ public class CustomerService extends javax.swing.JPanel {
         ServiceCart cart = new ServiceCart(userProcessContainer, system, userAccount);
         servicesSplitPane.setRightComponent(cart);
     }//GEN-LAST:event_CartBtnActionPerformed
+
+    private void PersonalCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalCareButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PersonalCareButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -138,7 +138,7 @@ public class LoginJpanel extends javax.swing.JPanel {
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(1480, 1000));
         jPanel_loginarea.add(jLabel1);
-        jLabel1.setBounds(-110, 100, 1690, 1000);
+        jLabel1.setBounds(-110, 100, 1500, 1000);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,54 +162,72 @@ public class LoginJpanel extends javax.swing.JPanel {
         char[] passwordChar = jPasswordField_password.getPassword();
         String password = String.valueOf(passwordChar);
         boolean flag = false;
+        Enterprise inEnterprise = null;
+        Organization inOrganization = null;
+        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(username, password);
+        if (userAccount != null) {
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
 
-        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(username, password);
-        Enterprise inEnterprise=null;
-        Organization inOrganization=null;
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                            userAccount=organization.getUserAccountDirectory().authenticateUser(username, password);
+                        for (UserAccount user : organization.getUserAccountDirectory().getUserAccountList()) {
+                            if (user.getUsername().equals(userAccount.getUsername())) {
+//                            if(userAccount!=null){
+                                inEnterprise = enterprise;
+                                inOrganization = organization;
+                                System.out.println("org user...." + organization);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-        if(userAccount==null){
+        if (userAccount == null) {
             //Step 2: Go inside each network and check each enterprise
-            for(Network network:system.getNetworkList()){
+            for (Network network : system.getNetworkList()) {
                 //Step 2.a: check against each enterprise
-                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(username, password);
-                    if(userAccount==null){
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(username, password);
+                    if (userAccount == null) {
                         //Step 3:check against each organization for each enterprise
-                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                            userAccount=organization.getUserAccountDirectory().authenticateUser(username, password);
-                            if(userAccount!=null){
-                                inEnterprise=enterprise;
-                                inOrganization=organization;
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            userAccount = organization.getUserAccountDirectory().authenticateUser(username, password);
+                            if (userAccount != null) {
+                                inEnterprise = enterprise;
+                                inOrganization = organization;
+//                                System.out.println("org user...."+organization);
                                 break;
                             }
                         }
 
-                    }
-                    else{
-                        inEnterprise=enterprise;
+                    } else {
+                        inEnterprise = enterprise;
                         break;
                     }
-                    if(inOrganization!=null){
+                    if (inOrganization != null) {
                         break;
                     }
                 }
-                if(inEnterprise!=null){
+                if (inEnterprise != null) {
                     break;
                 }
             }
         }
 
-        if(userAccount==null){
+        if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
+        } else {
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            mainWorkArea.add("workarea", userAccount.getRole().createWorkArea(mainWorkArea, userAccount, inOrganization, inEnterprise, system));
+            layout.next(mainWorkArea);
+            jTextField_username.setText("");
+            jPasswordField_password.setText("");
         }
-        else{
-                CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-                mainWorkArea.add("workarea",userAccount.getRole().createWorkArea(mainWorkArea, userAccount, inOrganization, inEnterprise, system));
-                layout.next(mainWorkArea);
-                jTextField_username.setText("");
-                jPasswordField_password.setText("");
-        }
+
 
     }//GEN-LAST:event_jButton_loginActionPerformed
 

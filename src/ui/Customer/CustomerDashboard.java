@@ -5,6 +5,7 @@
  */
 package ui.Customer;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
@@ -26,7 +27,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Organization organization;
-    
+    DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     public CustomerDashboard(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
@@ -79,9 +80,14 @@ public class CustomerDashboard extends javax.swing.JPanel {
         CompanionServicesLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1210, 942));
+        setPreferredSize(new java.awt.Dimension(1480, 1000));
+
+        dashboardJScrollPane.setPreferredSize(new java.awt.Dimension(1480, 1000));
+
+        dashboardJPanel.setPreferredSize(new java.awt.Dimension(1480, 1000));
 
         HeaderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        HeaderPanel.setPreferredSize(new java.awt.Dimension(1480, 116));
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
@@ -398,11 +404,11 @@ public class CustomerDashboard extends javax.swing.JPanel {
                         .addGap(68, 68, 68)
                         .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(197, 197, 197))
         );
         containerPanelLayout.setVerticalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,14 +417,14 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addComponent(logoutButton)
                 .addGap(35, 35, 35)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE)
                     .addComponent(PersonalCarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(NursingServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ProtectiveServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(105, Short.MAX_VALUE))
+                    .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dashboardJPanelLayout = new javax.swing.GroupLayout(dashboardJPanel);
@@ -442,12 +448,12 @@ public class CustomerDashboard extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1480, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 955, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -480,9 +486,13 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
+        userProcessContainer.removeAll();
+        dB4OUtil.storeSystem(business);
+        EcoSystem system1 = dB4OUtil.retrieveSystem();
+        JPanel loginPage = new LoginJpanel(userProcessContainer, system1);
+        userProcessContainer.add("loginPage",loginPage);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
 

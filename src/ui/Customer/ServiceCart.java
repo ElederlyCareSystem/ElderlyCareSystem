@@ -6,16 +6,22 @@
 package ui.Customer;
 
 import Business.EcoSystem;
+import Business.Organization.CovidCareOrganization;
+import Business.Organization.HouseHoldOrganization;
+import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.NursingOrganization;
 import Business.Organization.Organization;
+import Business.Organization.TherapyOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CovidCareWorkRequest;
+import Business.WorkQueue.HouseHoldWorkRequest;
 import Business.WorkQueue.LawFirmWorkRequest;
 import Business.WorkQueue.MoneyWorkRequest;
 import Business.WorkQueue.NursingWorkRequest;
 import Business.WorkQueue.TherapyWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -34,6 +40,8 @@ public class ServiceCart extends javax.swing.JPanel {
     DefaultTableModel covidModel;
     DefaultTableModel moneyAdviceModel;
     DefaultTableModel lawfirmModel;
+    DefaultTableModel houseHoldModel;
+
     NursingOrganization org;
     UserAccount userAccount;
     NursingWorkRequest nurseRequest;
@@ -41,6 +49,7 @@ public class ServiceCart extends javax.swing.JPanel {
     CovidCareWorkRequest covidCareRequest;
     MoneyWorkRequest moneyRequest;
     LawFirmWorkRequest lawRequest;
+    HouseHoldWorkRequest houseHoldRequest;
 
     /**
      * Creates new form ServiceCart
@@ -55,12 +64,14 @@ public class ServiceCart extends javax.swing.JPanel {
         createCovidModel();
         createMoneyApponitmentModel();
         createLawfirmModel();
+        createHouseHold();
 
         viewNursingData();
         viewTherapyData();
         viewCovidCareData();
         viewMoneyAppointmentDetails();
         viewLawfirmDetails();
+        viewHouseHoldData();
     }
 
     public void createCovidModel() {
@@ -84,6 +95,15 @@ public class ServiceCart extends javax.swing.JPanel {
         therapyModel.addColumn("Request Id");
         therapyModel.addColumn("Category");
         therapyModel.addColumn("Price");
+    }
+
+    public void createHouseHold() {
+        houseHoldModel = new DefaultTableModel();
+        houseHoldTable.setModel(houseHoldModel);
+        houseHoldModel.addColumn("Request Id");
+        houseHoldModel.addColumn("Service Type");
+        houseHoldModel.addColumn("Price");
+
     }
 
     public void viewNursingData() {
@@ -119,13 +139,41 @@ public class ServiceCart extends javax.swing.JPanel {
         }
     }
 
+    public void viewHouseHoldData() {
+        for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (workrequest instanceof HouseHoldWorkRequest) {
+                houseHoldRequest = ((HouseHoldWorkRequest) workrequest);
+                for (String i : houseHoldRequest.getServices().keySet()) {
+                    houseHoldModel.addRow(new Object[]{
+                        houseHoldRequest.getId(), i, houseHoldRequest.getServices().get(i)
+                    });
+                }
+            }
+        }
+    }
+
     public void removeWorkRequest(DefaultTableModel model, JTable table, int id) {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            covidCareRequest = ((CovidCareWorkRequest) workrequest);
             if (workrequest.getId() == id) {
-                System.out.println(workrequest.getId() + " req");
                 userAccount.getWorkQueue().getWorkRequestList().remove(workrequest);
                 model.removeRow(table.getSelectedRow());
                 break;
+            }
+        }
+    }
+
+    public void removeHouseHoldWorkRequest(DefaultTableModel model, JTable table, int id, String value) {
+        HouseHoldWorkRequest workrequestLocal;
+        for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (workrequest.getId() == id && workrequest instanceof HouseHoldWorkRequest) {
+                workrequestLocal = ((HouseHoldWorkRequest) workrequest);
+                for (String key : workrequestLocal.getServices().keySet()) {
+                    workrequestLocal.getServices().remove(key);
+                    model.removeRow(table.getSelectedRow());
+                    break;
+                }
+
             }
         }
     }
@@ -168,6 +216,11 @@ public class ServiceCart extends javax.swing.JPanel {
         legalTable = new javax.swing.JTable();
         moneyTitle1 = new javax.swing.JLabel();
         removeLegalReqBtn = new javax.swing.JButton();
+        houseHoldPanel = new javax.swing.JPanel();
+        houseHoldTitle = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        houseHoldTable = new javax.swing.JTable();
+        removeHouseHoldReqBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -435,6 +488,62 @@ public class ServiceCart extends javax.swing.JPanel {
             }
         });
 
+        houseHoldPanel.setOpaque(false);
+
+        houseHoldTitle.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        houseHoldTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        houseHoldTitle.setText("House Hold Chore Services");
+
+        houseHoldTable.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        houseHoldTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(houseHoldTable);
+
+        removeHouseHoldReqBtn.setBackground(new java.awt.Color(0, 0, 0));
+        removeHouseHoldReqBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        removeHouseHoldReqBtn.setForeground(new java.awt.Color(255, 255, 255));
+        removeHouseHoldReqBtn.setText("Remove Selected Request");
+        removeHouseHoldReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeHouseHoldReqBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout houseHoldPanelLayout = new javax.swing.GroupLayout(houseHoldPanel);
+        houseHoldPanel.setLayout(houseHoldPanelLayout);
+        houseHoldPanelLayout.setHorizontalGroup(
+            houseHoldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(houseHoldPanelLayout.createSequentialGroup()
+                .addGroup(houseHoldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(houseHoldPanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(removeHouseHoldReqBtn)
+                        .addGap(0, 79, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(houseHoldTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        houseHoldPanelLayout.setVerticalGroup(
+            houseHoldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(houseHoldPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(houseHoldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(removeHouseHoldReqBtn)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -455,24 +564,23 @@ public class ServiceCart extends javax.swing.JPanel {
                                             .addComponent(moneyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(moneyTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(50, 50, 50)
-                                                .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(moneyTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(140, 140, 140)
-                                        .addComponent(removeLegalReqBtn))))))
+                                        .addGap(90, 90, 90)
+                                        .addComponent(removeLegalReqBtn)))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(houseHoldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(508, 508, 508)
                         .addComponent(confirmBtn)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,11 +607,14 @@ public class ServiceCart extends javax.swing.JPanel {
                         .addComponent(removeMoneyReqBtn)
                         .addGap(289, 289, 289))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(moneyTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeLegalReqBtn)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(moneyTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(removeLegalReqBtn))
+                            .addComponent(houseHoldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addComponent(confirmBtn)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -560,23 +671,54 @@ public class ServiceCart extends javax.swing.JPanel {
     }//GEN-LAST:event_removeCovidCareReqBtnActionPerformed
 
     public void setWorkRequest(String enterprise, String organization) {
-        Organization therapyOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType(enterprise, organization);
-        if (therapyOrganization != null) {
-            therapyOrganization.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        Organization org = system.getNetwork().getEnterpriseDirectory().getOrganizationByType(enterprise, organization);
+        if(org.getName().equals("Money Management Organization")){
+            MoneyManagementOrganization organization1 = (MoneyManagementOrganization) org;
+//            ArrayList<MoneyWorkRequest> workrequest = (MoneyWorkRequest) userAccount.getWorkQueue().getWorkRequestList();
+            organization1.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
         }
+        if(org.getName().equals("Therapy Organization")){
+            TherapyOrganization organization2 = (TherapyOrganization) org;
+            organization2.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        if(org.getName().equals("Nurse Organization")){
+            NursingOrganization organization3 = (NursingOrganization) org;
+//            organization3.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization3.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization3.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
+            System.out.println("cart " + organization3.getWorkQueue().getWorkRequestList().size());
+        }
+        if(org.getName().equals("CovidCare Organization")){
+            CovidCareOrganization organization4 = (CovidCareOrganization) org;
+            organization4.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        if(org.getName().equals("HouseHold Organization")) {
+            HouseHoldOrganization organization5 = (HouseHoldOrganization) org;
+            organization5.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+        }
+        
+//        if (therapyOrganization != null) {
+//            for (int j = 0; j < therapyOrganization.getWorkQueue().getWorkRequestList().size(); j++) {
+//                therapyOrganization.getWorkQueue().getWorkRequestList().get(j).setStatus("Orfered");
+//            }
+////            therapyOrganization.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+////            System.out.println(therapyOrganization.getWorkQueue().getWorkRequestList().get(0).ge)
+//        }
     }
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
-        setWorkRequest("Medical", "Therapy Organization");
-        setWorkRequest("Medical", "Nurse Organization");
-        setWorkRequest("Medical", "CovidCare Organization");
-        setWorkRequest("Finance", "Money Management Organization");
+//        setWorkRequest("Medical", "Therapy Organization");
+//        setWorkRequest("Medical", "Nurse Organization");
+//        setWorkRequest("Medical", "CovidCare Organization");
+//        setWorkRequest("Finance", "Money Management Organization");
 
         if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
             setWorkRequest("Medical", "Therapy Organization");
             setWorkRequest("Medical", "Nurse Organization");
             setWorkRequest("Medical", "CovidCare Organization");
-            setWorkRequest("Finance", "Money Management Organization");
+            setWorkRequest("Finance", "Money Management Organization");            
+            setWorkRequest("HouseHold", "HouseHold Organization");
             JOptionPane.showMessageDialog(this, "Order Confirmed");
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
@@ -605,6 +747,18 @@ public class ServiceCart extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_removeLegalReqBtnActionPerformed
 
+    private void removeHouseHoldReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeHouseHoldReqBtnActionPerformed
+        // TODO add your handling code here:
+        if (houseHoldTable.getSelectedRow() >= 0) {
+            int id = Integer.parseInt(String.valueOf(houseHoldTable.getValueAt(houseHoldTable.getSelectedRow(), 0)));
+            String value = String.valueOf(houseHoldTable.getValueAt(houseHoldTable.getSelectedRow(), 1));
+            removeHouseHoldWorkRequest(houseHoldModel, houseHoldTable, id, value);
+            JOptionPane.showMessageDialog(this, "Entry removed successfully");
+        } else {
+            JOptionPane.showMessageDialog(this, "No service list to remove");
+        }
+    }//GEN-LAST:event_removeHouseHoldReqBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CovidCarePanel;
@@ -617,12 +771,16 @@ public class ServiceCart extends javax.swing.JPanel {
     private javax.swing.JTable covidCareTable;
     private javax.swing.JLabel covidCareTitle;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel houseHoldPanel;
+    private javax.swing.JTable houseHoldTable;
+    private javax.swing.JLabel houseHoldTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable legalTable;
     private javax.swing.JTable moneyTable;
     private javax.swing.JLabel moneyTitle;
@@ -630,6 +788,7 @@ public class ServiceCart extends javax.swing.JPanel {
     private javax.swing.JTable nursingTable;
     private javax.swing.JLabel nursingTitle;
     private javax.swing.JButton removeCovidCareReqBtn;
+    private javax.swing.JButton removeHouseHoldReqBtn;
     private javax.swing.JButton removeLegalReqBtn;
     private javax.swing.JButton removeMoneyReqBtn;
     private javax.swing.JButton removeNurseReqBtn;
