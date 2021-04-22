@@ -257,6 +257,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
         foodOrg.getWorkQueue().getWorkRequestList().add(request);
+        request.setStatus("Order Placed");
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
 

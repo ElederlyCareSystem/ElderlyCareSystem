@@ -8,6 +8,7 @@ import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
 import Business.Role.CovidCareRole;
 import Business.Role.CustomerRole;
+import Business.Role.FoodManagerRole;
 import Business.Role.HouseHoldRole;
 import Business.Role.LegalAdvisorRole;
 import Business.Role.MoneyAdvisorRole;
@@ -57,6 +58,8 @@ public class ConfigureASystem {
         Employee employeeTherapyAdmin = system.getEmployeeDirectory().createEmployee("therapyAdmin");
         Employee employeeCovidCareAdmin = system.getEmployeeDirectory().createEmployee("covidCareAdmin");
         Employee employeeHouseHoldAdmin = system.getEmployeeDirectory().createEmployee("houseHoldAdmin");
+        Employee employeeFoodManager = system.getEmployeeDirectory().createEmployee("foodManager");
+
 
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
@@ -67,6 +70,7 @@ public class ConfigureASystem {
         UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole());
         UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole());
         UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole());
+        UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
 
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
         LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal);        
@@ -75,6 +79,8 @@ public class ConfigureASystem {
         therapyOrganization.getUserAccountDirectory().getUserAccountList().add(therapistUser);
         covidCareOrganization.getUserAccountDirectory().getUserAccountList().add(covidCareUser);
         houseHoldOrganization.getUserAccountDirectory().getUserAccountList().add(houseHoldUser);
+        foodOrganization.getEmployeeDirectory().getEmployeeList().add(employeeFoodManager);
+        foodOrganization.getUserAccountDirectory().getUserAccountList().add(userFood);
 //        dB4OUtil.storeSystem(system);
         return system;
     }
