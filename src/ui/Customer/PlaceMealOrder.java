@@ -14,6 +14,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -273,6 +274,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         
         model.removeRow(index);
         TotalTextField.setText(String.valueOf(request.getTotal()));
+        JOptionPane.showMessageDialog(null, "Order Removed!!");
     }//GEN-LAST:event_RemovejButtonActionPerformed
 
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
@@ -281,6 +283,8 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         System.out.println("sender>"+request.getSender().getUserDetails().getName());
         request.setStatus("Order Placed");
         request.setMessage(InstructionsjTextArea.getText());
+        JOptionPane.showMessageDialog(null, "Order Placed!!");
+        TotalTextField.setText("");
         request.setRequestDate(date);
         String d = request.getRequestDate().toString();
         String[] dArr = d.split(" ");

@@ -5,6 +5,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.FoodOrganization;
+import Business.Organization.GroceryAndEssentialsOrganization;
 import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
@@ -57,7 +58,10 @@ public class ConfigureASystem {
         legalOrg.generateRevMap();
         
         
+        GroceryAndEssentialsOrganization groceryOrg;
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
+        groceryOrg = (GroceryAndEssentialsOrganization) essentialOrganization;
+        groceryOrg.generateRevMap();        
         // house hold enterprise
         Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
         // house hold organization

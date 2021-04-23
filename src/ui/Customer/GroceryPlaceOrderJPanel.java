@@ -7,9 +7,13 @@ package ui.Customer;
 
 import Business.EcoSystem;
 import Business.Organization.GroceryAndEssentialsOrganization;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GroceryWorkRequest;
 import java.awt.CardLayout;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -247,11 +251,18 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
         request.setStatus("Order Placed");
         request.setRequestDate(date);
         groceryOrg.getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Order Placed!!");
+        TotalTextField.setText("");
         System.out.println("sender>"+request.getSender().getUserDetails().getName());
         String d = request.getRequestDate().toString();
         String[] dArr = d.split(" ");
         System.out.println("date>>>>"+date);
         System.out.println("total>>"+request.getTotal());
+        
+        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
+        //foodOrg.getRevenueMap().put(fullDate, request.getTotal());
+        RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+        groceryOrg.getRevMap().add(rm);
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
     private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed
@@ -266,6 +277,7 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
 
         model.removeRow(index);
         TotalTextField.setText(String.valueOf(request.getTotal()));
+        JOptionPane.showMessageDialog(null, "Order Removed!!");
     }//GEN-LAST:event_RemovejButtonActionPerformed
 
     private void jButton_payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_payActionPerformed

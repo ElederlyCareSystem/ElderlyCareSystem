@@ -21,6 +21,7 @@ public class GroceryAndEssentialsOrganization extends Organization{
     List<ShoppingItem> shoppingList;
     EssentialsList list = new EssentialsList();
     List<UserAccount> deliveryManList = new ArrayList<>();
+    List<RevenueMap> revMap = new ArrayList<>();
     
     public GroceryAndEssentialsOrganization() {
         super(Organization.Type.GroceryAndEssentials.getValue());
@@ -58,6 +59,29 @@ public class GroceryAndEssentialsOrganization extends Organization{
 
     public void setDeliveryManList(List<UserAccount> deliveryManList) {
         this.deliveryManList = deliveryManList;
+    }
+    
+    @Override
+    public void generateRevMap(){
+        revMap = new ArrayList<>();
+        AllRevenueMap m = new AllRevenueMap();
+        m.generatedMap();
+        revMap = m.getMap();
+    }
+    
+    @Override
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+    
+    @Override
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
+    }
+    
+    public void addToMap(int year, String month, Double rev, int x){
+        RevenueMap revenue = new RevenueMap(year, month, rev, x);
+        revMap.add(revenue);
     }
     
 }
