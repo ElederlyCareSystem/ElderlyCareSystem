@@ -5,9 +5,11 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.FoodOrganization;
+import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import Business.Role.CovidCareRole;
 import Business.Role.CustomerRole;
+import Business.Role.FoodManagerRole;
 import Business.Role.HouseHoldRole;
 import Business.Role.LegalAdvisorRole;
 import Business.Role.MoneyAdvisorRole;
@@ -41,8 +43,10 @@ public class ConfigureASystem {
          //create an enterprise - food and essentials
         Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
         //initialize some organizations
-        //FoodOrganization foodOrganization = new FoodOrganization();
+        FoodOrganization foodOrg;
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
+        foodOrg = (FoodOrganization) foodOrganization;
+        foodOrg.generateRevMap();
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         // house hold enterprise
         Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
@@ -57,24 +61,35 @@ public class ConfigureASystem {
         Employee employeeTherapyAdmin = system.getEmployeeDirectory().createEmployee("therapyAdmin");
         Employee employeeCovidCareAdmin = system.getEmployeeDirectory().createEmployee("covidCareAdmin");
         Employee employeeHouseHoldAdmin = system.getEmployeeDirectory().createEmployee("houseHoldAdmin");
+        Employee employeeFoodManager = system.getEmployeeDirectory().createEmployee("foodManager");
+        Employee employeeMoneyAdvisor = system.getEmployeeDirectory().createEmployee("snehal");
+        UserAccount snehal = system.getUserAccountDirectory().createUserAccount("snehal", "snehal", employeeMoneyAdvisor, new MoneyAdvisorRole());
+
 
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
-        UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole());
-        UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole());
+        ua1.getUserDetails().setName(employee1.getName());
+        UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole("admin"));
+        UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole("admin"));
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   
-        UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole());
-        UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole());
-        UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole());
+        UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole("admin"));
+        UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole("admin"));
+        UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole("admin"));
+        UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
 
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
-        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal);        
+        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal); 
+        MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(snehal);
+        MoneyManagementOrganization mm = (MoneyManagementOrganization) MoneyManagementOrganization;
+        mm.getMoneyAdvisorsList().add(snehal);
         
         nurseOrganization.getUserAccountDirectory().getUserAccountList().add(nurseUser);        
         therapyOrganization.getUserAccountDirectory().getUserAccountList().add(therapistUser);
         covidCareOrganization.getUserAccountDirectory().getUserAccountList().add(covidCareUser);
         houseHoldOrganization.getUserAccountDirectory().getUserAccountList().add(houseHoldUser);
+        foodOrganization.getEmployeeDirectory().getEmployeeList().add(employeeFoodManager);
+        foodOrganization.getUserAccountDirectory().getUserAccountList().add(userFood);
 //        dB4OUtil.storeSystem(system);
         return system;
     }

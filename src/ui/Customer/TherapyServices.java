@@ -47,10 +47,6 @@ public class TherapyServices extends javax.swing.JPanel {
                 break;
             }
         }
-        org = new TherapyOrganization();
-        Color ivory = new Color(255, 255, 208);
-        servicesTable.setOpaque(false);
-        servicesTable.setBackground(ivory);
         viewServices();
     }
 
@@ -244,10 +240,13 @@ public class TherapyServices extends javax.swing.JPanel {
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
                 request.setPrice(selectedPrice);
-                Organization therapyOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Therapy Organization");
-                if (therapyOrganization != null) {
-//                  therapyOrganization.getWorkQueue().getWorkRequestList().add(request);
+                fromDateText.setDate(null);
+                toDateText.setDate(null);
+                durationText.setText("");
+                if (org != null) {
+                    org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
+//                    request.setId(org.getWorkQueue().getWorkRequestList().size());
                 }
                 JOptionPane.showMessageDialog(this, "Service added to cart successfully");
             } catch (NumberFormatException e) {

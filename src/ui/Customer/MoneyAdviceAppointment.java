@@ -36,7 +36,7 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
     UserAccount userAccount;
     MoneyManagementOrganization moneyOrg;
     JSplitPane servicesSplitPane;
-    String orgName = "Money Management Organization";
+//    String orgName = "Money Management Organization";
 //    Organization org = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Finance", "MoneyManagement");
 //    moneyOrg1 = (MoneyManagementOrganization) org;
 
@@ -47,18 +47,26 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.servicesSplitPane = servicesSplitPane;
 
-        for (int j = 0; j < system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().size(); j++) {
-            System.out.println("orgo>>>" + system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName());
-            if (system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
-                moneyOrg = (MoneyManagementOrganization) system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j);
+//        for (int j = 0; j < system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().size(); j++) {
+//            System.out.println("orgo>>>" + system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName());
+//            if (system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
+//                moneyOrg = (MoneyManagementOrganization) system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j);
+//                break;
+//            }
+//        }
+        
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof MoneyManagementOrganization) {
+                moneyOrg = ((MoneyManagementOrganization) organization);
                 break;
             }
         }
         String name = (String) moneyOrg.getDateArray().keySet().toArray()[0];
+        jTextField_costAdvice.setText(moneyOrg.getPrice().toString());
         System.out.println("name>>>>>>" + name);
         ArrayList<String> timeArray = moneyOrg.getTimeSlot(name);
         System.out.println("1st date" + timeArray);
-        System.out.println(system.getNetwork().getEnterpriseDirectory().getEnterprise("Medical").toString() + " medical...");
+        System.out.println(system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").toString() + " Finance...");
         for (int i = 0; i < timeArray.size(); i++) {
             jComboBox_timeSlot.addItem(timeArray.get(i));
         }
@@ -84,6 +92,8 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jButton_book = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_costAdvice = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -149,6 +159,11 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         jLabel3.setText("Book Appointment");
 
+        jLabel4.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        jLabel4.setText("Cost :");
+
+        jTextField_costAdvice.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,14 +172,16 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                 .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton_book, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(59, 59, 59)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox_timeSlot, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser_money, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))))
+                            .addComponent(jDateChooser_money, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(jTextField_costAdvice))))
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(127, 127, 127)
@@ -184,9 +201,13 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox_timeSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(51, 51, 51)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField_costAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addComponent(jButton_book, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -204,7 +225,7 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(107, 107, 107)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -232,24 +253,32 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         request.setMessage("Book appointment");
         request.setTimeSlot(timeSlot);
         request.setDate(date1);
-        userAccount.getWorkQueue().getWorkRequestList().add(request);
-
+        request.setStatus("Sent");
+        request.setPrice(moneyOrg.getPrice());
+        request.setId(moneyOrg.getWorkQueue().getWorkRequestList().size()+1);
         if (moneyOrg != null) {
-            moneyOrg.getWorkQueue().getWorkRequestList().add(request);
-
+            System.out.println("before req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
+            
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    System.out.println("before req count org....."+moneyOrg.getWorkQueue().getWorkRequestList().size());
+                    System.out.println("after req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
+                    moneyOrg.getWorkQueue().getWorkRequestList().add(request);
+                    System.out.println("after req count org....."+moneyOrg.getWorkQueue().getWorkRequestList().size());
         }
+//        System.out.println("before add req...."+userAccount.getWorkQueue().getWorkRequestList().size());
+//        userAccount.getWorkQueue().getWorkRequestList().add(request);
+//        System.out.println("after add req...."+userAccount.getWorkQueue().getWorkRequestList().size());
+//        System.out.println("before add req org...."+ moneyOrg.getWorkQueue().getWorkRequestList().size());
+//        if (moneyOrg != null) {
+//            moneyOrg.getWorkQueue().getWorkRequestList().add(request);
+//            System.out.println("after add req org...."+ moneyOrg.getWorkQueue().getWorkRequestList().size());
+//
+//        }
     }//GEN-LAST:event_jButton_bookActionPerformed
 
     private void jDateChooser_moneyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser_moneyMouseClicked
         // TODO add your handling code here:
-        Date date = jDateChooser_money.getDate();
-        SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
-        String date1 = format1.format(date);
-        ArrayList<String> timeSlot1 = moneyOrg.getTimeSlot(date1);
-        for(int i=0;i< timeSlot1.size();i++){
-            System.out.println("selected items....."+timeSlot1.get(i));
-            jComboBox_timeSlot.addItem(timeSlot1.get(i));
-        }
+        
     }//GEN-LAST:event_jDateChooser_moneyMouseClicked
 
     private void jDateChooser_moneyPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser_moneyPropertyChange
@@ -277,8 +306,10 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelHeader;
+    private javax.swing.JTextField jTextField_costAdvice;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -10,7 +10,9 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.admin.MoneyAdvisor.MoneyAdvisorHomeJpanel;
 import ui.admin.OrganizationAdminJpanel;
+import ui.employee.OrganizationEmployeePanel;
 
 /**
  *
@@ -18,9 +20,22 @@ import ui.admin.OrganizationAdminJpanel;
  */
 public class MoneyAdvisorRole extends Role{
 
+    String type;
+    public MoneyAdvisorRole() {
+    }
+    
+    public MoneyAdvisorRole(String type) {
+        this.type = type;
+        
+    }
+
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new OrganizationAdminJpanel(userProcessContainer, account, organization, business);
+        if (type.equalsIgnoreCase("admin")) {
+            return new MoneyAdvisorHomeJpanel(userProcessContainer, account, organization, business);
+        }
+        return new OrganizationEmployeePanel(userProcessContainer, account, organization, business); 
+        
     }
     
 }

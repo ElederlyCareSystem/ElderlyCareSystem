@@ -13,7 +13,10 @@ import Business.FoodOrganization.FoodItems;
 import Business.FoodOrganization.Lunch;
 import Business.Role.AdminRole;
 import Business.WorkQueue.FoodOrganizationWorkQueue;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -33,7 +36,9 @@ public class FoodOrganization extends Organization{
     Breakfast bf = new Breakfast();
     Lunch lunch = new Lunch();
     Dinner dinner = new Dinner();
-    FoodOrganizationWorkQueue workQueue = new FoodOrganizationWorkQueue();
+    FoodOrganizationWorkQueue foodQueue = new FoodOrganizationWorkQueue();
+    //Map<List<String>,Double> map = new LinkedHashMap<>();
+    List<RevenueMap> revMap = new ArrayList<>();
     
     public FoodOrganization() {
         super(Type.Food.getValue());
@@ -152,5 +157,39 @@ public class FoodOrganization extends Organization{
         
         return foodItem;
     }
+    
+    
+    
+    @Override
+    public void generateRevMap(){
+        revMap = new ArrayList<>();
+        AllRevenueMap m = new AllRevenueMap();
+        m.generatedMap();
+        revMap = m.getMap();
+    }
+    
+    @Override
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+    
+    @Override
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
+    }
+    
+    public void addToMap(int year, String month, Double rev, int x){
+        RevenueMap revenue = new RevenueMap(year, month, rev, x);
+        revMap.add(revenue);
+    }
+    
+    public FoodOrganizationWorkQueue getFoodQueue() {
+        return foodQueue;
+    }
+
+    public void setFoodQueue(FoodOrganizationWorkQueue foodQueue) {
+        this.foodQueue = foodQueue;
+    }
+    
     
 }

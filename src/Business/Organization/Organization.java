@@ -9,6 +9,9 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,6 +25,8 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
+    //private Map<List<String>, Double> revenueMap = new LinkedHashMap<>();
+    List<RevenueMap> revMap = new ArrayList<>();
     
     public enum Type{
         Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
@@ -81,5 +86,29 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
+    
+    public void generateRevMap(){
+    }
+//    
+//    public void generateRevenue(){
+//    }
+//
+//    public Map<List<String>, Double> getRevenueMap() {
+//        return revenueMap;
+//    }
+//
+//    public void setRevenueMap(Map<List<String>, Double> revenueMap) {
+//        this.revenueMap = revenueMap;
+//    }
+
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
+    }
+    
+    
     
 }
