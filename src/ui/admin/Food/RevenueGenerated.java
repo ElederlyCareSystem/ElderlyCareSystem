@@ -7,8 +7,10 @@ package ui.admin.Food;
 
 import ui.admin.*;
 import Business.EcoSystem;
+import Business.Organization.AllRevenueMap;
 import Business.Organization.FoodOrganization;
 import Business.Organization.Organization;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
 import java.util.Arrays;
@@ -44,10 +46,13 @@ public class RevenueGenerated extends javax.swing.JPanel {
     JSplitPane adminSplitPane;
     Organization organization;
     FoodOrganization foodOrg;
+    int m1 = 0;
+    int m2 = 0;
+    int y1 = 0;
+    int y2 = 0;
     
     //HashMap map = new HashMap();
-    Map<List<String>,Double> map = new LinkedHashMap<>();
-    static int rVal, bVal, gVal;
+    List<RevenueMap> map;
     public RevenueGenerated(JPanel userProcessContainer, UserAccount userAccount, EcoSystem system, JSplitPane adminSplitPane, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -62,37 +67,17 @@ public class RevenueGenerated extends javax.swing.JPanel {
             System.out.println("something is wrong");
         }
         
-        foodOrg.generateMap();
-        foodOrg.generateRevenue();
-        //this.map = foodOrg.getRevenueMap();
-//        System.out.println("map size>>"+map.size());
-
-            //foodOrg = new FoodOrganization();
-            this.map = foodOrg.getRevenueMap();
-            System.out.println("map size>>"+map.size());
-            
+        //foodOrg.generateRevMap();
+        map = foodOrg.getRevMap();
+          
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         
-//        Set keys = map.keySet();
-//        System.out.println("key>>"+keys.size());
-//        Iterator ite = keys.iterator();
-//        
-//        while(ite.hasNext()){
-//            
-//            String colorName = (String) ite.next();
-//            //int qty = (int) map.get(colorName);
-//            //dcd.setValue(qty, "Sales", colorName);
-//        }
-//        
-        for(Entry<List<String>, Double> entry: map.entrySet()) {
-        List<String> str = entry.getKey();
-            if(str.get(0).equals("2021")) {
-                System.out.println("year>>"+str.get(0)+" month>>"+str.get(1));
-                    double price = entry.getValue();
-                    dcd.setValue(price, "Sales", str.get(1));
-            } 
+        for(int i =0; i < map.size(); i++){
+            if(map.get(i).getYear() == 2021){
+                dcd.setValue(map.get(i).getRevenue(), "Sales", map.get(i).getMonth());
+            }
         }
-        
+     
         //JFreeChart chart = ChartFactory.createBarChart("color report", "color", "val", dcd, PlotOrientation.VERTICAL, true, true, true);
         JFreeChart chart = ChartFactory.createLineChart("Sales Report", "Sales", "Revenue", dcd, PlotOrientation.VERTICAL, true, true, true);
         CategoryPlot plot = chart.getCategoryPlot();
@@ -119,13 +104,16 @@ public class RevenueGenerated extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         revenueText = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
         HeaderPanel3.setBackground(new java.awt.Color(255, 255, 255));
         HeaderPanel3.setPreferredSize(new java.awt.Dimension(1254, 116));
@@ -164,10 +152,8 @@ public class RevenueGenerated extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Date:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "2020", "2021" }));
-
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
-        jLabel6.setText("Year:");
+        jLabel6.setText("From:");
 
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel7.setText("Revenue:");
@@ -180,6 +166,17 @@ public class RevenueGenerated extends javax.swing.JPanel {
         });
 
         jButton3.setText("Show");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel8.setText("Add Revenue");
+
+        jLabel9.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel9.setText("To:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,15 +186,21 @@ public class RevenueGenerated extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jButton1))
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,10 +208,11 @@ public class RevenueGenerated extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(revenueText)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton3)))
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(70, 70, 70)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 121, Short.MAX_VALUE))
@@ -220,15 +224,22 @@ public class RevenueGenerated extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
                         .addComponent(jButton3)
-                        .addGap(12, 12, 12)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,9 +247,9 @@ public class RevenueGenerated extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(revenueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(8, 8, 8)
                         .addComponent(jButton1)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,6 +267,55 @@ public class RevenueGenerated extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String fromDate = jDateChooser2.getDate().toString();
+        String toDate = jDateChooser3.getDate().toString();
+        String[] d1 = fromDate.split(" ");
+        System.out.println("datefrom>>"+fromDate);
+        y1 = Integer.parseInt(d1[d1.length -1]);
+        m1 = giveMonth(d1[1]);
+        System.out.println("mo1>>"+d1[1]);
+        System.out.println("m1>>"+m1);
+        String[] d2 = toDate.split(" ");
+        System.out.println("dateto>>"+toDate);
+        y2 = Integer.parseInt(d2[d2.length -1]);
+        m2 = giveMonth(d2[1]);
+        System.out.println("mo2>>"+ d2[1]);
+        System.out.println("m2>>"+m2);
+        
+        DefaultCategoryDataset dcd2 = new DefaultCategoryDataset();
+        
+        for(int i =0; i < map.size(); i++){
+            System.out.println("for>>");
+            System.out.println("map y>>"+map.get(i).getYear() + ">>>"+y1);
+            System.out.println("map m>>"+map.get(i).getMon() + ">>>"+m1);
+            System.out.println("map y>>"+map.get(i).getYear() + ">>>"+y2);
+            System.out.println("map m>>"+map.get(i).getMon() + ">>>"+m2);
+            
+            if((map.get(i).getYear() == y1 && map.get(i).getMon() >= m1) || (map.get(i).getYear() == y2 && map.get(i).getMon() <= m2)){
+                    System.out.println("if>>");
+                    dcd2.setValue(map.get(i).getRevenue(), "Sales", map.get(i).getMonth());
+                //}
+            }
+//            if((map.get(i).getYear() >= Integer.parseInt(fullDate1.get(0)) && map.get(i).getMon() >= m1){
+//                    if(map.get(i).getYear().equals(fullDate2.get(0)) && map.get(i).getMon() <= m2)){
+//                System.out.println("if>>");
+               // dcd2.setValue(map.get(i).getRevenue(), "Sales", map.get(i).getMonth());
+        }
+        
+        
+        //JFreeChart chart = ChartFactory.createBarChart("color report", "color", "val", dcd, PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart chart2 = ChartFactory.createLineChart("Sales Report", "Sales", "Revenue", dcd2, PlotOrientation.VERTICAL, true, true, true);
+        CategoryPlot plot2 = chart2.getCategoryPlot();
+        plot2.setRangeGridlinePaint(Color.BLACK);
+        
+        ChartPanel chartPn2 = new ChartPanel(chart2);
+        jPanel2.removeAll();
+        jPanel2.add(chartPn2);
+        jPanel2.updateUI();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderPanel3;
@@ -263,63 +323,38 @@ public class RevenueGenerated extends javax.swing.JPanel {
     private javax.swing.JLabel Title4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField revenueText;
     // End of variables declaration//GEN-END:variables
 
     private void updateData(List<String> fullDate, double val) {
-        System.out.println("fullDAte>>"+fullDate.get(0)+" "+fullDate.get(1)+" val>>"+val);
-        for(Entry<List<String>, Double> entry: map.entrySet()) {
-            List<String> str = entry.getKey();
-            if(str.get(0).equals(fullDate.get(0)) && str.get(1).equals(fullDate.get(1))){
-                System.out.println("if>>>");
-                System.out.println("year>>"+str.get(0)+" month>>"+str.get(1));
-                    double price = entry.getValue() + val;
-                    map.put(str, price);
-            } 
+        
+        for(int i =0; i < map.size(); i++){
+            if(map.get(i).getYear() == Integer.parseInt(fullDate.get(0)) && map.get(i).getMonth().equals(fullDate.get(1))){
+                double r = map.get(i).getRevenue() + val;
+                map.get(i).setRevenue(r);
+            }
         }
         
-//        if(color.equalsIgnoreCase("red")){
-//            rVal = rVal + val;
-//        }else if(color.equalsIgnoreCase("green")){
-//            gVal= gVal + val;
-//        }else if(color.equalsIgnoreCase("blue")){
-//            bVal = bVal + val;
-//        }
-//        
-//        map.clear();
-//        map.put("red", rVal);
-//        map.put("green", gVal);
-//        map.put("blue", bVal);
         updateChart();
     }
 
     private void updateChart() {
         DefaultCategoryDataset dcd1 = new DefaultCategoryDataset();
         
-//        Set keys = map.keySet();
-//        Iterator ite = keys.iterator();
-//        
-//        while(ite.hasNext()){
-//            
-//            String colorName = (String) ite.next();
-//            //int qty = (int) map.get(colorName);
-//            //dcd.setValue(qty, "Sales", colorName);
-//        }
-
-            for(Entry<List<String>, Double> entry: map.entrySet()) {
-            List<String> str = entry.getKey();
-            if(str.get(0).equals("2021")) {
-                    System.out.println("year>>"+str.get(0)+" month>>"+str.get(1)+ ">>>");
-                    double price = entry.getValue();
-                    dcd1.setValue(price, "Sales", str.get(1));
-            } 
+        for(int i =0; i < map.size(); i++){
+            if(map.get(i).getYear() == 2021){
+                dcd1.setValue(map.get(i).getRevenue(), "Sales", map.get(i).getMonth());
+            }
         }
         
         //JFreeChart chart = ChartFactory.createBarChart("color report", "color", "val", dcd, PlotOrientation.VERTICAL, true, true, true);
@@ -332,4 +367,35 @@ public class RevenueGenerated extends javax.swing.JPanel {
         jPanel2.add(chartPn1);
         jPanel2.updateUI();
     }
+
+    private int giveMonth(String mon) {
+         int m = 0;
+        if(mon.equals("Jan")){
+            m = 1;
+        }else if(mon.equals("Feb")){
+            m = 2;
+        }else if(mon.equals("Mar")){
+            m = 3;
+        }else if(mon.equals("Apr")){
+            m = 4;
+        }else if(mon.equals("May")){
+            m = 5;
+        }else if(mon.equals("Jun")){
+            m = 6;
+        }else if(mon.equals("Jul")){
+            m = 7;
+        }else if(mon.equals("Aug")){
+            m = 8;
+        }else if(mon.equals("Sep")){
+            m = 9;
+        }else if(mon.equals("Oct")){
+            m = 10;
+        }else if(mon.equals("Nov")){
+            m = 11;
+        }else if(mon.equals("Dec")){
+            m = 12;
+        }
+        return m;
+    }
+    
 }

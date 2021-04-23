@@ -28,6 +28,8 @@ public class EmployeeOperations extends javax.swing.JPanel {
     JSplitPane adminSplitPane;
     Organization organization;
     DefaultTableModel model;
+    int index;
+    Employee selectedEmp;
     
     public EmployeeOperations(JPanel userProcessContainer, UserAccount userAccount, EcoSystem system, Organization organization, JSplitPane adminSplitPane) {
         initComponents();
@@ -128,6 +130,11 @@ public class EmployeeOperations extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
@@ -209,25 +216,23 @@ public class EmployeeOperations extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(idDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(nameDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(105, 105, 105)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
-                                .addComponent(nameUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(idDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(nameDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(42, 42, 42)
+                            .addComponent(nameUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(148, 148, 148)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(402, 402, 402))
@@ -284,21 +289,49 @@ public class EmployeeOperations extends javax.swing.JPanel {
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here:
         Employee employee1 = system.getEmployeeDirectory().createEmployee(Namecreate.getText());
+        
         organization.getEmployeeDirectory().getEmployeeList().add(employee1);
+        System.out.println("emp_id"+organization.getEmployeeDirectory().getEmployeeList().size());
         
         model.addRow(new Object[]{
-            organization.getEmployeeDirectory().getEmployeeList().get(organization.getEmployeeDirectory().getEmployeeList().size()-1).getId(),
+            //organization.getEmployeeDirectory().getEmployeeList().get(organization.getEmployeeDirectory().getEmployeeList().size()-1).getId(),
+            employee1.getId(),
             Namecreate.getText()
         });
     }//GEN-LAST:event_CreateActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
+        for(int j = 0; j < organization.getEmployeeDirectory().getEmployeeList().size(); j++){
+            if(organization.getEmployeeDirectory().getEmployeeList().get(j).getId() == Integer.parseInt(idUpdate.getText()) && organization.getEmployeeDirectory().getEmployeeList().get(j).getName().equals(nameUpdate.getText())){
+                selectedEmp = organization.getEmployeeDirectory().getEmployeeList().get(j);
+            }
+        }
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        index = jTable1.getSelectedRow();
+        System.out.println("selectedrow>>>>"+index);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int emp_id = Integer.parseInt(model.getValueAt(index, 0).toString());
+        String name = model.getValueAt(index, 1).toString();
+        
+        for(int j = 0; j < organization.getEmployeeDirectory().getEmployeeList().size(); j++){
+            if(organization.getEmployeeDirectory().getEmployeeList().get(j).getId() == emp_id && organization.getEmployeeDirectory().getEmployeeList().get(j).getName().equals(name)){
+                selectedEmp = organization.getEmployeeDirectory().getEmployeeList().get(j);
+            }
+        }
+        
+        idUpdate.setText(model.getValueAt(index, 0).toString());
+        nameUpdate.setText(name);
+        idDelete.setText(model.getValueAt(index, 0).toString());
+        nameDelete.setText(name);
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

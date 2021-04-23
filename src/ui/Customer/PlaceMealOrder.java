@@ -7,10 +7,13 @@ package ui.Customer;
 
 import Business.EcoSystem;
 import Business.Organization.FoodOrganization;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodOrganizationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +36,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     JSplitPane servicesSplitPane;
     int index;
     String food;
+    java.util.Date date=new java.util.Date();  
     
     public PlaceMealOrder(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, FoodOrganization foodOrg, FoodOrganizationWorkRequest request, 
     JSplitPane servicesSplitPane) {
@@ -257,7 +261,20 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
         foodOrg.getWorkQueue().getWorkRequestList().add(request);
+        System.out.println("sender>"+request.getSender().getUserDetails().getName());
         request.setStatus("Order Placed");
+        request.setMessage(InstructionsjTextArea.getText());
+        request.setRequestDate(date);
+        String d = request.getRequestDate().toString();
+        String[] dArr = d.split(" ");
+        System.out.println("date>>>>"+date);
+        System.out.println("total>>"+request.getTotal());
+        
+        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
+        //foodOrg.getRevenueMap().put(fullDate, request.getTotal());
+        RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+        foodOrg.getRevMap().add(rm);
+        
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
 

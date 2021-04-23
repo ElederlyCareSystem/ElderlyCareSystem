@@ -36,8 +36,9 @@ public class FoodOrganization extends Organization{
     Breakfast bf = new Breakfast();
     Lunch lunch = new Lunch();
     Dinner dinner = new Dinner();
-    FoodOrganizationWorkQueue workQueue = new FoodOrganizationWorkQueue();
-    Map<List<String>,Double> map = new LinkedHashMap<>();
+    FoodOrganizationWorkQueue foodQueue = new FoodOrganizationWorkQueue();
+    //Map<List<String>,Double> map = new LinkedHashMap<>();
+    List<RevenueMap> revMap = new ArrayList<>();
     
     public FoodOrganization() {
         super(Type.Food.getValue());
@@ -157,72 +158,38 @@ public class FoodOrganization extends Organization{
         return foodItem;
     }
     
+    
+    
     @Override
-    public void generateMap(){
-        map = new LinkedHashMap<>();
+    public void generateRevMap(){
+        revMap = new ArrayList<>();
+        AllRevenueMap m = new AllRevenueMap();
+        m.generatedMap();
+        revMap = m.getMap();
+    }
+    
+    @Override
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+    
+    @Override
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
+    }
+    
+    public void addToMap(int year, String month, Double rev, int x){
+        RevenueMap revenue = new RevenueMap(year, month, rev, x);
+        revMap.add(revenue);
+    }
+    
+    public FoodOrganizationWorkQueue getFoodQueue() {
+        return foodQueue;
     }
 
-    @Override
-    public void generateRevenue() {
-        System.out.println("generate rev>>");
-        List<String> l1 = Arrays.asList("2020", "Jan");
-        map.put(l1, 120.0);
-        List<String> l2 = Arrays.asList("2020", "Feb");
-        map.put(l2, 20.0);
-        List<String> l3 = Arrays.asList("2020", "Mar");
-        map.put(l3, 220.0);
-        List<String> l4 = Arrays.asList("2020", "Apr");
-        map.put(l4, 160.0);
-        List<String> l5 = Arrays.asList("2020", "May");
-        map.put(l5, 80.0);
-        List<String> l6 = Arrays.asList("2020", "Jun");
-        map.put(l6, 120.0);
-        List<String> l7 = Arrays.asList("2020", "Jul");
-        map.put(l7, 140.0);
-        List<String> l8 = Arrays.asList("2020", "Aug");
-        map.put(l8, 110.0);
-        List<String> l9 = Arrays.asList("2020", "Sep");
-        map.put(l9, 190.0);
-        List<String> l10 = Arrays.asList("2020", "Oct");
-        map.put(l10, 120.0);
-        List<String> l11 = Arrays.asList("2020", "Nov");
-        map.put(l11, 100.0);
-        List<String> l12 = Arrays.asList("2020", "Dec");
-        map.put(l12, 120.0);
-        List<String> l13 = Arrays.asList("2021", "Jan");
-        map.put(l13, 170.0);
-        List<String> l14 = Arrays.asList("2021", "Feb");
-        map.put(l14, 230.0);
-        List<String> l15 = Arrays.asList("2021", "Mar");
-        map.put(l15, 220.0);
-        List<String> l16 = Arrays.asList("2021", "Apr");
-        map.put(l16, 0.0);
-        List<String> l17 = Arrays.asList("2021", "May");
-        map.put(l17, 0.0);
-        List<String> l18 = Arrays.asList("2021", "Jun");
-        map.put(l18, 0.0);
-        List<String> l19 = Arrays.asList("2021", "Jul");
-        map.put(l19, 0.0);
-        List<String> l20 = Arrays.asList("2021", "Aug");
-        map.put(l20, 0.0);
-        List<String> l21 = Arrays.asList("2021", "Sep");
-        map.put(l21, 0.0);
-        List<String> l22 = Arrays.asList("2021", "Oct");
-        map.put(l22, 0.0);
-        List<String> l23 = Arrays.asList("2021", "Nov");
-        map.put(l23, 0.0);
-        List<String> l24 = Arrays.asList("2021", "Dec");
-        map.put(l24, 0.0);
+    public void setFoodQueue(FoodOrganizationWorkQueue foodQueue) {
+        this.foodQueue = foodQueue;
     }
     
-    @Override
-    public void setRevenueMap(Map<List<String>, Double> revenueMap) {
-        this.map = map;
-    }
-    
-    @Override
-    public Map<List<String>, Double> getRevenueMap() {
-        return map;
-    }
     
 }
