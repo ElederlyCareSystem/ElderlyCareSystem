@@ -458,7 +458,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void CartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartBtnActionPerformed
         // TODO add your handling code here:
-        ServiceCart cart = new ServiceCart(userProcessContainer, system, userAccount);
+        ServiceCart cart = new ServiceCart(userProcessContainer, system, userAccount,servicesSplitPane);
         servicesSplitPane.setRightComponent(cart);
     }//GEN-LAST:event_CartBtnActionPerformed
 
