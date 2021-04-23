@@ -723,6 +723,7 @@ public class ServiceCart extends javax.swing.JPanel {
             setWorkRequest("HouseHold", "HouseHold Organization");
             SendMail email = new SendMail(userAccount.getUserDetails().getEmailId());
             JOptionPane.showMessageDialog(this, "Order Confirmed");
+            emptyCart();
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
         }
@@ -815,9 +816,12 @@ public class ServiceCart extends javax.swing.JPanel {
             if (workrequest instanceof MoneyWorkRequest) {
                 System.out.println("money req count in if view....." + ((MoneyWorkRequest) workrequest).getId());
                 moneyRequest = ((MoneyWorkRequest) workrequest);
-                moneyAdviceModel.addRow(new Object[]{
+                if(!moneyRequest.getStatus().equalsIgnoreCase("Accepted")){
+                     moneyAdviceModel.addRow(new Object[]{
                     moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(), moneyRequest.getPrice()
                 });
+                }
+               
             }
         }
     }
@@ -835,10 +839,23 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof LawFirmWorkRequest) {
                 lawRequest = ((LawFirmWorkRequest) workrequest);
+                if(!lawRequest.getStatus().equalsIgnoreCase("Accepted")){
                 lawfirmModel.addRow(new Object[]{
                     lawRequest.getId(), lawRequest.getDate(), lawRequest.getTimeSlot(), lawRequest.getConsultationType()
                 });
+                }
             }
         }
+    }
+
+    private void emptyCart() {
+        covidModel.getDataVector().removeAllElements();
+        lawfirmModel.getDataVector().removeAllElements();
+        moneyAdviceModel.getDataVector().removeAllElements();
+        nurseModel.getDataVector().removeAllElements();
+        therapyModel.getDataVector().removeAllElements();
+        houseHoldModel.getDataVector().removeAllElements();
+        
+        
     }
 }

@@ -74,6 +74,7 @@ public class MoneyAdvisorHomeJpanel extends javax.swing.JPanel {
         profileNameText = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         profileButton = new javax.swing.JButton();
+        RevenueButton = new javax.swing.JButton();
         jPanelAdmin = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1480, 800));
@@ -152,6 +153,18 @@ public class MoneyAdvisorHomeJpanel extends javax.swing.JPanel {
             }
         });
 
+        RevenueButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        RevenueButton.setForeground(new java.awt.Color(255, 255, 255));
+        RevenueButton.setText("Revenue");
+        RevenueButton.setBorderPainted(false);
+        RevenueButton.setContentAreaFilled(false);
+        RevenueButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        RevenueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RevenueButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ServicesPanelLayout = new javax.swing.GroupLayout(ServicesPanel);
         ServicesPanel.setLayout(ServicesPanelLayout);
         ServicesPanelLayout.setHorizontalGroup(
@@ -168,6 +181,7 @@ public class MoneyAdvisorHomeJpanel extends javax.swing.JPanel {
             .addComponent(homeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(RevenueButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ServicesPanelLayout.setVerticalGroup(
             ServicesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,8 +204,10 @@ public class MoneyAdvisorHomeJpanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(OrdersButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RevenueButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogoutButton)
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
         adminSplitPane.setLeftComponent(ServicesPanel);
@@ -262,11 +278,18 @@ public class MoneyAdvisorHomeJpanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
+    private void RevenueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RevenueButtonActionPerformed
+        // TODO add your handling code here:
+        RevenueGenerated revenue = new RevenueGenerated(userProcessContainer, userAccount, system, adminSplitPane, moneyOrganization);
+        adminSplitPane.setRightComponent(revenue);
+    }//GEN-LAST:event_RevenueButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EmployeeButton;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JButton OrdersButton;
+    private javax.swing.JButton RevenueButton;
     private javax.swing.JPanel ServicesPanel;
     private javax.swing.JSplitPane adminSplitPane;
     private javax.swing.JButton homeButton;
