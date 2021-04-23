@@ -253,7 +253,7 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
 
     private void EmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeButtonActionPerformed
         // TODO add your handling code here:
-        EmployeeOperations employee = new EmployeeOperations(userProcessContainer, userAccount, system,organization, adminSplitPane);
+        EmployeeOperations employee = new EmployeeOperations(userProcessContainer, userAccount, system,organization, adminSplitPane, foodOrg);
         adminSplitPane.setRightComponent(employee);
     }//GEN-LAST:event_EmployeeButtonActionPerformed
 

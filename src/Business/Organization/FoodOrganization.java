@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import Business.FoodOrganization.FoodItems;
 import Business.FoodOrganization.Lunch;
 import Business.Role.AdminRole;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodOrganizationWorkQueue;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -39,6 +40,7 @@ public class FoodOrganization extends Organization{
     FoodOrganizationWorkQueue foodQueue = new FoodOrganizationWorkQueue();
     //Map<List<String>,Double> map = new LinkedHashMap<>();
     List<RevenueMap> revMap = new ArrayList<>();
+    List<UserAccount> deliveryManList = new ArrayList<>();
     
     public FoodOrganization() {
         super(Type.Food.getValue());
@@ -189,6 +191,14 @@ public class FoodOrganization extends Organization{
 
     public void setFoodQueue(FoodOrganizationWorkQueue foodQueue) {
         this.foodQueue = foodQueue;
+    }
+    
+    public List<UserAccount> getDeliveryManList() {
+        return deliveryManList;
+    }
+
+    public void setDeliveryManList(List<UserAccount> deliveryManList) {
+        this.deliveryManList = deliveryManList;
     }
     
     
