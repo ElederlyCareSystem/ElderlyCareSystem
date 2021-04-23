@@ -12,6 +12,15 @@ package Business.WorkQueue;
 public class MoneyWorkRequest extends WorkRequest{
     String date;
     String timeSlot;
+    double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public String getDate() {
         return date;

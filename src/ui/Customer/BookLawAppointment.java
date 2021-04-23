@@ -7,6 +7,8 @@ package ui.Customer;
 
 import Business.EcoSystem;
 import Business.Organization.LegalServicesOrganization;
+import Business.Organization.MoneyManagementOrganization;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LawFirmWorkRequest;
 import java.text.SimpleDateFormat;
@@ -40,13 +42,21 @@ public class BookLawAppointment extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.servicesSplitPane = servicesSplitPane;
         
-        for (int j = 0; j < system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().size(); j++) {
-            System.out.println("orgo>>>" + system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName());
-            if (system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
-                legalOrg = (LegalServicesOrganization) system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j);
+//        for (int j = 0; j < system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().size(); j++) {
+//            System.out.println("orgo>>>" + system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName());
+//            if (system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
+//                legalOrg = (LegalServicesOrganization) system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j);
+//                break;
+//            }
+//        }
+        
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof LegalServicesOrganization) {
+                legalOrg = ((LegalServicesOrganization) organization);
                 break;
             }
         }
+        System.out.println("legalorg...."+legalOrg.getConsultationtype().size());
         String name = (String) legalOrg.getDateArray().keySet().toArray()[0];
         System.out.println("name>>>>>>" + name);
         ArrayList<String> timeArray = legalOrg.getTimeSlot(name);
@@ -56,9 +66,10 @@ public class BookLawAppointment extends javax.swing.JPanel {
             jComboBox_timeSlotLaw.addItem(timeArray.get(i));
         }
         
-        ArrayList<String> consultationtype = legalOrg.getConsultationtype();
-        for(int i = 0; i < consultationtype.size(); i++){
-            jComboBox1_consulatationtype.addItem(consultationtype.get(i));
+        HashMap<String, Double> consultationtype = legalOrg.getConsultationtype();
+        
+        for(String type : consultationtype.keySet()){
+            jComboBox1_consulatationtype.addItem(type);
         }
     }
 
@@ -83,6 +94,8 @@ public class BookLawAppointment extends javax.swing.JPanel {
         jLabel_consulatationtype = new javax.swing.JLabel();
         jComboBox1_consulatationtype = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_costLawAdvice = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -148,35 +161,49 @@ public class BookLawAppointment extends javax.swing.JPanel {
         jLabel_consulatationtype.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         jLabel_consulatationtype.setText("Consultation Type :");
 
+        jComboBox1_consulatationtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1_consulatationtypeActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
         jLabel3.setText("Book Appointment");
+
+        jLabel4.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        jLabel4.setText("Price :");
+
+        jTextField_costLawAdvice.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel_appointmentLawLayout = new javax.swing.GroupLayout(jPanel_appointmentLaw);
         jPanel_appointmentLaw.setLayout(jPanel_appointmentLawLayout);
         jPanel_appointmentLawLayout.setHorizontalGroup(
             jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
                 .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
-                        .addComponent(jLabel_consulatationtype)
-                        .addContainerGap(139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_consulatationtype)
+                            .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_appointmentLawLayout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                    .addComponent(jTextField_costLawAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton_bookLaw, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1_consulatationtype, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
+                                    .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2))
+                                    .addGap(59, 59, 59)
+                                    .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jDateChooser_law, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                        .addComponent(jComboBox_timeSlotLaw, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
-                        .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton_bookLaw, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1_consulatationtype, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
-                                .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(59, 59, 59)
-                                .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jDateChooser_law, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                                    .addComponent(jComboBox_timeSlotLaw, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(82, 82, 82))))
-            .addGroup(jPanel_appointmentLawLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel3))
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel3)))
+                .addGap(82, 82, 82))
         );
         jPanel_appointmentLawLayout.setVerticalGroup(
             jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +222,11 @@ public class BookLawAppointment extends javax.swing.JPanel {
                 .addComponent(jLabel_consulatationtype)
                 .addGap(27, 27, 27)
                 .addComponent(jComboBox1_consulatationtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel_appointmentLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField_costLawAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(jButton_bookLaw, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -268,6 +299,7 @@ public class BookLawAppointment extends javax.swing.JPanel {
         request.setTimeSlot(timeSlot);
         request.setDate(date1);
         request.setConsultationType(consultationType);
+        request.setConsultationFee(Double.parseDouble(jTextField_costLawAdvice.getText()));
         userAccount.getWorkQueue().getWorkRequestList().add(request);
 
         if (legalOrg != null) {
@@ -275,6 +307,13 @@ public class BookLawAppointment extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jButton_bookLawActionPerformed
+
+    private void jComboBox1_consulatationtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1_consulatationtypeActionPerformed
+        // TODO add your handling code here:
+        String selectedItem = (String) jComboBox1_consulatationtype.getSelectedItem();
+        String get = legalOrg.getConsultationtype().get(selectedItem).toString();
+        jTextField_costLawAdvice.setText(get);
+    }//GEN-LAST:event_jComboBox1_consulatationtypeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,8 +326,10 @@ public class BookLawAppointment extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_consulatationtype;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JPanel jPanel_appointmentLaw;
+    private javax.swing.JTextField jTextField_costLawAdvice;
     // End of variables declaration//GEN-END:variables
 }

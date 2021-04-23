@@ -8,6 +8,7 @@ package ui.Customer;
 import Business.EcoSystem;
 import Business.Organization.CovidCareOrganization;
 import Business.Organization.HouseHoldOrganization;
+import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.NursingOrganization;
 import Business.Organization.Organization;
@@ -154,7 +155,7 @@ public class ServiceCart extends javax.swing.JPanel {
 
     public void removeWorkRequest(DefaultTableModel model, JTable table, int id) {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
-            covidCareRequest = ((CovidCareWorkRequest) workrequest);
+//            covidCareRequest = ((CovidCareWorkRequest) workrequest);
             if (workrequest.getId() == id) {
                 userAccount.getWorkQueue().getWorkRequestList().remove(workrequest);
                 model.removeRow(table.getSelectedRow());
@@ -675,7 +676,16 @@ public class ServiceCart extends javax.swing.JPanel {
         if(org.getName().equals("Money Management Organization")){
             MoneyManagementOrganization organization1 = (MoneyManagementOrganization) org;
 //            ArrayList<MoneyWorkRequest> workrequest = (MoneyWorkRequest) userAccount.getWorkQueue().getWorkRequestList();
-            organization1.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+//            organization1.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization1.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization1.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
+        }
+        if(org.getName().equals("Legal Services Organization")){
+            LegalServicesOrganization organization6 = (LegalServicesOrganization) org;
+            for (int j = 0; j < organization6.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization6.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
         }
         if(org.getName().equals("Therapy Organization")){
             TherapyOrganization organization2 = (TherapyOrganization) org;
@@ -717,7 +727,8 @@ public class ServiceCart extends javax.swing.JPanel {
             setWorkRequest("Medical", "Therapy Organization");
             setWorkRequest("Medical", "Nurse Organization");
             setWorkRequest("Medical", "CovidCare Organization");
-            setWorkRequest("Finance", "Money Management Organization");            
+            setWorkRequest("Finance", "Money Management Organization");  
+            setWorkRequest("Finance", "Legal Services Organization");
             setWorkRequest("HouseHold", "HouseHold Organization");
             JOptionPane.showMessageDialog(this, "Order Confirmed");
         } else {
@@ -803,14 +814,17 @@ public class ServiceCart extends javax.swing.JPanel {
         moneyAdviceModel.addColumn("Request Id");
         moneyAdviceModel.addColumn("Appointment Date");
         moneyAdviceModel.addColumn("Appointment Time");
+        moneyAdviceModel.addColumn("Cost");
     }
 
     private void viewMoneyAppointmentDetails() {
+        System.out.println("money req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof MoneyWorkRequest) {
+                 System.out.println("money req count in if view....."+((MoneyWorkRequest) workrequest).getId());
                 moneyRequest = ((MoneyWorkRequest) workrequest);
                 moneyAdviceModel.addRow(new Object[]{
-                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot()
+                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(),moneyRequest.getPrice()
                 });
             }
         }

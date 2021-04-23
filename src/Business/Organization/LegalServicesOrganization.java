@@ -7,6 +7,7 @@ package Business.Organization;
 
 import Business.Role.LegalAdvisorRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,10 +23,13 @@ public class LegalServicesOrganization extends Organization{
 
     ArrayList<String> dateArray1 = new ArrayList<>();
     HashMap<String, ArrayList<String>> dateArray = new HashMap<>();
-    ArrayList<String> consultationtype = new ArrayList<>();
+    HashMap<String, Double> consultationtype = new HashMap<>();
+//    ArrayList<String> consultationtype = new ArrayList<>();
+    ArrayList<UserAccount> consultationAdvisor;
     
     LegalServicesOrganization() {
         super(Organization.Type.LegalServices.getValue());
+        consultationAdvisor= new ArrayList<>();
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         GregorianCalendar cal = new GregorianCalendar();
         Date Currentdate = new Date();
@@ -55,12 +59,20 @@ public class LegalServicesOrganization extends Organization{
             System.out.println(i + " " + formatter.format(date));
 
         }
-        consultationtype.add("Estate Planning");
-        consultationtype.add("Elderly Care Law");
-        consultationtype.add("Probate & Guardianship");
+        consultationtype.put("Estate Planning", 30.0);
+        consultationtype.put("Elderly Care Law", 40.0);
+        consultationtype.put("Probate & Guardianship", 50.0);
+        System.out.println("in legal constructor....."+consultationtype.size());
+        
     }
 
-    public ArrayList<String> getConsultationtype() {
+    public ArrayList<UserAccount> getConsultationAdvisor() {
+        return consultationAdvisor;
+    }
+
+    
+
+    public HashMap<String, Double> getConsultationtype() {
         return consultationtype;
     }
     
@@ -85,6 +97,7 @@ public class LegalServicesOrganization extends Organization{
         roles.add(new LegalAdvisorRole());
         return roles;
     }
+
 
     
     

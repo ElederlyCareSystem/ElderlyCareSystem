@@ -5,6 +5,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.FoodOrganization;
+import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import Business.Role.CovidCareRole;
 import Business.Role.CustomerRole;
@@ -61,14 +62,16 @@ public class ConfigureASystem {
         Employee employeeCovidCareAdmin = system.getEmployeeDirectory().createEmployee("covidCareAdmin");
         Employee employeeHouseHoldAdmin = system.getEmployeeDirectory().createEmployee("houseHoldAdmin");
         Employee employeeFoodManager = system.getEmployeeDirectory().createEmployee("foodManager");
+        Employee employeeMoneyAdvisor = system.getEmployeeDirectory().createEmployee("snehal");
+        UserAccount snehal = system.getUserAccountDirectory().createUserAccount("snehal", "snehal", employeeMoneyAdvisor, new MoneyAdvisorRole());
 
 
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
         ua1.getUserDetails().setName(employee1.getName());
-        UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole());
-        UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole());
+        UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole("admin"));
+        UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole("admin"));
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   
         UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole());
         UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole());
@@ -76,7 +79,10 @@ public class ConfigureASystem {
         UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
 
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
-        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal);        
+        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal); 
+        MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(snehal);
+        MoneyManagementOrganization mm = (MoneyManagementOrganization) MoneyManagementOrganization;
+        mm.getMoneyAdvisorsList().add(snehal);
         
         nurseOrganization.getUserAccountDirectory().getUserAccountList().add(nurseUser);        
         therapyOrganization.getUserAccountDirectory().getUserAccountList().add(therapistUser);

@@ -7,6 +7,7 @@ package Business.Organization;
 
 import Business.Role.MoneyAdvisorRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,10 +24,19 @@ public class MoneyManagementOrganization extends Organization {
 
     ArrayList<String> dateArray1 = new ArrayList<>();
     HashMap<String, ArrayList<String>> dateArray = new HashMap<>();
+    ArrayList<UserAccount> moneyAdvisorsList;
+    private Double price = 40.0;
+
+    public Double getPrice() {
+        return price;
+    }
+
+   
 
     public MoneyManagementOrganization() {
         super(Organization.Type.MoneyManagement.getValue());
-
+        moneyAdvisorsList = new ArrayList<>();
+        
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         GregorianCalendar cal = new GregorianCalendar();
         Date Currentdate = new Date();
@@ -56,6 +66,14 @@ public class MoneyManagementOrganization extends Organization {
             System.out.println(i + " " + formatter.format(date));
 
         }
+    }
+
+    public ArrayList<UserAccount> getMoneyAdvisorsList() {
+        return moneyAdvisorsList;
+    }
+
+    public void setMoneyAdvisorsList(ArrayList<UserAccount> moneyAdvisors) {
+        this.moneyAdvisorsList = moneyAdvisors;
     }
 
     public HashMap<String, ArrayList<String>> getDateArray() {
