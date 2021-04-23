@@ -7,6 +7,7 @@ package Business.Organization;
 
 import Business.Role.Role;
 import Business.Role.TherapistRole;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +17,16 @@ import java.util.HashMap;
  */
 public class TherapyOrganization extends Organization {
     HashMap<String, Double> servicesList = new HashMap<String, Double>();
+    ArrayList<UserAccount> therapistList = new ArrayList<UserAccount>();
 
+    public ArrayList<UserAccount> getTherapistList() {
+        return therapistList;
+    }
+
+    public void setTherapistList(ArrayList<UserAccount> therapistList) {
+        this.therapistList = therapistList;
+    }
+    
     public HashMap<String, Double> getServicesList() {
         return servicesList;
     }

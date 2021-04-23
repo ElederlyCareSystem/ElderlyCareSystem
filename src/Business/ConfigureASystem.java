@@ -73,9 +73,9 @@ public class ConfigureASystem {
         UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole("admin"));
         UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole("admin"));
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   
-        UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole());
-        UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole());
-        UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole());
+        UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole("admin"));
+        UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole("admin"));
+        UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole("admin"));
         UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
 
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);

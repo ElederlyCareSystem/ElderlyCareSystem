@@ -266,7 +266,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                         .addComponent(scheduleVaccineLabel)
                         .addGap(18, 18, 18)
                         .addComponent(websiteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -307,7 +307,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                         .addComponent(wellNessCheckTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(124, 124, 124)
                         .addComponent(schduleDoctorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(serviceTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -389,6 +389,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                 showHideScheduleDoctorAppt(false);
             }
             JOptionPane.showMessageDialog(this, "Daily Wellness check updated successfully");
+            return;
         } else {
             JOptionPane.showMessageDialog(this, "Please select an option before submitting");
         }
@@ -407,6 +408,7 @@ public class CovidCareServices extends javax.swing.JPanel {
                 showHideVaccineBookingAppt(true);
             }
             JOptionPane.showMessageDialog(this, "Vaccine Information submitted successfully");
+            return;
         } else {
             JOptionPane.showMessageDialog(this, "Please select an option before submitting");
         }
@@ -415,17 +417,18 @@ public class CovidCareServices extends javax.swing.JPanel {
 
     private void doctorAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorAppointmentBtnActionPerformed
         // TODO add your handling code here:
-        if (appointmentDateChooser.getDate() == null || appointmentDateChooser.getDate().after(new Date())) {
+        if (appointmentDateChooser.getDate() == null || appointmentDateChooser.getDate().before(new Date())) {
             JOptionPane.showMessageDialog(this, "Please select a date after today");
+            return;
         }
         request.setMessage("Schedule a doctor appointment");
         request.setSender(userAccount);
         request.setAppointmentDate(appointmentDateChooser.getDate());
         request.setStatus("Sent");
-        Organization covidOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "CovidCare Organization");
-        if (covidOrganization != null) {
-//            covidOrganization.getWorkQueue().getWorkRequestList().add(request);
+        if (org != null) {
+            org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
+//            request.setId(org.getWorkQueue().getWorkRequestList().size());
         }
         JOptionPane.showMessageDialog(this, "Appointment booked successfully");
     }//GEN-LAST:event_doctorAppointmentBtnActionPerformed

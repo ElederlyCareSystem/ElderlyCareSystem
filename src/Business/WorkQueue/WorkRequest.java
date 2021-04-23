@@ -22,7 +22,16 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private UserAccount assignedEmployee;
 
+    public UserAccount getAssignedEmployee() {
+        return assignedEmployee;
+    }
+
+    public void setAssignedEmployee(UserAccount assignedEmployee) {
+        this.assignedEmployee = assignedEmployee;
+    }
+    
     public int getId() {
         return id;
     }
