@@ -8,6 +8,7 @@ package Business.Organization;
 import Business.Role.HouseHoldRole;
 import Business.Role.NurseRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +18,16 @@ import java.util.HashMap;
  */
 public class HouseHoldOrganization extends Organization{
     HashMap<String, Double> servicesList = new HashMap<String, Double>();
+    ArrayList<UserAccount> helperList = new ArrayList<UserAccount>();
 
+    public ArrayList<UserAccount> getHelperList() {
+        return helperList;
+    }
+
+    public void setHelperList(ArrayList<UserAccount> helperList) {
+        this.helperList = helperList;
+    }
+    
     public HashMap<String, Double> getServicesList() {
         return servicesList;
     }
@@ -25,7 +35,6 @@ public class HouseHoldOrganization extends Organization{
     public void setServicesList(HashMap<String, Double> servicesList) {
         this.servicesList = servicesList;
     }
-    
     
     public HouseHoldOrganization() {
         super(Organization.Type.HouseHold.getValue());

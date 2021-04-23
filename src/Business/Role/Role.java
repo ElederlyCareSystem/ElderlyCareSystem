@@ -20,7 +20,7 @@ public abstract class Role {
         CovidCare("CovidCare"),
         Doctor("Doctor"),
         HealthAid("HealthAid"),LegalAdvisor("Legal Advisor"),MoneyAdvisor("Money Advisor"),Nurse("Nurse"),Therapist("Therapist"),
-        Customer("Customer"),SystemAdmin("SystemAdmin"), FoodManager("FoodManager");
+        Customer("Customer"),SystemAdmin("SystemAdmin"), FoodManager("FoodManager"),GroceryManager("GroceryManager");
         
         private String value;
         private RoleType(String value){

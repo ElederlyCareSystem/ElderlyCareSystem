@@ -10,13 +10,16 @@ import Business.Enterprise.FinanceEnterprise;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import static Business.Organization.Organization.Type.MoneyManagement;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.MoneyWorkRequest;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,6 +39,7 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
     UserAccount userAccount;
     MoneyManagementOrganization moneyOrg;
     JSplitPane servicesSplitPane;
+    java.util.Date dateCurrent=new java.util.Date();
 //    String orgName = "Money Management Organization";
 //    Organization org = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Finance", "MoneyManagement");
 //    moneyOrg1 = (MoneyManagementOrganization) org;
@@ -256,6 +260,8 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         request.setStatus("Sent");
         request.setPrice(moneyOrg.getPrice());
         request.setId(moneyOrg.getWorkQueue().getWorkRequestList().size()+1);
+        request.setRequestDate(dateCurrent);
+        request.setTotal(request.getTotal()+moneyOrg.getPrice());
         if (moneyOrg != null) {
             System.out.println("before req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
             
@@ -265,6 +271,13 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                     moneyOrg.getWorkQueue().getWorkRequestList().add(request);
                     System.out.println("after req count org....."+moneyOrg.getWorkQueue().getWorkRequestList().size());
         }
+        
+        String d = request.getRequestDate().toString();
+        String[] dArr = d.split(" ");
+        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
+        //foodOrg.getRevenueMap().put(fullDate, request.getTotal());
+        RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+        moneyOrg.getRevMap().add(rm);
 //        System.out.println("before add req...."+userAccount.getWorkQueue().getWorkRequestList().size());
 //        userAccount.getWorkQueue().getWorkRequestList().add(request);
 //        System.out.println("after add req...."+userAccount.getWorkQueue().getWorkRequestList().size());

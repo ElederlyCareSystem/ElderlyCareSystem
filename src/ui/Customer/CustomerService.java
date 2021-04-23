@@ -44,13 +44,20 @@ public class CustomerService extends javax.swing.JPanel {
                     servicesSplitPane.setRightComponent(nurse);
                     NursingButton.setBorderPainted(true);
                     break;
-                case "Grocery":
+                case "AllServices":
+                    NewCustomerJPanel profile = new NewCustomerJPanel(userProcessContainer,system, userAccount);
+                    servicesSplitPane.setRightComponent(profile);
+                    ProfileButton.setBorderPainted(true);
                     break;
-                case "Profile":
+                case "Therapy":
+                    TherapyServices therapy = new TherapyServices(userProcessContainer,system, userAccount);
+                    servicesSplitPane.setRightComponent(therapy);
+                    TherapyButton.setBorderPainted(true);
                     break;
-                case "PersonalCare":
-                    break;
-                case "Companion":
+                case "Meals":
+                    OrderMeal meal = new OrderMeal(userProcessContainer, system, userAccount, servicesSplitPane);
+                    servicesSplitPane.setRightComponent(meal);
+                    MealDeliveryButton.setBorderPainted(true);
                     break;
                 case "Legal":
                     ElderLawFirm lawfirm = new ElderLawFirm(userProcessContainer, system, userAccount, servicesSplitPane);

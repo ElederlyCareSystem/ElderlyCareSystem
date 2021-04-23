@@ -304,9 +304,20 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 request.setFromDate(fromDateText.getDate());
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
-                Organization HouseHoldOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("HouseHold", "HouseHold Organization");
-                if (HouseHoldOrganization != null) {
+                jCheckBox1.setSelected(false);                
+                jCheckBox2.setSelected(false);
+                jCheckBox3.setSelected(false);
+                jCheckBox4.setSelected(false);
+                jCheckBox5.setSelected(false);
+                jCheckBox6.setSelected(false);
+                jCheckBox7.setSelected(false);
+                fromDateText.setDate(null);
+                toDateText.setDate(null);
+                durationText.setText("");
+                if (org != null) {
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    org.getWorkQueue().getWorkRequestList().add(request);
+//                    request.setId(org.getWorkQueue().getWorkRequestList().size());
                 }
                 JOptionPane.showMessageDialog(this, "Service added to cart successfully");
             } catch (NumberFormatException e) {

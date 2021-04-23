@@ -13,6 +13,7 @@ public class MoneyWorkRequest extends WorkRequest{
     String date;
     String timeSlot;
     double price;
+    private double total;
 
     public double getPrice() {
         return price;
@@ -36,5 +37,13 @@ public class MoneyWorkRequest extends WorkRequest{
 
     public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
+    }
+    
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

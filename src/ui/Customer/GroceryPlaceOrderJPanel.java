@@ -32,6 +32,8 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
     JSplitPane servicesSplitPane;
     int index;
     String food;
+    java.util.Date date=new java.util.Date(); 
+
     
     public GroceryPlaceOrderJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, GroceryAndEssentialsOrganization groceryOrg,
     GroceryWorkRequest request, JSplitPane servicesSplitPane) {
@@ -225,8 +227,14 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
 
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
         // TODO add your handling code here:
-        groceryOrg.getWorkQueue().getWorkRequestList().add(request);
         request.setStatus("Order Placed");
+        request.setRequestDate(date);
+        groceryOrg.getWorkQueue().getWorkRequestList().add(request);
+        System.out.println("sender>"+request.getSender().getUserDetails().getName());
+        String d = request.getRequestDate().toString();
+        String[] dArr = d.split(" ");
+        System.out.println("date>>>>"+date);
+        System.out.println("total>>"+request.getTotal());
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
     private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed

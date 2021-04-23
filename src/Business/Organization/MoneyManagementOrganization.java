@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -26,6 +27,7 @@ public class MoneyManagementOrganization extends Organization {
     HashMap<String, ArrayList<String>> dateArray = new HashMap<>();
     ArrayList<UserAccount> moneyAdvisorsList;
     private Double price = 40.0;
+    List<RevenueMap> revMap = new ArrayList<>();
 
     public Double getPrice() {
         return price;
@@ -100,6 +102,29 @@ public class MoneyManagementOrganization extends Organization {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new MoneyAdvisorRole());
         return roles;
+    }
+    
+    @Override
+    public void generateRevMap(){
+        revMap = new ArrayList<>();
+        AllRevenueMap m = new AllRevenueMap();
+        m.generatedMap();
+        revMap = m.getMap();
+    }
+    
+    @Override
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+    
+    @Override
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
+    }
+    
+    public void addToMap(int year, String month, Double rev, int x){
+        RevenueMap revenue = new RevenueMap(year, month, rev, x);
+        revMap.add(revenue);
     }
 
 }

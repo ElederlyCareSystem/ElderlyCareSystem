@@ -231,13 +231,17 @@ public class NursingServices extends javax.swing.JPanel {
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
-                request.setPrice(selectedPrice);
-//                Organization nursingOrganization = system.getNetwork().getEnterpriseDirectory().getOrganizationByType("Medical", "Nurse Organization");
+                request.setPrice(selectedPrice);                
                 if (org != null) {
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
                     org.getWorkQueue().getWorkRequestList().add(request);
+//                    request.setId(org.getWorkQueue().getWorkRequestList().size());
                 }
                 JOptionPane.showMessageDialog(this, "Service added to cart successfully");
+                fromDateText.setDate(null);
+                toDateText.setDate(null);
+                durationText.setText("");
+                
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Input String cannot be parsed to Integer.");
             }

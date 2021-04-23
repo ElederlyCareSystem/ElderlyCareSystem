@@ -53,11 +53,6 @@ public class CustomerDashboard extends javax.swing.JPanel {
         ImageHeader1 = new javax.swing.JLabel();
         Title1 = new javax.swing.JLabel();
         containerPanel = new javax.swing.JPanel();
-        PersonalCarePanel = new javax.swing.JPanel();
-        PersonalCareImgPanel = new javax.swing.JPanel();
-        PersonalCarePanelImg = new javax.swing.JLabel();
-        PeronalCareButton = new javax.swing.JButton();
-        PersonalCareLabel = new javax.swing.JLabel();
         ProtectiveServicesPanel = new javax.swing.JPanel();
         ProtecticeCareImgPanel = new javax.swing.JPanel();
         ProtectiveServicesPanelImg = new javax.swing.JLabel();
@@ -79,9 +74,15 @@ public class CustomerDashboard extends javax.swing.JPanel {
         CompanionServicesButton = new javax.swing.JButton();
         CompanionServicesLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        NursingServicesPanel1 = new javax.swing.JPanel();
+        NursingImgPanel1 = new javax.swing.JPanel();
+        ProtectiveServicesPanelImg2 = new javax.swing.JLabel();
+        NursingServicesButton1 = new javax.swing.JButton();
+        NursingServicesLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1480, 1000));
 
+        dashboardJScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         dashboardJScrollPane.setPreferredSize(new java.awt.Dimension(1480, 1000));
 
         dashboardJPanel.setPreferredSize(new java.awt.Dimension(1480, 1000));
@@ -116,57 +117,6 @@ public class CustomerDashboard extends javax.swing.JPanel {
         );
 
         containerPanel.setBackground(new java.awt.Color(178, 215, 229));
-
-        PersonalCarePanel.setBackground(new java.awt.Color(255, 255, 255));
-        PersonalCarePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-
-        PersonalCarePanelImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/personalCareImg_280x186.jpeg"))); // NOI18N
-
-        javax.swing.GroupLayout PersonalCareImgPanelLayout = new javax.swing.GroupLayout(PersonalCareImgPanel);
-        PersonalCareImgPanel.setLayout(PersonalCareImgPanelLayout);
-        PersonalCareImgPanelLayout.setHorizontalGroup(
-            PersonalCareImgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PersonalCarePanelImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        PersonalCareImgPanelLayout.setVerticalGroup(
-            PersonalCareImgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PersonalCarePanelImg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        PeronalCareButton.setBackground(new java.awt.Color(0, 0, 0));
-        PeronalCareButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
-        PeronalCareButton.setForeground(new java.awt.Color(255, 255, 255));
-        PeronalCareButton.setText("Personal Care");
-        PeronalCareButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PeronalCareButtonActionPerformed(evt);
-            }
-        });
-
-        PersonalCareLabel.setBackground(new java.awt.Color(255, 255, 255));
-        PersonalCareLabel.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
-        PersonalCareLabel.setText("<html> Get help at home  with everyday <br>activities like bathing, dressing, meal preparation, and household tasks </html>");
-
-        javax.swing.GroupLayout PersonalCarePanelLayout = new javax.swing.GroupLayout(PersonalCarePanel);
-        PersonalCarePanel.setLayout(PersonalCarePanelLayout);
-        PersonalCarePanelLayout.setHorizontalGroup(
-            PersonalCarePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PersonalCareImgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PeronalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(PersonalCarePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PersonalCareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        PersonalCarePanelLayout.setVerticalGroup(
-            PersonalCarePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PersonalCarePanelLayout.createSequentialGroup()
-                .addComponent(PersonalCareImgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PersonalCareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PeronalCareButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-        );
 
         ProtectiveServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         ProtectiveServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -330,7 +280,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
         CompanionServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         CompanionServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        ProtectiveServicesPanelImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/companionImg.jpeg"))); // NOI18N
+        ProtectiveServicesPanelImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/therapyDashBoard_280x186.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout CompanionServicesImgPanelLayout = new javax.swing.GroupLayout(CompanionServicesImgPanel);
         CompanionServicesImgPanel.setLayout(CompanionServicesImgPanelLayout);
@@ -346,7 +296,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
         CompanionServicesButton.setBackground(new java.awt.Color(0, 0, 0));
         CompanionServicesButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         CompanionServicesButton.setForeground(new java.awt.Color(255, 255, 255));
-        CompanionServicesButton.setText("Companion Services");
+        CompanionServicesButton.setText("Therapy Services");
         CompanionServicesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CompanionServicesButtonActionPerformed(evt);
@@ -355,7 +305,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
         CompanionServicesLabel.setBackground(new java.awt.Color(255, 255, 255));
         CompanionServicesLabel.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
-        CompanionServicesLabel.setText("<html>Provides company and supervision <br> and offers temporary relief to family members who are acting as caregivers..</html>");
+        CompanionServicesLabel.setText("<html> Get  help everyday with <br> all kinds of different therapies that we provide according to your needs</html>");
 
         javax.swing.GroupLayout CompanionServicesPanelLayout = new javax.swing.GroupLayout(CompanionServicesPanel);
         CompanionServicesPanel.setLayout(CompanionServicesPanelLayout);
@@ -380,6 +330,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
         );
 
         logoutButton.setBackground(new java.awt.Color(0, 0, 0));
+        logoutButton.setFont(new java.awt.Font("Palatino", 1, 14)); // NOI18N
         logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -388,15 +339,66 @@ public class CustomerDashboard extends javax.swing.JPanel {
             }
         });
 
+        NursingServicesPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        NursingServicesPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        ProtectiveServicesPanelImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/allservices_280x186.jpeg"))); // NOI18N
+
+        javax.swing.GroupLayout NursingImgPanel1Layout = new javax.swing.GroupLayout(NursingImgPanel1);
+        NursingImgPanel1.setLayout(NursingImgPanel1Layout);
+        NursingImgPanel1Layout.setHorizontalGroup(
+            NursingImgPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProtectiveServicesPanelImg2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        NursingImgPanel1Layout.setVerticalGroup(
+            NursingImgPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProtectiveServicesPanelImg2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        NursingServicesButton1.setBackground(new java.awt.Color(0, 0, 0));
+        NursingServicesButton1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        NursingServicesButton1.setForeground(new java.awt.Color(255, 255, 255));
+        NursingServicesButton1.setText("All Services");
+        NursingServicesButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NursingServicesButton1ActionPerformed(evt);
+            }
+        });
+
+        NursingServicesLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        NursingServicesLabel1.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        NursingServicesLabel1.setText("<html>Check all the services<br> the services provided by us starting food, to shelter.</html>");
+
+        javax.swing.GroupLayout NursingServicesPanel1Layout = new javax.swing.GroupLayout(NursingServicesPanel1);
+        NursingServicesPanel1.setLayout(NursingServicesPanel1Layout);
+        NursingServicesPanel1Layout.setHorizontalGroup(
+            NursingServicesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(NursingImgPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(NursingServicesButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(NursingServicesPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NursingServicesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        NursingServicesPanel1Layout.setVerticalGroup(
+            NursingServicesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NursingServicesPanel1Layout.createSequentialGroup()
+                .addComponent(NursingImgPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NursingServicesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NursingServicesButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
         containerPanel.setLayout(containerPanelLayout);
         containerPanelLayout.setHorizontalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerPanelLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ProtectiveServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PersonalCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NursingServicesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(containerPanelLayout.createSequentialGroup()
@@ -407,24 +409,24 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addContainerGap(353, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(197, 197, 197))
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         containerPanelLayout.setVerticalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logoutButton)
-                .addGap(35, 35, 35)
+                .addGap(15, 15, 15)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE)
-                    .addComponent(PersonalCarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NursingServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(NursingServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NursingServicesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ProtectiveServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dashboardJPanelLayout = new javax.swing.GroupLayout(dashboardJPanel);
@@ -448,19 +450,15 @@ public class CustomerDashboard extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1480, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dashboardJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void PeronalCareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeronalCareButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PeronalCareButtonActionPerformed
 
     private void LegalServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalServicesButtonActionPerformed
         // TODO add your handling code here:
@@ -478,11 +476,10 @@ public class CustomerDashboard extends javax.swing.JPanel {
 
     private void GroceryServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroceryServicesButtonActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("customerServices",new CustomerService("Meals", userProcessContainer, business, userAccount) );
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_GroceryServicesButtonActionPerformed
-
-    private void CompanionServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompanionServicesButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CompanionServicesButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
@@ -494,6 +491,20 @@ public class CustomerDashboard extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void NursingServicesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NursingServicesButton1ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("customerServices", new CustomerService("AllServices",userProcessContainer, business, userAccount));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_NursingServicesButton1ActionPerformed
+
+    private void CompanionServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompanionServicesButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("customerServices", new CustomerService("Therapy", userProcessContainer, business, userAccount));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_CompanionServicesButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -510,19 +521,19 @@ public class CustomerDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel ImageHeader1;
     private javax.swing.JButton LegalServicesButton;
     private javax.swing.JPanel NursingImgPanel;
+    private javax.swing.JPanel NursingImgPanel1;
     private javax.swing.JButton NursingServicesButton;
+    private javax.swing.JButton NursingServicesButton1;
     private javax.swing.JLabel NursingServicesLabel;
+    private javax.swing.JLabel NursingServicesLabel1;
     private javax.swing.JPanel NursingServicesPanel;
-    private javax.swing.JButton PeronalCareButton;
-    private javax.swing.JPanel PersonalCareImgPanel;
-    private javax.swing.JLabel PersonalCareLabel;
-    private javax.swing.JPanel PersonalCarePanel;
-    private javax.swing.JLabel PersonalCarePanelImg;
+    private javax.swing.JPanel NursingServicesPanel1;
     private javax.swing.JPanel ProtecticeCareImgPanel;
     private javax.swing.JLabel ProtectiveServicesLabel;
     private javax.swing.JPanel ProtectiveServicesPanel;
     private javax.swing.JLabel ProtectiveServicesPanelImg;
     private javax.swing.JLabel ProtectiveServicesPanelImg1;
+    private javax.swing.JLabel ProtectiveServicesPanelImg2;
     private javax.swing.JLabel ProtectiveServicesPanelImg3;
     private javax.swing.JLabel Title1;
     private javax.swing.JPanel containerPanel;

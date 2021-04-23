@@ -21,6 +21,7 @@ import Business.WorkQueue.MoneyWorkRequest;
 import Business.WorkQueue.NursingWorkRequest;
 import Business.WorkQueue.TherapyWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import SendEmail.SendMail;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -673,64 +674,56 @@ public class ServiceCart extends javax.swing.JPanel {
 
     public void setWorkRequest(String enterprise, String organization) {
         Organization org = system.getNetwork().getEnterpriseDirectory().getOrganizationByType(enterprise, organization);
-        if(org.getName().equals("Money Management Organization")){
+        if (org.getName().equals("Money Management Organization")) {
             MoneyManagementOrganization organization1 = (MoneyManagementOrganization) org;
-//            ArrayList<MoneyWorkRequest> workrequest = (MoneyWorkRequest) userAccount.getWorkQueue().getWorkRequestList();
-//            organization1.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
             for (int j = 0; j < organization1.getWorkQueue().getWorkRequestList().size(); j++) {
                 organization1.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
             }
         }
-        if(org.getName().equals("Legal Services Organization")){
+        if (org.getName().equals("Legal Services Organization")) {
             LegalServicesOrganization organization6 = (LegalServicesOrganization) org;
             for (int j = 0; j < organization6.getWorkQueue().getWorkRequestList().size(); j++) {
                 organization6.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
             }
         }
-        if(org.getName().equals("Therapy Organization")){
+        if (org.getName().equals("Therapy Organization")) {
             TherapyOrganization organization2 = (TherapyOrganization) org;
-            organization2.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization2.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization2.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
         }
-        if(org.getName().equals("Nurse Organization")){
+        if (org.getName().equals("Nurse Organization")) {
             NursingOrganization organization3 = (NursingOrganization) org;
-//            organization3.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
             for (int j = 0; j < organization3.getWorkQueue().getWorkRequestList().size(); j++) {
                 organization3.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
             }
             System.out.println("cart " + organization3.getWorkQueue().getWorkRequestList().size());
         }
-        if(org.getName().equals("CovidCare Organization")){
+        if (org.getName().equals("CovidCare Organization")) {
             CovidCareOrganization organization4 = (CovidCareOrganization) org;
-            organization4.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization4.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization4.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
         }
-        if(org.getName().equals("HouseHold Organization")) {
+        if (org.getName().equals("HouseHold Organization")) {
             HouseHoldOrganization organization5 = (HouseHoldOrganization) org;
-            organization5.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
+            for (int j = 0; j < organization5.getWorkQueue().getWorkRequestList().size(); j++) {
+                organization5.getWorkQueue().getWorkRequestList().get(j).setStatus("Ordered");
+            }
         }
-        
-//        if (therapyOrganization != null) {
-//            for (int j = 0; j < therapyOrganization.getWorkQueue().getWorkRequestList().size(); j++) {
-//                therapyOrganization.getWorkQueue().getWorkRequestList().get(j).setStatus("Orfered");
-//            }
-////            therapyOrganization.getWorkQueue().setWorkRequestList(userAccount.getWorkQueue().getWorkRequestList());
-////            System.out.println(therapyOrganization.getWorkQueue().getWorkRequestList().get(0).ge)
-//        }
     }
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
-//        setWorkRequest("Medical", "Therapy Organization");
-//        setWorkRequest("Medical", "Nurse Organization");
-//        setWorkRequest("Medical", "CovidCare Organization");
-//        setWorkRequest("Finance", "Money Management Organization");
-
         if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
             setWorkRequest("Medical", "Therapy Organization");
             setWorkRequest("Medical", "Nurse Organization");
             setWorkRequest("Medical", "CovidCare Organization");
-            setWorkRequest("Finance", "Money Management Organization");  
+            setWorkRequest("Finance", "Money Management Organization");
             setWorkRequest("Finance", "Legal Services Organization");
             setWorkRequest("HouseHold", "HouseHold Organization");
+            SendMail email = new SendMail(userAccount.getUserDetails().getEmailId());
             JOptionPane.showMessageDialog(this, "Order Confirmed");
+            emptyCart();
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
         }
@@ -818,14 +811,17 @@ public class ServiceCart extends javax.swing.JPanel {
     }
 
     private void viewMoneyAppointmentDetails() {
-        System.out.println("money req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
+        System.out.println("money req count....." + userAccount.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof MoneyWorkRequest) {
-                 System.out.println("money req count in if view....."+((MoneyWorkRequest) workrequest).getId());
+                System.out.println("money req count in if view....." + ((MoneyWorkRequest) workrequest).getId());
                 moneyRequest = ((MoneyWorkRequest) workrequest);
-                moneyAdviceModel.addRow(new Object[]{
-                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(),moneyRequest.getPrice()
+                if(!moneyRequest.getStatus().equalsIgnoreCase("Accepted")){
+                     moneyAdviceModel.addRow(new Object[]{
+                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(), moneyRequest.getPrice()
                 });
+                }
+               
             }
         }
     }
@@ -843,10 +839,23 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof LawFirmWorkRequest) {
                 lawRequest = ((LawFirmWorkRequest) workrequest);
+                if(!lawRequest.getStatus().equalsIgnoreCase("Accepted")){
                 lawfirmModel.addRow(new Object[]{
                     lawRequest.getId(), lawRequest.getDate(), lawRequest.getTimeSlot(), lawRequest.getConsultationType()
                 });
+                }
             }
         }
+    }
+
+    private void emptyCart() {
+        covidModel.getDataVector().removeAllElements();
+        lawfirmModel.getDataVector().removeAllElements();
+        moneyAdviceModel.getDataVector().removeAllElements();
+        nurseModel.getDataVector().removeAllElements();
+        therapyModel.getDataVector().removeAllElements();
+        houseHoldModel.getDataVector().removeAllElements();
+        
+        
     }
 }

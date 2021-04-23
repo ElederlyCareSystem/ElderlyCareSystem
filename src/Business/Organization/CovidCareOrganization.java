@@ -7,6 +7,7 @@ package Business.Organization;
 
 import Business.Role.CovidCareRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,16 @@ import java.util.ArrayList;
  * @author harshikag
  */
 public class CovidCareOrganization extends Organization {
+    ArrayList<UserAccount> doctorList = new ArrayList<UserAccount>();
+
+    public ArrayList<UserAccount> getDoctorList() {
+        return doctorList;
+    }
+
+    public void setDoctorList(ArrayList<UserAccount> doctorList) {
+        this.doctorList = doctorList;
+    }
+    
     public CovidCareOrganization() {
         super(Organization.Type.CovidCare.getValue());
     }

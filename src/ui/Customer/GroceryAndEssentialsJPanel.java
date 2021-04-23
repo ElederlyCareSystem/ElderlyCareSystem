@@ -8,6 +8,7 @@ package ui.Customer;
 import Business.EcoSystem;
 import Business.GroceryAndEssentialsOrganization.ShoppingItem;
 import Business.Organization.GroceryAndEssentialsOrganization;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GroceryWorkRequest;
 import javax.swing.JPanel;
@@ -46,7 +47,14 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
         model.addColumn("Food Items");
         model.addColumn("Price");
         
-        groceryOrg = new GroceryAndEssentialsOrganization();
+        //groceryOrg = new GroceryAndEssentialsOrganization();
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("FoodAndEssentials").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof GroceryAndEssentialsOrganization) {
+                groceryOrg = ((GroceryAndEssentialsOrganization) organization);
+                System.out.println("or list " + groceryOrg.getWorkQueue().getWorkRequestList().size());
+                break;
+            }
+        }
         
         generateTable();
     }

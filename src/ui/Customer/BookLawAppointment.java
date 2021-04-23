@@ -9,12 +9,15 @@ import Business.EcoSystem;
 import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LawFirmWorkRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -34,6 +37,7 @@ public class BookLawAppointment extends javax.swing.JPanel {
     JSplitPane servicesSplitPane;
     LegalServicesOrganization legalOrg;
     String orgName = "Legal Services Organization";
+    java.util.Date dateCurrent=new java.util.Date();
     
     public BookLawAppointment(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,JSplitPane servicesSplitPane) {
         initComponents();
@@ -300,7 +304,17 @@ public class BookLawAppointment extends javax.swing.JPanel {
         request.setDate(date1);
         request.setConsultationType(consultationType);
         request.setConsultationFee(Double.parseDouble(jTextField_costLawAdvice.getText()));
+        double total = request.getTotal() + (Double.parseDouble(jTextField_costLawAdvice.getText()));
+        request.setTotal(total);
+        request.setRequestDate(dateCurrent);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
+        
+        
+        String d = request.getRequestDate().toString();
+        String[] dArr = d.split(" ");
+        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
+         RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+        legalOrg.getRevMap().add(rm);
 
         if (legalOrg != null) {
             legalOrg.getWorkQueue().getWorkRequestList().add(request);

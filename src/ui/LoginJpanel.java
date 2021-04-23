@@ -96,36 +96,23 @@ public class LoginJpanel extends javax.swing.JPanel {
         jButton_signup.setText("Sign Up");
         jButton_signup.setBorderPainted(false);
         jButton_signup.setPreferredSize(new java.awt.Dimension(118, 35));
+        jButton_signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_signupActionPerformed(evt);
+            }
+        });
         jPanel_loginarea.add(jButton_signup);
         jButton_signup.setBounds(740, 500, 180, 40);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ImageHeader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
+        jPanel2.add(ImageHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
         Title.setFont(new java.awt.Font("Palatino", 1, 48)); // NOI18N
         Title.setText("Helping Hands");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(ImageHeader)
-                .addGap(20, 20, 20)
-                .addComponent(Title)
-                .addGap(0, 977, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ImageHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(Title)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel2.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 29, -1, -1));
 
         jPanel_loginarea.add(jPanel2);
         jPanel2.setBounds(0, 0, 1480, 110);
@@ -138,7 +125,7 @@ public class LoginJpanel extends javax.swing.JPanel {
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(1480, 1000));
         jPanel_loginarea.add(jLabel1);
-        jLabel1.setBounds(-110, 100, 1500, 1000);
+        jLabel1.setBounds(0, 110, 1500, 1000);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -230,6 +217,14 @@ public class LoginJpanel extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jButton_loginActionPerformed
+
+    private void jButton_signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_signupActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        SignUpJpanel signUp = new SignUpJpanel(mainWorkArea, system);
+        mainWorkArea.add(signUp);
+        layout.next(mainWorkArea);
+    }//GEN-LAST:event_jButton_signupActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

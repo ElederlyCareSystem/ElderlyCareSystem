@@ -8,6 +8,7 @@ package Business.Organization;
 import Business.GroceryAndEssentialsOrganization.EssentialsList;
 import Business.GroceryAndEssentialsOrganization.ShoppingItem;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class GroceryAndEssentialsOrganization extends Organization{
     
     List<ShoppingItem> shoppingList;
     EssentialsList list = new EssentialsList();
+    List<UserAccount> deliveryManList = new ArrayList<>();
     
     public GroceryAndEssentialsOrganization() {
         super(Organization.Type.GroceryAndEssentials.getValue());
@@ -48,6 +50,14 @@ public class GroceryAndEssentialsOrganization extends Organization{
         }
         
         return item;
+    }
+    
+    public List<UserAccount> getDeliveryManList() {
+        return deliveryManList;
+    }
+
+    public void setDeliveryManList(List<UserAccount> deliveryManList) {
+        this.deliveryManList = deliveryManList;
     }
     
 }
