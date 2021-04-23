@@ -42,8 +42,10 @@ public class ConfigureASystem {
          //create an enterprise - food and essentials
         Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
         //initialize some organizations
-        //FoodOrganization foodOrganization = new FoodOrganization();
+        FoodOrganization foodOrg;
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
+        foodOrg = (FoodOrganization) foodOrganization;
+        foodOrg.generateRevMap();
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
         // house hold enterprise
         Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
@@ -64,6 +66,7 @@ public class ConfigureASystem {
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
+        ua1.getUserDetails().setName(employee1.getName());
         UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole());
         UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole());
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   

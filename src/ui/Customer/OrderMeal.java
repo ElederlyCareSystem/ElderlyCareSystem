@@ -55,7 +55,14 @@ public class OrderMeal extends javax.swing.JPanel {
         
         //foodOrg = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("FoodAndEssentials", "Food Organization");
         //System.out.println("yo>>"+foodOrg.toString());
-        foodOrg = new FoodOrganization();
+        for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("FoodAndEssentials").getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof FoodOrganization) {
+                foodOrg = ((FoodOrganization) organization);
+                System.out.println("or list " + foodOrg.getWorkQueue().getWorkRequestList().size());
+                break;
+            }
+        }
+        //foodOrg = new FoodOrganization();
     }
 
     /**

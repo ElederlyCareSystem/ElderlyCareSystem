@@ -25,7 +25,8 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
-    private Map<List<String>, Double> revenueMap = new LinkedHashMap<>();
+    //private Map<List<String>, Double> revenueMap = new LinkedHashMap<>();
+    List<RevenueMap> revMap = new ArrayList<>();
     
     public enum Type{
         Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"), 
@@ -86,19 +87,28 @@ public abstract class Organization {
         return name;
     }
     
-    public void generateMap(){
-        revenueMap = new LinkedHashMap<>();
+    public void generateRevMap(){
+    }
+//    
+//    public void generateRevenue(){
+//    }
+//
+//    public Map<List<String>, Double> getRevenueMap() {
+//        return revenueMap;
+//    }
+//
+//    public void setRevenueMap(Map<List<String>, Double> revenueMap) {
+//        this.revenueMap = revenueMap;
+//    }
+
+    public List<RevenueMap> getRevMap() {
+        return revMap;
+    }
+
+    public void setRevMap(List<RevenueMap> revMap) {
+        this.revMap = revMap;
     }
     
-    public void generateRevenue(){
-    }
-
-    public Map<List<String>, Double> getRevenueMap() {
-        return revenueMap;
-    }
-
-    public void setRevenueMap(Map<List<String>, Double> revenueMap) {
-        this.revenueMap = revenueMap;
-    }
+    
     
 }

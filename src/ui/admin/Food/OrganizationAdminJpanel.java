@@ -8,6 +8,7 @@ package ui.admin.Food;
 import ui.admin.*;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Organization.FoodOrganization;
 import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
@@ -33,6 +34,7 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Organization organization;
     private MoneyManagementOrganization morg;
+    private FoodOrganization foodOrg;
     String img;
     ImageIcon icon;
     DB4OUtil dB4OUtil = DB4OUtil.getInstance();
@@ -46,6 +48,15 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         icon = new ImageIcon(img);
         AdminHomeJPanel home = new AdminHomeJPanel(userProcessContainer,userAccount,system,organization,adminSplitPane,icon);
         adminSplitPane.setRightComponent(home);
+        
+        for (Organization org : system.getNetwork().getEnterpriseDirectory().getEnterprise("FoodAndEssentials").getOrganizationDirectory().getOrganizationList()) {
+            if (org instanceof FoodOrganization) {
+                foodOrg = ((FoodOrganization) org);
+                System.out.println("or list " + foodOrg.getWorkQueue().getWorkRequestList().size());
+                break;
+            }
+        }
+        //foodOrg = new FoodOrganization();
         
     }
 
@@ -248,8 +259,8 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
 
     private void OrdersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersButtonActionPerformed
         // TODO add your handling code here:
-        ManageNurseOrders profile = new ManageNurseOrders(userProcessContainer, userAccount, system, organization, adminSplitPane);
-        adminSplitPane.setRightComponent(profile);
+        ManageAllOrders order = new ManageAllOrders(userProcessContainer, userAccount, system, organization, adminSplitPane, foodOrg);
+        adminSplitPane.setRightComponent(order);
     }//GEN-LAST:event_OrdersButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
