@@ -79,6 +79,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         InstructionsjTextArea = new javax.swing.JTextArea();
         TotalTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButton_pay = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -143,6 +144,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         SubmitjButton.setBackground(new java.awt.Color(0, 0, 0));
+        SubmitjButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         SubmitjButton.setForeground(new java.awt.Color(255, 255, 255));
         SubmitjButton.setText("Submit");
         SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +154,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         });
 
         RemovejButton.setBackground(new java.awt.Color(0, 0, 0));
+        RemovejButton.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         RemovejButton.setForeground(new java.awt.Color(255, 255, 255));
         RemovejButton.setText("Remove");
         RemovejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +173,16 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel8.setText("Instructions:");
 
+        jButton_pay.setBackground(new java.awt.Color(0, 0, 0));
+        jButton_pay.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        jButton_pay.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_pay.setText("Pay");
+        jButton_pay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_payActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,15 +198,18 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(324, 324, 324)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addComponent(SubmitjButton)
-                        .addGap(123, 123, 123)
-                        .addComponent(RemovejButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SubmitjButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RemovejButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton_pay, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(382, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 326, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,8 +238,9 @@ public class PlaceMealOrder extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SubmitjButton)
-                    .addComponent(RemovejButton))
+                    .addComponent(SubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RemovejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_pay, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -277,6 +294,13 @@ public class PlaceMealOrder extends javax.swing.JPanel {
         
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
+    private void jButton_payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_payActionPerformed
+        // TODO add your handling code here:
+
+        PaymentJpanel pay = new PaymentJpanel(userAccount, request.getTotal());
+        servicesSplitPane.setRightComponent(pay);
+    }//GEN-LAST:event_jButton_payActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
@@ -286,6 +310,7 @@ public class PlaceMealOrder extends javax.swing.JPanel {
     private javax.swing.JButton SubmitjButton;
     private javax.swing.JLabel Title1;
     private javax.swing.JTextField TotalTextField;
+    private javax.swing.JButton jButton_pay;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

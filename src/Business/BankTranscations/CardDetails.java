@@ -15,6 +15,15 @@ public class CardDetails {
     private String expiryDate;
     private String cardNumber;
     private String CVV;
+    private Double balance = 1000.0;
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
 
     public String getCardHolderName() {
         return cardHolderName;
