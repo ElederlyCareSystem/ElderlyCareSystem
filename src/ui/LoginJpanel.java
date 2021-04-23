@@ -96,6 +96,11 @@ public class LoginJpanel extends javax.swing.JPanel {
         jButton_signup.setText("Sign Up");
         jButton_signup.setBorderPainted(false);
         jButton_signup.setPreferredSize(new java.awt.Dimension(118, 35));
+        jButton_signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_signupActionPerformed(evt);
+            }
+        });
         jPanel_loginarea.add(jButton_signup);
         jButton_signup.setBounds(740, 500, 180, 40);
 
@@ -230,6 +235,14 @@ public class LoginJpanel extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jButton_loginActionPerformed
+
+    private void jButton_signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_signupActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        SignUpJpanel signUp = new SignUpJpanel(mainWorkArea, system);
+        mainWorkArea.add(signUp);
+        layout.next(mainWorkArea);
+    }//GEN-LAST:event_jButton_signupActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

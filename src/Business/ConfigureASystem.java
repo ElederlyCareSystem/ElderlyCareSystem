@@ -12,6 +12,7 @@ import Business.Role.CustomerRole;
 import Business.Role.FoodManagerRole;
 import Business.Role.HouseHoldRole;
 import Business.Role.LegalAdvisorRole;
+import Business.Role.ManageGroceryRole;
 import Business.Role.MoneyAdvisorRole;
 import Business.Role.NurseRole;
 import Business.Role.SystemAdminRole;
@@ -64,6 +65,7 @@ public class ConfigureASystem {
         Employee employeeFoodManager = system.getEmployeeDirectory().createEmployee("foodManager");
         Employee employeeMoneyAdvisor = system.getEmployeeDirectory().createEmployee("snehal");
         UserAccount snehal = system.getUserAccountDirectory().createUserAccount("snehal", "snehal", employeeMoneyAdvisor, new MoneyAdvisorRole());
+        Employee groceryManager = system.getEmployeeDirectory().createEmployee("groceryManager");
 
 
         //create user account
@@ -77,7 +79,9 @@ public class ConfigureASystem {
         UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole("admin"));
         UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole("admin"));
         UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
+        UserAccount userGrocery = system.getUserAccountDirectory().createUserAccount("groceryManager", "groceryManager", groceryManager, new ManageGroceryRole());
 
+        
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
         LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal); 
         MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(snehal);
@@ -90,6 +94,8 @@ public class ConfigureASystem {
         houseHoldOrganization.getUserAccountDirectory().getUserAccountList().add(houseHoldUser);
         foodOrganization.getEmployeeDirectory().getEmployeeList().add(employeeFoodManager);
         foodOrganization.getUserAccountDirectory().getUserAccountList().add(userFood);
+        essentialOrganization.getUserAccountDirectory().getUserAccountList().add(userGrocery);
+
 //        dB4OUtil.storeSystem(system);
         return system;
     }
