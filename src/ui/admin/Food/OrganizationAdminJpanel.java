@@ -267,6 +267,7 @@ public class OrganizationAdminJpanel extends javax.swing.JPanel {
         userProcessContainer.add("loginPage",loginPage);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void RevenueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RevenueButtonActionPerformed
