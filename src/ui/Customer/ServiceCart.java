@@ -21,6 +21,7 @@ import Business.WorkQueue.MoneyWorkRequest;
 import Business.WorkQueue.NursingWorkRequest;
 import Business.WorkQueue.TherapyWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import SendEmail.SendMail;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -720,6 +721,7 @@ public class ServiceCart extends javax.swing.JPanel {
             setWorkRequest("Finance", "Money Management Organization");
             setWorkRequest("Finance", "Legal Services Organization");
             setWorkRequest("HouseHold", "HouseHold Organization");
+            SendMail email = new SendMail(userAccount.getUserDetails().getEmailId());
             JOptionPane.showMessageDialog(this, "Order Confirmed");
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
