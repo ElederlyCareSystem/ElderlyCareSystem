@@ -5,6 +5,8 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.FoodOrganization;
+import Business.Organization.GroceryAndEssentialsOrganization;
+import Business.Organization.LegalServicesOrganization;
 import Business.Organization.MoneyManagementOrganization;
 import Business.Organization.Organization;
 import Business.Role.CovidCareRole;
@@ -39,8 +41,8 @@ public class ConfigureASystem {
         Organization covidCareOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.CovidCare);
         Organization therapyOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Therapy);
         Organization healthAidOrganization = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.HealthAid);
-        Organization MoneyManagementOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.MoneyManagement);
-        Organization LegalServicesOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalServices);
+        Organization moneyManagementOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.MoneyManagement);
+        Organization legalServicesOrganization = financeEnterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalServices);
          //create an enterprise - food and essentials
         Enterprise enterprise2 = network.getEnterpriseDirectory().createAndAddEnterprise("FoodAndEssentials", Enterprise.EnterpriseType.FoodAndEssentials);
         //initialize some organizations
@@ -48,7 +50,18 @@ public class ConfigureASystem {
         Organization foodOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.Food);
         foodOrg = (FoodOrganization) foodOrganization;
         foodOrg.generateRevMap();
+        
+        MoneyManagementOrganization moneyOrg = (MoneyManagementOrganization) moneyManagementOrganization;
+        moneyOrg.generateRevMap();
+        
+        LegalServicesOrganization legalOrg = (LegalServicesOrganization) legalServicesOrganization;
+        legalOrg.generateRevMap();
+        
+        
+        GroceryAndEssentialsOrganization groceryOrg;
         Organization essentialOrganization = enterprise2.getOrganizationDirectory().createOrganization(Organization.Type.GroceryAndEssentials);
+        groceryOrg = (GroceryAndEssentialsOrganization) essentialOrganization;
+        groceryOrg.generateRevMap();        
         // house hold enterprise
         Enterprise houseHoldEnterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HouseHold", Enterprise.EnterpriseType.HouseHold);
         // house hold organization
@@ -72,6 +85,7 @@ public class ConfigureASystem {
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
         ua1.getUserDetails().setName(employee1.getName());
+        ua1.getUserDetails().setEmailId("chavansnehal26@gmail.com");
         UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole("admin"));
         UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole("admin"));
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   
@@ -82,10 +96,10 @@ public class ConfigureASystem {
         UserAccount userGrocery = system.getUserAccountDirectory().createUserAccount("groceryManager", "groceryManager", groceryManager, new ManageGroceryRole());
 
         
-        MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
-        LegalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal); 
-        MoneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(snehal);
-        MoneyManagementOrganization mm = (MoneyManagementOrganization) MoneyManagementOrganization;
+        moneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);
+        legalServicesOrganization.getUserAccountDirectory().getUserAccountList().add(userLegal); 
+        moneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(snehal);
+        MoneyManagementOrganization mm = (MoneyManagementOrganization) moneyManagementOrganization;
         mm.getMoneyAdvisorsList().add(snehal);
         
         nurseOrganization.getUserAccountDirectory().getUserAccountList().add(nurseUser);        

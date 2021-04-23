@@ -295,6 +295,7 @@ public class ManageMoneyAdvisorOrders extends javax.swing.JPanel {
                 if (moneyOrganization.getMoneyAdvisorsList().get(j).getUsername().equals(selectedItem)) {
                     selectedDir.setReceiver(moneyOrganization.getMoneyAdvisorsList().get(j));
                     selectedDir.setStatus("Accepted");
+                    ordersModel.getDataVector().removeAllElements();
                     viewOrderDirList();
                     JOptionPane.showMessageDialog(this, "Service accepted and advisor assigned");
                     return;

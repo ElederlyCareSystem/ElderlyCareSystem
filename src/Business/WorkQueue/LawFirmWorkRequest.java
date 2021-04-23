@@ -14,6 +14,15 @@ public class LawFirmWorkRequest extends WorkRequest{
     String timeSlot;
     String consultationType;
     Double consultationFee;
+    private double total;
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
     public Double getConsultationFee() {
         return consultationFee;

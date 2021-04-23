@@ -13,6 +13,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodOrganizationWorkRequest;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -89,7 +90,6 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         PlaceOrder = new javax.swing.JButton();
         OKjButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(178, 215, 229));
@@ -187,13 +187,6 @@ public class OrderMeal extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Track Order");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Breakfast", "Lunch", "Dinner" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -201,6 +194,14 @@ public class OrderMeal extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 264, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PlaceOrder)
+                .addGap(201, 201, 201))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -212,33 +213,20 @@ public class OrderMeal extends javax.swing.JPanel {
                             .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(382, 382, 382)
-                        .addComponent(OKjButton)))
-                .addContainerGap(368, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(OKjButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(PlaceOrder))))
-                .addGap(236, 236, 236))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(253, 253, 253)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,8 +238,7 @@ public class OrderMeal extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PlaceOrder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +264,7 @@ public class OrderMeal extends javax.swing.JPanel {
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
         // TODO add your handling code here:
         
+        if(jComboBox1.getSelectedItem() != null && jComboBox1.getSelectedItem() != null){
         System.out.println("selected>>>"+jComboBox1.getSelectedItem().toString());
         if(jComboBox2.getSelectedItem().toString().equals("Breakfast") && jComboBox1.getSelectedItem().toString().equals("Veg")){
             List<FoodItems> foodList = foodOrg.getVegBreakfastList();
@@ -369,6 +357,9 @@ public class OrderMeal extends javax.swing.JPanel {
                 });
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Select Option");
+        }
         
 //        model.addRow(new Object[]{
 //                StudentNameTextField.getText(),
@@ -399,6 +390,7 @@ public class OrderMeal extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        if(!QuantityjTextField.getText().equals("") && selectedFoodItem != null){
         System.out.println("work size>>>"+userAccount.getWorkQueue().getWorkRequestList().size());
         for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0 ; i-- ){
             if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
@@ -434,6 +426,11 @@ public class OrderMeal extends javax.swing.JPanel {
             request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
+        JOptionPane.showMessageDialog(null, "Added to Cart!!");
+            QuantityjTextField.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select item and enter quantity");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void PlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaceOrderActionPerformed
@@ -441,12 +438,6 @@ public class OrderMeal extends javax.swing.JPanel {
         PlaceMealOrder placeOrder = new PlaceMealOrder(userProcessContainer, system ,userAccount,foodOrg, request,servicesSplitPane);
         servicesSplitPane.setRightComponent(placeOrder);
     }//GEN-LAST:event_PlaceOrderActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        TrackFoodOrderStatus track = new TrackFoodOrderStatus();
-        servicesSplitPane.setRightComponent(track);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -458,7 +449,6 @@ public class OrderMeal extends javax.swing.JPanel {
     private javax.swing.JLabel Title1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;

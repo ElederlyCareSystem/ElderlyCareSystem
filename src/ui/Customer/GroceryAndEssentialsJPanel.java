@@ -11,6 +11,7 @@ import Business.Organization.GroceryAndEssentialsOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GroceryWorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -212,6 +213,7 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        if(!QuantityjTextField.getText().equals("") && selectedItem != null){
         for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0 ; i-- ){
             if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(groceryOrg.getName())){
                 if(userAccount.getWorkQueue().getWorkRequestList().get(i).getStatus().equals("Completed")){
@@ -245,6 +247,12 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
             request.getShoppingList().get(request.getShoppingList().size()-1).setQuantity(Integer.parseInt(QuantityjTextField.getText()));
             request.setTotal(selectedItem.getPrice()  * Double.parseDouble(QuantityjTextField.getText()));
             userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }
+        
+            JOptionPane.showMessageDialog(null, "Added to Cart!!");
+            QuantityjTextField.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select item and enter quantity");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
