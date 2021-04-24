@@ -146,6 +146,7 @@ public class LoginJpanel extends javax.swing.JPanel {
     private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed
         // TODO add your handling code here:
         String username = jTextField_username.getText();
+        
         char[] passwordChar = jPasswordField_password.getPassword();
         String password = String.valueOf(passwordChar);
         boolean flag = false;

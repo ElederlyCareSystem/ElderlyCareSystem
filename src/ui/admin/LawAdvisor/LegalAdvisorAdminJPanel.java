@@ -74,6 +74,7 @@ public class LegalAdvisorAdminJPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1480, 800));
         setSize(new java.awt.Dimension(1480, 800));
+        setBackground(new java.awt.Color(178, 215, 229));
 
         HeaderPanel3.setBackground(new java.awt.Color(255, 255, 255));
         HeaderPanel3.setPreferredSize(new java.awt.Dimension(1254, 116));

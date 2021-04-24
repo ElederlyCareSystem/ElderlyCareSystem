@@ -47,6 +47,7 @@ public class OrganizationEmployeePanel extends javax.swing.JPanel {
         model.addColumn("ID");
         model.addColumn("Status");
         model.addColumn("From");
+        model.addColumn("Address");
 //        model.addColumn("To");
 //        ordersModel.addColumn("Id");
         viewOrderDirList();
@@ -64,7 +65,9 @@ public class OrganizationEmployeePanel extends javax.swing.JPanel {
                     nurse.getSender().getUsername(),
                     nurse.getId(),
                     nurse.getStatus(),
-                    nurse.getRequestDate(),});
+                    nurse.getRequestDate(),
+                    nurse.getSender().getUserDetails().getAddressApt()
+                });
             }
         }
     }
@@ -165,7 +168,7 @@ public class OrganizationEmployeePanel extends javax.swing.JPanel {
         });
 
         logoutBtn.setBackground(new java.awt.Color(0, 0, 0));
-        logoutBtn.setFont(new java.awt.Font("Palatino", 1, 14)); // NOI18N
+        logoutBtn.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Logout");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,8 +193,8 @@ public class OrganizationEmployeePanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(116, 116, 116)))
-                .addGap(275, 275, 275)
-                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(263, 263, 263)
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,16 +206,16 @@ public class OrganizationEmployeePanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(Title)
                 .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutBtn))
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -117,6 +117,9 @@ public class RevenueGenerated extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         HeaderPanel3.setBackground(new java.awt.Color(255, 255, 255));
         HeaderPanel3.setPreferredSize(new java.awt.Dimension(1254, 116));
 
@@ -146,113 +149,60 @@ public class RevenueGenerated extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        add(HeaderPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1035, -1));
+
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
         jPanel1.add(jPanel2);
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 148, 518, 223));
+
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Date:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 303, 112, 23));
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel6.setText("From:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 148, 112, 23));
 
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel7.setText("Revenue:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 348, 112, 23));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 385, 150, 40));
+        add(revenueText, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 347, 151, -1));
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 303, 151, -1));
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Show");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 230, 150, 39));
 
-        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
         jLabel8.setText("Add Revenue");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 275, -1, 23));
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 148, 145, -1));
 
         jLabel9.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel9.setText("To:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(revenueText)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(70, 70, 70)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 121, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(HeaderPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton3)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(revenueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addComponent(jButton1)))
-                .addContainerGap())
-        );
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 192, 112, 23));
+        add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 192, 145, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

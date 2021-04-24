@@ -59,8 +59,10 @@ public class NurseAdminHomeJPanel extends javax.swing.JPanel {
         jLabel_OrganizationName = new javax.swing.JLabel();
         jLabel_image = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(178, 215, 229));
         setPreferredSize(new java.awt.Dimension(1480, 800));
         setSize(new java.awt.Dimension(1480, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         HeaderPanel3.setBackground(new java.awt.Color(255, 255, 255));
         HeaderPanel3.setPreferredSize(new java.awt.Dimension(1254, 116));
@@ -92,31 +94,13 @@ public class NurseAdminHomeJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        add(HeaderPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1480, -1));
+
         jLabel_OrganizationName.setFont(new java.awt.Font("Palatino", 1, 28)); // NOI18N
         jLabel_OrganizationName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_OrganizationName.setText("jLabel1");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1480, Short.MAX_VALUE)
-            .addComponent(jLabel_OrganizationName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(jLabel_image, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(HeaderPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel_OrganizationName)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel_image, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
+        add(jLabel_OrganizationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 161, 1480, -1));
+        add(jLabel_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 225, 627, 376));
     }// </editor-fold>//GEN-END:initComponents
 
 

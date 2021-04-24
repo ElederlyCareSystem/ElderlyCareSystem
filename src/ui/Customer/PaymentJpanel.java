@@ -5,8 +5,11 @@
  */
 package ui.Customer;
 
+import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -19,11 +22,17 @@ public class PaymentJpanel extends javax.swing.JPanel {
      */
     private UserAccount useraccount;
     private Double price;
+    private JSplitPane servicesSplitPane;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     
     public PaymentJpanel(UserAccount useraccount, Double price) {
         initComponents();
         this.useraccount = useraccount;
         this.price = price;
+        this.userProcessContainer = userProcessContainer;
+        this.servicesSplitPane = servicesSplitPane;
+        this.system = system;
         jTextField_totalCost.setText(price.toString());
         System.out.println("check details...."+useraccount.getCardDetails().getCardHolderName());
     }
@@ -45,6 +54,7 @@ public class PaymentJpanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField_totalCost = new javax.swing.JTextField();
         jButton_Payment = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1254, 1000));
 
@@ -65,22 +75,29 @@ public class PaymentJpanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
         jLabel1.setText("Payment");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(522, 55, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
 
         jLabel2.setText("Subtotal :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 132, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
         jTextField_totalCost.setEditable(false);
-        jPanel1.add(jTextField_totalCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 123, 155, 34));
+        jPanel1.add(jTextField_totalCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 155, 34));
 
+        jButton_Payment.setBackground(new java.awt.Color(0, 0, 0));
         jButton_Payment.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        jButton_Payment.setForeground(new java.awt.Color(255, 255, 255));
         jButton_Payment.setText("Pay from Wallet");
         jButton_Payment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_PaymentActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 191, 279, 45));
+        jPanel1.add(jButton_Payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 279, 45));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/transfer.jpeg"))); // NOI18N
+        jLabel3.setOpaque(true);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 880));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,11 +125,21 @@ public class PaymentJpanel extends javax.swing.JPanel {
 
     private void jButton_PaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PaymentActionPerformed
         // TODO add your handling code here:
-        Double balance = useraccount.getCardDetails().getBalance();
+        if(useraccount.getCardDetails() != null){
+            Double balance = useraccount.getCardDetails().getBalance();
+        if(balance >= price){
         balance = balance - price;
         useraccount.getCardDetails().setBalance(balance);
         System.out.println("balance....."+useraccount.getCardDetails().getBalance());
+        jTextField_totalCost.setText("");
         JOptionPane.showMessageDialog(null, "Payment Successful");
+        }else{
+            JOptionPane.showMessageDialog(null, "Insufficient Balance");
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Card details not added");
+        }
+        
     }//GEN-LAST:event_jButton_PaymentActionPerformed
 
 
@@ -122,6 +149,7 @@ public class PaymentJpanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton_Payment;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JTextField jTextField_totalCost;

@@ -37,30 +37,22 @@ public class BookLawAppointment extends javax.swing.JPanel {
     JSplitPane servicesSplitPane;
     LegalServicesOrganization legalOrg;
     String orgName = "Legal Services Organization";
-    java.util.Date dateCurrent=new java.util.Date();
-    
-    public BookLawAppointment(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,JSplitPane servicesSplitPane) {
+    java.util.Date dateCurrent = new java.util.Date();
+
+    public BookLawAppointment(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount, JSplitPane servicesSplitPane) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
         this.servicesSplitPane = servicesSplitPane;
-        
-//        for (int j = 0; j < system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().size(); j++) {
-//            System.out.println("orgo>>>" + system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName());
-//            if (system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j).getName() == orgName) {
-//                legalOrg = (LegalServicesOrganization) system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList().get(j);
-//                break;
-//            }
-//        }
-        
+
         for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof LegalServicesOrganization) {
                 legalOrg = ((LegalServicesOrganization) organization);
                 break;
             }
         }
-        System.out.println("legalorg...."+legalOrg.getConsultationtype().size());
+        System.out.println("legalorg...." + legalOrg.getConsultationtype().size());
         String name = (String) legalOrg.getDateArray().keySet().toArray()[0];
         System.out.println("name>>>>>>" + name);
         ArrayList<String> timeArray = legalOrg.getTimeSlot(name);
@@ -69,10 +61,10 @@ public class BookLawAppointment extends javax.swing.JPanel {
         for (int i = 0; i < timeArray.size(); i++) {
             jComboBox_timeSlotLaw.addItem(timeArray.get(i));
         }
-        
+
         HashMap<String, Double> consultationtype = legalOrg.getConsultationtype();
-        
-        for(String type : consultationtype.keySet()){
+
+        for (String type : consultationtype.keySet()) {
             jComboBox1_consulatationtype.addItem(type);
         }
     }
@@ -102,6 +94,7 @@ public class BookLawAppointment extends javax.swing.JPanel {
         jTextField_costLawAdvice = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -130,6 +123,8 @@ public class BookLawAppointment extends javax.swing.JPanel {
                         .addComponent(Title)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        add(jPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
         jPanel_appointmentLaw.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -235,26 +230,7 @@ public class BookLawAppointment extends javax.swing.JPanel {
                 .addGap(37, 37, 37))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(jPanel_appointmentLaw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jPanel_appointmentLaw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        add(jPanel_appointmentLaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 152, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDateChooser_lawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser_lawMouseClicked
@@ -264,62 +240,73 @@ public class BookLawAppointment extends javax.swing.JPanel {
 
     private void jDateChooser_lawPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser_lawPropertyChange
         // TODO add your handling code here:
-        if(jDateChooser_law.getDate()!= null){
-            Date date = jDateChooser_law.getDate();
-            SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
-            String date1 = format1.format(date);
-            ArrayList<String> timeSlot1 = legalOrg.getTimeSlot(date1);
-            jComboBox_timeSlotLaw.removeAllItems();
-            for(int i=0;i< timeSlot1.size();i++){
-                System.out.println("selected items....."+timeSlot1.get(i));
-                jComboBox_timeSlotLaw.addItem(timeSlot1.get(i));
+        if (jDateChooser_law.getDate() != null) {
+            if (jDateChooser_law.getDate().before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Start date should be after today's date");
+                jDateChooser_law.setDate(null);
+                return;
+            } else {
+                Date date = jDateChooser_law.getDate();
+                SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
+                String date1 = format1.format(date);
+                ArrayList<String> timeSlot1 = legalOrg.getTimeSlot(date1);
+                jComboBox_timeSlotLaw.removeAllItems();
+                for (int i = 0; i < timeSlot1.size(); i++) {
+                    jComboBox_timeSlotLaw.addItem(timeSlot1.get(i));
+                }
             }
         }
     }//GEN-LAST:event_jDateChooser_lawPropertyChange
 
     private void jButton_bookLawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bookLawActionPerformed
         // TODO add your handling code here:
-        Date date = jDateChooser_law.getDate();
-        SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
-        String date1 = format1.format(date);
-        String timeSlot = (String) jComboBox_timeSlotLaw.getSelectedItem();
-        String consultationType = (String) jComboBox1_consulatationtype.getSelectedItem();
-        System.out.println("date++++++" + date1);
-        ArrayList<String> timeSlot1 = legalOrg.getTimeSlot(date1);
-        HashMap<String, ArrayList<String>> dateArray = legalOrg.getDateArray();
 
-        timeSlot1.remove(timeSlot);
-        System.out.println("deleted time" + timeSlot1);
-        JOptionPane.showMessageDialog(null, "Appointment booked.");
-        jComboBox_timeSlotLaw.removeAllItems();
-        for(int i=0;i< timeSlot1.size();i++){
-            System.out.println("deleted items....."+timeSlot1.get(i));
+        if (jDateChooser_law.getDate() != null && jComboBox_timeSlotLaw.getSelectedItem() != null) {
+            if (jDateChooser_law.getDate().before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Start date should be after today's date");
+                return;
+            }
+            Date date = jDateChooser_law.getDate();
+            SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
+            String date1 = format1.format(date);
+            String timeSlot = (String) jComboBox_timeSlotLaw.getSelectedItem();
+            String consultationType = (String) jComboBox1_consulatationtype.getSelectedItem();
+            ArrayList<String> timeSlot1 = legalOrg.getTimeSlot(date1);
+            HashMap<String, ArrayList<String>> dateArray = legalOrg.getDateArray();
 
-            jComboBox_timeSlotLaw.addItem(timeSlot1.get(i));
-        }
-        LawFirmWorkRequest request = new LawFirmWorkRequest();
-        request.setSender(userAccount);
-        request.setMessage("Book appointment");
-        request.setTimeSlot(timeSlot);
-        request.setDate(date1);
-        request.setConsultationType(consultationType);
-        request.setStatus("Sent");
-        request.setConsultationFee(Double.parseDouble(jTextField_costLawAdvice.getText()));
-        double total = request.getTotal() + (Double.parseDouble(jTextField_costLawAdvice.getText()));
-        request.setTotal(total);
-        request.setRequestDate(dateCurrent);
-        userAccount.getWorkQueue().getWorkRequestList().add(request);
-        
-        
-        String d = request.getRequestDate().toString();
-        String[] dArr = d.split(" ");
-        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
-         RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
-        legalOrg.getRevMap().add(rm);
+            timeSlot1.remove(timeSlot);
+            JOptionPane.showMessageDialog(null, "Appointment booked.");
+            jComboBox_timeSlotLaw.removeAllItems();
+            for (int i = 0; i < timeSlot1.size(); i++) {
+                System.out.println("deleted items....." + timeSlot1.get(i));
 
-        if (legalOrg != null) {
-            legalOrg.getWorkQueue().getWorkRequestList().add(request);
+                jComboBox_timeSlotLaw.addItem(timeSlot1.get(i));
+            }
+            LawFirmWorkRequest request = new LawFirmWorkRequest();
+            request.setSender(userAccount);
+            request.setMessage("Book appointment");
+            request.setTimeSlot(timeSlot);
+            request.setDate(date1);
+            request.setConsultationType(consultationType);
+            request.setStatus("Sent");
+            request.setConsultationFee(Double.parseDouble(jTextField_costLawAdvice.getText()));
+            double total = request.getTotal() + (Double.parseDouble(jTextField_costLawAdvice.getText()));
+            request.setTotal(total);
+            request.setRequestDate(dateCurrent);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
 
+            String d = request.getRequestDate().toString();
+            String[] dArr = d.split(" ");
+            List<String> fullDate = Arrays.asList(dArr[dArr.length - 1], dArr[1]);
+            RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+            legalOrg.getRevMap().add(rm);
+
+            if (legalOrg != null) {
+                legalOrg.getWorkQueue().getWorkRequestList().add(request);
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter all the details correctly");
         }
     }//GEN-LAST:event_jButton_bookLawActionPerformed
 

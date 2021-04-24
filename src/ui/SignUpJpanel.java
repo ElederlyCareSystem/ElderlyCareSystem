@@ -10,6 +10,8 @@ import Business.Employee.Employee;
 import Business.Role.CustomerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,6 +26,10 @@ public class SignUpJpanel extends javax.swing.JPanel {
      */
     JPanel mainWorkArea;
     EcoSystem system;
+    String passregex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+    String emailregex ="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    Pattern pattern = Pattern.compile(passregex);
+    Pattern patternemail = Pattern.compile(emailregex);
     public SignUpJpanel(JPanel mainWorkArea, EcoSystem system) {
         initComponents();
         this.system = system;
@@ -49,10 +55,10 @@ public class SignUpJpanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        confirmPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPasswordField_confirm = new javax.swing.JPasswordField();
+        jPasswordField_main = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -94,29 +100,28 @@ public class SignUpJpanel extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel7.setText("SIGN UP");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 28, 112, 23));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 112, 23));
 
-        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         jLabel8.setText("Username:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 89, 112, 23));
-        jPanel1.add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 88, 165, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 112, 23));
+        jPanel1.add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 88, 170, 40));
 
-        jLabel9.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         jLabel9.setText("Email:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 127, 72, 23));
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 126, 165, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 72, 23));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 170, 40));
 
-        jLabel10.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         jLabel10.setText("Password:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 171, 112, 23));
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 170, 165, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 112, 23));
 
-        jLabel11.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         jLabel11.setText("Confirm Password:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 209, 146, 23));
-        jPanel1.add(confirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 208, 165, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 180, 23));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setBackground(new java.awt.Color(102, 102, 255));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,20 +129,48 @@ public class SignUpJpanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 270, 180, 33));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 220, 50));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 540, 310));
+        jPasswordField_confirm.setText("jPasswordField1");
+        jPanel1.add(jPasswordField_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 170, 40));
+
+        jPasswordField_main.setText("jPasswordField1");
+        jPanel1.add(jPasswordField_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 170, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 540, 400));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/elderly care.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean isValid(String password) {
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+    
+    public boolean isValidEmail(String email) {
+        Matcher matcher = patternemail.matcher(email);
+        return matcher.matches();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(password.getText().equals(confirmPassword.getText())){
+        if(!isValid(String.valueOf(jPasswordField_main.getPassword()))){
+            JOptionPane.showMessageDialog(null, "Enter valid password with atleast on number, one lowercase letter, one uppercase letter,one special char and atleast 8 digits");
+            
+            return;
+        }
+        
+        if(!isValidEmail(email.getText())){
+            JOptionPane.showMessageDialog(null, "Enter valid Email ID");
+            email.setText("");
+            return;
+        }
+        if(system.checkIfUserIsUnique(Username.getText())){
+        if(String.valueOf(jPasswordField_main.getPassword()).equals(String.valueOf(jPasswordField_confirm.getPassword()))){
             Employee employee1 = system.getEmployeeDirectory().createEmployee("customer");
-            UserAccount ua1 = system.getUserAccountDirectory().createUserAccount(Username.getText(), password.getText(), employee1, new CustomerRole());
+            UserAccount ua1 = system.getUserAccountDirectory().createUserAccount(Username.getText(), String.valueOf(jPasswordField_main.getPassword()), employee1, new CustomerRole());
             ua1.getUserDetails().setEmailId(email.getText());
             System.out.println("customer list size>>"+system.getUserAccountDirectory().getUserAccountList().size());
             mainWorkArea.remove(this);
@@ -145,6 +178,9 @@ public class SignUpJpanel extends javax.swing.JPanel {
             layout.previous(mainWorkArea);
         }else{
             JOptionPane.showMessageDialog(null, "Passwords do not match");
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Enter unique username");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -154,7 +190,6 @@ public class SignUpJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel ImageHeader;
     private javax.swing.JLabel Title;
     private javax.swing.JTextField Username;
-    private javax.swing.JTextField confirmPassword;
     private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -165,6 +200,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField jPasswordField_confirm;
+    private javax.swing.JPasswordField jPasswordField_main;
     // End of variables declaration//GEN-END:variables
 }

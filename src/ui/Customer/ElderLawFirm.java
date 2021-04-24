@@ -51,6 +51,9 @@ public class ElderLawFirm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel_lawImage1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
 
         ImageHeader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
@@ -79,6 +82,8 @@ public class ElderLawFirm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        add(jPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1701, 110));
+
         jLabel1_content1.setFont(new java.awt.Font("Palatino", 0, 16)); // NOI18N
         jLabel1_content1.setText("<html><h2>PLAN YOUR ESTATE WITH INTENTION</h2>\n<p>You worked hard to build your life — your family, your home and all the things you cherish. Have you put the same<br> effort into planning what happens to you if you become disabled or when you die? An estate plan is about more<br> than planning for death. It is about planning for whatever comes your way during your lifetime. A solid estate plan<br> provides peace of mind for you and your family.</p>\n<br>\n<b><p>We provide guidance and assistance in preparing Last Will and Testament and Trust Documents, Powers<br> of Attorney and Advance Directives for Health Care and other important matters.<br> </p>\n</html>");
 
@@ -88,7 +93,7 @@ public class ElderLawFirm extends javax.swing.JPanel {
         jButton_bookLawAppointment1.setBackground(new java.awt.Color(0, 0, 0));
         jButton_bookLawAppointment1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         jButton_bookLawAppointment1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_bookLawAppointment1.setText("BOOK OUT TEAM TO SPEAK AT YOUR LOCATION");
+        jButton_bookLawAppointment1.setText("BOOK OUR TEAM TO SPEAK AT YOUR LOCATION");
         jButton_bookLawAppointment1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_bookLawAppointment1ActionPerformed(evt);
@@ -125,36 +130,13 @@ public class ElderLawFirm extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton_bookLawAppointment1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 473, -1, -1));
 
         jLabel_lawImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/lawfirm.jpeg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_lawImage1)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 269, Short.MAX_VALUE)))
-                .addGap(0, 0, 0))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_lawImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
-        );
+        add(jLabel_lawImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 116, -1, 351));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_bookLawAppointment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bookLawAppointment1ActionPerformed

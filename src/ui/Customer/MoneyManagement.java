@@ -53,6 +53,7 @@ public class MoneyManagement extends javax.swing.JPanel {
         image = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -82,14 +83,19 @@ public class MoneyManagement extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        add(jPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
+
         jLabel1.setFont(new java.awt.Font("Palatino", 1, 24)); // NOI18N
         jLabel1.setText("Money Management");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 144, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("Financial security goes hand-in-hand with peace of mind.\n\nFor many people, however, such security is elusive. Minor physical limitations, normal to the aging process, can be a threat to one's financial status. \nWe recognize that monthly bill paying and budgeting can sometimes be overwhelming. \nWith visual and/or dexterity impairments or short-term memory lapses,household bills pile up and credit card debt soon mounts. \nThe Money Management program helps people maintain their independence at home. \nTrained and insured volunteers work one-on-one with the consumer for a few hours each month to: ");
         jScrollPane1.setViewportView(jTextArea1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 597, 901, 132));
 
         jButtonAppointment.setBackground(new java.awt.Color(0, 0, 0));
         jButtonAppointment.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
@@ -100,6 +106,7 @@ public class MoneyManagement extends javax.swing.JPanel {
                 jButtonAppointmentActionPerformed(evt);
             }
         });
+        add(jButtonAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 755, -1, 38));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
@@ -110,51 +117,10 @@ public class MoneyManagement extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 755, 246, 38));
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/moneyDesktop.jpeg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(361, 361, 361)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176)
-                        .addComponent(jButtonAppointment))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(104, 104, 104)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(328, Short.MAX_VALUE))
-        );
+        add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 189, 901, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppointmentActionPerformed

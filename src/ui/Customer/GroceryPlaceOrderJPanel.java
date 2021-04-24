@@ -7,9 +7,13 @@ package ui.Customer;
 
 import Business.EcoSystem;
 import Business.Organization.GroceryAndEssentialsOrganization;
+import Business.Organization.RevenueMap;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GroceryWorkRequest;
 import java.awt.CardLayout;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -67,7 +71,6 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         ImageHeader1 = new javax.swing.JLabel();
         Title1 = new javax.swing.JLabel();
-        BackButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         SubmitjButton = new javax.swing.JButton();
@@ -102,15 +105,6 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(Title1))
         );
-
-        BackButton.setBackground(new java.awt.Color(0, 0, 0));
-        BackButton.setForeground(new java.awt.Color(255, 255, 255));
-        BackButton.setText("<< BACK");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,11 +190,6 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
                 .addGap(150, 150, 150)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(431, 431, 431))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(BackButton)
-                    .addContainerGap(950, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,20 +207,8 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
                     .addComponent(jButton_pay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SubmitjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(125, 125, 125))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(139, 139, 139)
-                    .addComponent(BackButton)
-                    .addContainerGap(522, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_BackButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -247,11 +224,18 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
         request.setStatus("Order Placed");
         request.setRequestDate(date);
         groceryOrg.getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Order Placed!!");
+        TotalTextField.setText("");
         System.out.println("sender>"+request.getSender().getUserDetails().getName());
         String d = request.getRequestDate().toString();
         String[] dArr = d.split(" ");
         System.out.println("date>>>>"+date);
         System.out.println("total>>"+request.getTotal());
+        
+        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
+        //foodOrg.getRevenueMap().put(fullDate, request.getTotal());
+        RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+        groceryOrg.getRevMap().add(rm);
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
     private void RemovejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovejButtonActionPerformed
@@ -266,6 +250,7 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
 
         model.removeRow(index);
         TotalTextField.setText(String.valueOf(request.getTotal()));
+        JOptionPane.showMessageDialog(null, "Order Removed!!");
     }//GEN-LAST:event_RemovejButtonActionPerformed
 
     private void jButton_payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_payActionPerformed
@@ -276,7 +261,6 @@ public class GroceryPlaceOrderJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackButton;
     private javax.swing.JLabel ImageHeader1;
     private javax.swing.JButton RemovejButton;
     private javax.swing.JButton SubmitjButton;

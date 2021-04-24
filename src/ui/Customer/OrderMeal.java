@@ -13,6 +13,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodOrganizationWorkRequest;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -89,11 +90,11 @@ public class OrderMeal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         PlaceOrder = new javax.swing.JButton();
         OKjButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(178, 215, 229));
         setAutoscrolls(true);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -120,18 +121,26 @@ public class OrderMeal extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
-        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 925, -1));
+
+        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel2.setText("Order Meal");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 128, 155, 31));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Veg", "Non-Veg", "Vegan" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 220, 166, -1));
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel3.setText("Type of Meal:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 216, 110, 31));
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel4.setText("Quantity:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 507, 110, 31));
+        add(QuantityjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 510, 166, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add To Cart");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +148,7 @@ public class OrderMeal extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 544, 179, 40));
 
         MenujTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,10 +176,14 @@ public class OrderMeal extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(MenujTable1);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 319, -1, 176));
+
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         jLabel5.setText("Meal:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 173, 110, 31));
 
         PlaceOrder.setBackground(new java.awt.Color(0, 0, 0));
+        PlaceOrder.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         PlaceOrder.setForeground(new java.awt.Color(255, 255, 255));
         PlaceOrder.setText("Place Order");
         PlaceOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +191,7 @@ public class OrderMeal extends javax.swing.JPanel {
                 PlaceOrderActionPerformed(evt);
             }
         });
+        add(PlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 173, 154, 40));
 
         OKjButton.setBackground(new java.awt.Color(0, 0, 0));
         OKjButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,95 +201,16 @@ public class OrderMeal extends javax.swing.JPanel {
                 OKjButtonActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Track Order");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        add(OKjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 261, 150, 40));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Breakfast", "Lunch", "Dinner" }));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(QuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(382, 382, 382)
-                        .addComponent(OKjButton)))
-                .addContainerGap(368, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 264, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(PlaceOrder))
-                .addGap(199, 199, 199))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PlaceOrder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OKjButton)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 177, 166, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
         // TODO add your handling code here:
         
+        if(jComboBox1.getSelectedItem() != null && jComboBox1.getSelectedItem() != null){
         System.out.println("selected>>>"+jComboBox1.getSelectedItem().toString());
         if(jComboBox2.getSelectedItem().toString().equals("Breakfast") && jComboBox1.getSelectedItem().toString().equals("Veg")){
             List<FoodItems> foodList = foodOrg.getVegBreakfastList();
@@ -367,6 +303,9 @@ public class OrderMeal extends javax.swing.JPanel {
                 });
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Select Option");
+        }
         
 //        model.addRow(new Object[]{
 //                StudentNameTextField.getText(),
@@ -397,6 +336,7 @@ public class OrderMeal extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        if(!QuantityjTextField.getText().equals("") && selectedFoodItem != null){
         System.out.println("work size>>>"+userAccount.getWorkQueue().getWorkRequestList().size());
         for(int i = userAccount.getWorkQueue().getWorkRequestList().size()-1; i >= 0 ; i-- ){
             if(userAccount.getWorkQueue().getWorkRequestList().get(i).getReqType().equals(foodOrg.getName())){
@@ -432,6 +372,11 @@ public class OrderMeal extends javax.swing.JPanel {
             request.setTotal(price * Integer.parseInt(QuantityjTextField.getText()));
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
+        JOptionPane.showMessageDialog(null, "Added to Cart!!");
+            QuantityjTextField.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select item and enter quantity");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void PlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaceOrderActionPerformed
@@ -439,12 +384,6 @@ public class OrderMeal extends javax.swing.JPanel {
         PlaceMealOrder placeOrder = new PlaceMealOrder(userProcessContainer, system ,userAccount,foodOrg, request,servicesSplitPane);
         servicesSplitPane.setRightComponent(placeOrder);
     }//GEN-LAST:event_PlaceOrderActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        TrackFoodOrderStatus track = new TrackFoodOrderStatus();
-        servicesSplitPane.setRightComponent(track);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,7 +395,6 @@ public class OrderMeal extends javax.swing.JPanel {
     private javax.swing.JLabel Title1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
