@@ -51,6 +51,8 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
         houseHoldContentText = new javax.swing.JLabel();
         ViewServiceBtn = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         headerPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
@@ -75,6 +77,8 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(Title1))
         );
+
+        add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1165, -1));
 
         jPanel1.setBackground(new java.awt.Color(178, 215, 229));
         jPanel1.setToolTipText("");
@@ -126,8 +130,8 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addComponent(houseHoldContentText, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ViewServiceBtn)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(ViewServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(34, 34, 34)
@@ -135,20 +139,7 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
                     .addContainerGap(393, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 116, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewServiceBtnActionPerformed

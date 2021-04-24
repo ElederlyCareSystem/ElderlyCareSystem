@@ -39,12 +39,12 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
     UserAccount userAccount;
     MoneyManagementOrganization moneyOrg;
     JSplitPane servicesSplitPane;
-    java.util.Date dateCurrent=new java.util.Date();
+    java.util.Date dateCurrent = new java.util.Date();
 //    String orgName = "Money Management Organization";
 //    Organization org = system.getNetwork().getEnterpriseDirectory().getEnterpriseByType("Finance", "MoneyManagement");
 //    moneyOrg1 = (MoneyManagementOrganization) org;
 
-    MoneyAdviceAppointment(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,JSplitPane servicesSplitPane) {
+    MoneyAdviceAppointment(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount, JSplitPane servicesSplitPane) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -58,7 +58,6 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
 //                break;
 //            }
 //        }
-        
         for (Organization organization : system.getNetwork().getEnterpriseDirectory().getEnterprise("Finance").getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof MoneyManagementOrganization) {
                 moneyOrg = ((MoneyManagementOrganization) organization);
@@ -100,6 +99,7 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
         jTextField_costAdvice = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,6 +128,8 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                         .addComponent(Title)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        add(jPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -214,98 +216,91 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(352, 352, 352)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 217, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bookActionPerformed
         // TODO add your handling code here:
-        Date date = jDateChooser_money.getDate();
-        SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
-        String date1 = format1.format(date);
-        String timeSlot = (String) jComboBox_timeSlot.getSelectedItem();
-        System.out.println("date++++++" + date1);
-        ArrayList<String> timeSlot1 = moneyOrg.getTimeSlot(date1);
-        HashMap<String, ArrayList<String>> dateArray = moneyOrg.getDateArray();
+        if (jDateChooser_money.getDate() != null && jComboBox_timeSlot.getSelectedItem() != null) {
+            if (jDateChooser_money.getDate().before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Start date should be after today's date");
+                return;
+            }
+            Date date = jDateChooser_money.getDate();
+            SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
+            String date1 = format1.format(date);
+            String timeSlot = (String) jComboBox_timeSlot.getSelectedItem();
+            System.out.println("date++++++" + date1);
+            ArrayList<String> timeSlot1 = moneyOrg.getTimeSlot(date1);
+            HashMap<String, ArrayList<String>> dateArray = moneyOrg.getDateArray();
 
-        timeSlot1.remove(timeSlot);
-        System.out.println("deleted time" + timeSlot1);
-        JOptionPane.showMessageDialog(null, "Appointment booked.");
-        jComboBox_timeSlot.removeAllItems();
-        for(int i=0;i< timeSlot1.size();i++){
-            System.out.println("deleted items....."+timeSlot1.get(i));
-            
-            jComboBox_timeSlot.addItem(timeSlot1.get(i));
+            timeSlot1.remove(timeSlot);
+            System.out.println("deleted time" + timeSlot1);
+            JOptionPane.showMessageDialog(null, "Appointment booked.");
+            jComboBox_timeSlot.removeAllItems();
+            for (int i = 0; i < timeSlot1.size(); i++) {
+                System.out.println("deleted items....." + timeSlot1.get(i));
+
+                jComboBox_timeSlot.addItem(timeSlot1.get(i));
+            }
+            MoneyWorkRequest request = new MoneyWorkRequest();
+            request.setSender(userAccount);
+            request.setMessage("Book appointment");
+            request.setTimeSlot(timeSlot);
+            request.setDate(date1);
+            request.setStatus("Sent");
+            request.setPrice(moneyOrg.getPrice());
+            request.setId(moneyOrg.getWorkQueue().getWorkRequestList().size() + 1);
+            request.setRequestDate(dateCurrent);
+            request.setTotal(request.getTotal() + moneyOrg.getPrice());
+            if (moneyOrg != null) {
+                System.out.println("before req count....." + userAccount.getWorkQueue().getWorkRequestList().size());
+
+                userAccount.getWorkQueue().getWorkRequestList().add(request);
+                System.out.println("before req count org....." + moneyOrg.getWorkQueue().getWorkRequestList().size());
+                System.out.println("after req count....." + userAccount.getWorkQueue().getWorkRequestList().size());
+                moneyOrg.getWorkQueue().getWorkRequestList().add(request);
+                System.out.println("after req count org....." + moneyOrg.getWorkQueue().getWorkRequestList().size());
+            }
+
+            String d = request.getRequestDate().toString();
+            String[] dArr = d.split(" ");
+            List<String> fullDate = Arrays.asList(dArr[dArr.length - 1], dArr[1]);
+            RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
+            moneyOrg.getRevMap().add(rm);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter all the details correctly");
         }
-        MoneyWorkRequest request = new MoneyWorkRequest();
-        request.setSender(userAccount);
-        request.setMessage("Book appointment");
-        request.setTimeSlot(timeSlot);
-        request.setDate(date1);
-        request.setStatus("Sent");
-        request.setPrice(moneyOrg.getPrice());
-        request.setId(moneyOrg.getWorkQueue().getWorkRequestList().size()+1);
-        request.setRequestDate(dateCurrent);
-        request.setTotal(request.getTotal()+moneyOrg.getPrice());
-        if (moneyOrg != null) {
-            System.out.println("before req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
-            
-                    userAccount.getWorkQueue().getWorkRequestList().add(request);
-                    System.out.println("before req count org....."+moneyOrg.getWorkQueue().getWorkRequestList().size());
-                    System.out.println("after req count....."+userAccount.getWorkQueue().getWorkRequestList().size());
-                    moneyOrg.getWorkQueue().getWorkRequestList().add(request);
-                    System.out.println("after req count org....."+moneyOrg.getWorkQueue().getWorkRequestList().size());
-        }
-        
-        String d = request.getRequestDate().toString();
-        String[] dArr = d.split(" ");
-        List<String> fullDate = Arrays.asList(dArr[dArr.length -1], dArr[1]);
-        //foodOrg.getRevenueMap().put(fullDate, request.getTotal());
-        RevenueMap rm = new RevenueMap(Integer.parseInt(fullDate.get(0)), fullDate.get(1), request.getTotal(), 4);
-        moneyOrg.getRevMap().add(rm);
-//        System.out.println("before add req...."+userAccount.getWorkQueue().getWorkRequestList().size());
-//        userAccount.getWorkQueue().getWorkRequestList().add(request);
-//        System.out.println("after add req...."+userAccount.getWorkQueue().getWorkRequestList().size());
-//        System.out.println("before add req org...."+ moneyOrg.getWorkQueue().getWorkRequestList().size());
-//        if (moneyOrg != null) {
-//            moneyOrg.getWorkQueue().getWorkRequestList().add(request);
-//            System.out.println("after add req org...."+ moneyOrg.getWorkQueue().getWorkRequestList().size());
-//
-//        }
+
     }//GEN-LAST:event_jButton_bookActionPerformed
 
     private void jDateChooser_moneyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser_moneyMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jDateChooser_moneyMouseClicked
 
     private void jDateChooser_moneyPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser_moneyPropertyChange
         // TODO add your handling code here:
-        if(jDateChooser_money.getDate()!= null){
-        Date date = jDateChooser_money.getDate();
-        SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
-        String date1 = format1.format(date);
-        ArrayList<String> timeSlot1 = moneyOrg.getTimeSlot(date1);
-        jComboBox_timeSlot.removeAllItems();
-        for(int i=0;i< timeSlot1.size();i++){
-            System.out.println("selected items....."+timeSlot1.get(i));
-            jComboBox_timeSlot.addItem(timeSlot1.get(i));
-        }
+        if (jDateChooser_money.getDate() != null) {
+            System.out.println("in prop change money...");
+            if (jDateChooser_money.getDate().before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Start date should be after today's date");
+                System.out.println("in if money...");
+                jDateChooser_money.setDate(null);
+                return;
+            }else{
+                System.out.println("in else money...");
+                Date date = jDateChooser_money.getDate();
+            SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy");
+            String date1 = format1.format(date);
+            ArrayList<String> timeSlot1 = moneyOrg.getTimeSlot(date1);
+            jComboBox_timeSlot.removeAllItems();
+            for (int i = 0; i < timeSlot1.size(); i++) {
+                System.out.println("selected items....." + timeSlot1.get(i));
+                jComboBox_timeSlot.addItem(timeSlot1.get(i));
+            }
+            }
+            
         }
     }//GEN-LAST:event_jDateChooser_moneyPropertyChange
 

@@ -77,7 +77,7 @@ public class ConfigureASystem {
         Employee employeeHouseHoldAdmin = system.getEmployeeDirectory().createEmployee("houseHoldAdmin");
         Employee employeeFoodManager = system.getEmployeeDirectory().createEmployee("foodManager");
         Employee employeeMoneyAdvisor = system.getEmployeeDirectory().createEmployee("snehal");
-        UserAccount snehal = system.getUserAccountDirectory().createUserAccount("snehal", "snehal", employeeMoneyAdvisor, new MoneyAdvisorRole());
+        UserAccount snehal = system.getUserAccountDirectory().createUserAccount("snehal", "snehal", employeeMoneyAdvisor, new MoneyAdvisorRole("employee"));
         Employee groceryManager = system.getEmployeeDirectory().createEmployee("groceryManager");
 
 
@@ -92,8 +92,8 @@ public class ConfigureASystem {
         UserAccount therapistUser = system.getUserAccountDirectory().createUserAccount("therapyAdmin", "therapyAdmin", employeeTherapyAdmin, new TherapistRole("admin"));
         UserAccount covidCareUser = system.getUserAccountDirectory().createUserAccount("covidCareAdmin", "covidCareAdmin", employeeCovidCareAdmin, new CovidCareRole("admin"));
         UserAccount houseHoldUser = system.getUserAccountDirectory().createUserAccount("houseHoldAdmin", "houseHoldAdmin", employeeHouseHoldAdmin, new HouseHoldRole("admin"));
-        UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole());
-        UserAccount userGrocery = system.getUserAccountDirectory().createUserAccount("groceryManager", "groceryManager", groceryManager, new ManageGroceryRole());
+        UserAccount userFood = system.getUserAccountDirectory().createUserAccount("foodManager", "foodManager", employeeFoodManager, new FoodManagerRole("admin"));
+        UserAccount userGrocery = system.getUserAccountDirectory().createUserAccount("groceryManager", "groceryManager", groceryManager, new ManageGroceryRole("admin"));
 
         
         moneyManagementOrganization.getUserAccountDirectory().getUserAccountList().add(userMoney);

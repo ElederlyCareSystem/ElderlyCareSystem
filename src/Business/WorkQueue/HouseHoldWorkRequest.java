@@ -16,7 +16,16 @@ public class HouseHoldWorkRequest extends WorkRequest{
 
     private Date fromDate;
     private Date toDate;
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
     private int noOfDays;
+    private Double totalPrice;
     private HashMap<String, String> services;
 
     public HashMap<String, String> getServices() {

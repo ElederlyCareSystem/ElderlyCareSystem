@@ -47,6 +47,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         dashboardJScrollPane = new javax.swing.JScrollPane();
         dashboardJPanel = new javax.swing.JPanel();
         HeaderPanel = new javax.swing.JPanel();
@@ -79,6 +80,9 @@ public class CustomerDashboard extends javax.swing.JPanel {
         ProtectiveServicesPanelImg2 = new javax.swing.JLabel();
         NursingServicesButton1 = new javax.swing.JButton();
         NursingServicesLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/newWall.jpeg"))); // NOI18N
 
         setPreferredSize(new java.awt.Dimension(1480, 1000));
 
@@ -88,35 +92,19 @@ public class CustomerDashboard extends javax.swing.JPanel {
         dashboardJPanel.setPreferredSize(new java.awt.Dimension(1480, 1000));
 
         HeaderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        HeaderPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         HeaderPanel.setPreferredSize(new java.awt.Dimension(1480, 116));
+        HeaderPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
+        HeaderPanel.add(ImageHeader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
         Title1.setFont(new java.awt.Font("Palatino", 1, 48)); // NOI18N
         Title1.setText("Helping Hands");
-
-        javax.swing.GroupLayout HeaderPanelLayout = new javax.swing.GroupLayout(HeaderPanel);
-        HeaderPanel.setLayout(HeaderPanelLayout);
-        HeaderPanelLayout.setHorizontalGroup(
-            HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HeaderPanelLayout.createSequentialGroup()
-                .addComponent(ImageHeader1)
-                .addGap(20, 20, 20)
-                .addComponent(Title1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        HeaderPanelLayout.setVerticalGroup(
-            HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HeaderPanelLayout.createSequentialGroup()
-                .addGroup(HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ImageHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(HeaderPanelLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(Title1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        HeaderPanel.add(Title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 29, -1, -1));
 
         containerPanel.setBackground(new java.awt.Color(178, 215, 229));
+        containerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ProtectiveServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         ProtectiveServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -169,6 +157,8 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addComponent(LegalServicesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
         );
 
+        containerPanel.add(ProtectiveServicesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 418, -1, -1));
+
         NursingServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         NursingServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
@@ -219,6 +209,8 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NursingServicesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        containerPanel.add(NursingServicesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 70, -1, 312));
 
         GroceryServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         GroceryServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -277,6 +269,8 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        containerPanel.add(GroceryServicesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 418, 282, 312));
+
         CompanionServicesPanel.setBackground(new java.awt.Color(255, 255, 255));
         CompanionServicesPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
@@ -329,6 +323,8 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addGap(216, 216, 216))
         );
 
+        containerPanel.add(CompanionServicesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 70, -1, 312));
+
         logoutButton.setBackground(new java.awt.Color(0, 0, 0));
         logoutButton.setFont(new java.awt.Font("Palatino", 1, 14)); // NOI18N
         logoutButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -338,6 +334,7 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 logoutButtonActionPerformed(evt);
             }
         });
+        containerPanel.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1264, 15, 164, 45));
 
         NursingServicesPanel1.setBackground(new java.awt.Color(255, 255, 255));
         NursingServicesPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -390,58 +387,29 @@ public class CustomerDashboard extends javax.swing.JPanel {
                 .addComponent(NursingServicesButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
-        containerPanel.setLayout(containerPanelLayout);
-        containerPanelLayout.setHorizontalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ProtectiveServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NursingServicesPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerPanelLayout.createSequentialGroup()
-                        .addComponent(NursingServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(353, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
-        );
-        containerPanelLayout.setVerticalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CompanionServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE)
-                    .addComponent(NursingServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NursingServicesPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(36, 36, 36)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ProtectiveServicesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(GroceryServicesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE))
-                .addContainerGap(154, Short.MAX_VALUE))
-        );
+        containerPanel.add(NursingServicesPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 70, -1, 312));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/greyWall.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.setPreferredSize(new java.awt.Dimension(1480, 884));
+        containerPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1460, 870));
 
         javax.swing.GroupLayout dashboardJPanelLayout = new javax.swing.GroupLayout(dashboardJPanel);
         dashboardJPanel.setLayout(dashboardJPanelLayout);
         dashboardJPanelLayout.setHorizontalGroup(
             dashboardJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dashboardJPanelLayout.createSequentialGroup()
+                .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         dashboardJPanelLayout.setVerticalGroup(
             dashboardJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dashboardJPanelLayout.createSequentialGroup()
                 .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         dashboardJScrollPane.setViewportView(dashboardJPanel);
@@ -539,6 +507,8 @@ public class CustomerDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel containerPanel;
     private javax.swing.JPanel dashboardJPanel;
     private javax.swing.JScrollPane dashboardJScrollPane;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logoutButton;
     // End of variables declaration//GEN-END:variables
 }

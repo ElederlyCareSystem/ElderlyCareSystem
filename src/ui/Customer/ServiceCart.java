@@ -39,7 +39,8 @@ public class ServiceCart extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private JSplitPane servicesSplitPane;
-    
+    boolean flagConfirm = false;
+
     DefaultTableModel nurseModel;
     DefaultTableModel therapyModel;
     DefaultTableModel covidModel;
@@ -55,13 +56,16 @@ public class ServiceCart extends javax.swing.JPanel {
     MoneyWorkRequest moneyRequest;
     LawFirmWorkRequest lawRequest;
     HouseHoldWorkRequest houseHoldRequest;
-    private Double lawCost=0.0;
-    private Double moneyCost=0.0;
+    private Double lawCost = 0.0;
+    private Double moneyCost = 0.0;
+    private Double nurseCost = 0.0;
+    private Double therapyCost = 0.0;
+    private Double householdCost = 0.0;
 
     /**
      * Creates new form ServiceCart
      */
-    public ServiceCart(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount,JSplitPane servicesSplitPane) {
+    public ServiceCart(JPanel userProcessContainer, EcoSystem business, UserAccount userAccount, JSplitPane servicesSplitPane) {
         initComponents();
         this.userAccount = userAccount;
         this.system = business;
@@ -118,9 +122,12 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof NursingWorkRequest) {
                 nurseRequest = ((NursingWorkRequest) workrequest);
-                nurseModel.addRow(new Object[]{
-                    nurseRequest.getId(), nurseRequest.getServiceCategory(), nurseRequest.getPrice()
-                });
+                if (!nurseRequest.getStatus().equalsIgnoreCase("Accepted")) {
+                    nurseCost += nurseRequest.getPrice();
+                    nurseModel.addRow(new Object[]{
+                        nurseRequest.getId(), nurseRequest.getServiceCategory(), nurseRequest.getPrice()
+                    });
+                }
             }
         }
     }
@@ -129,9 +136,12 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof TherapyWorkRequest) {
                 therapyRequest = ((TherapyWorkRequest) workrequest);
-                therapyModel.addRow(new Object[]{
-                    therapyRequest.getId(), therapyRequest.getServiceCategory(), therapyRequest.getPrice()
-                });
+                if (!therapyRequest.getStatus().equalsIgnoreCase("Accepted")) {
+                    therapyCost += therapyRequest.getPrice();
+                    therapyModel.addRow(new Object[]{
+                        therapyRequest.getId(), therapyRequest.getServiceCategory(), therapyRequest.getPrice()
+                    });
+                }
             }
         }
     }
@@ -140,9 +150,11 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof CovidCareWorkRequest) {
                 covidCareRequest = ((CovidCareWorkRequest) workrequest);
-                covidModel.addRow(new Object[]{
-                    covidCareRequest.getId(), covidCareRequest.getAppointmentDate()
-                });
+                if (!covidCareRequest.getStatus().equalsIgnoreCase("Accepted")) {
+                    covidModel.addRow(new Object[]{
+                        covidCareRequest.getId(), covidCareRequest.getAppointmentDate()
+                    });
+                }
             }
         }
     }
@@ -152,6 +164,7 @@ public class ServiceCart extends javax.swing.JPanel {
             if (workrequest instanceof HouseHoldWorkRequest) {
                 houseHoldRequest = ((HouseHoldWorkRequest) workrequest);
                 for (String i : houseHoldRequest.getServices().keySet()) {
+                    householdCost += houseHoldRequest.getTotalPrice();
                     houseHoldModel.addRow(new Object[]{
                         houseHoldRequest.getId(), i, houseHoldRequest.getServices().get(i)
                     });
@@ -230,6 +243,7 @@ public class ServiceCart extends javax.swing.JPanel {
         houseHoldTable = new javax.swing.JTable();
         removeHouseHoldReqBtn = new javax.swing.JButton();
         jButton_pay = new javax.swing.JButton();
+        jButton_gotoCard = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(178, 215, 229));
 
@@ -432,7 +446,7 @@ public class ServiceCart extends javax.swing.JPanel {
         );
 
         confirmBtn.setBackground(new java.awt.Color(0, 0, 0));
-        confirmBtn.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+        confirmBtn.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         confirmBtn.setForeground(new java.awt.Color(255, 255, 255));
         confirmBtn.setText("Confirm Order");
         confirmBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -544,17 +558,16 @@ public class ServiceCart extends javax.swing.JPanel {
         houseHoldPanelLayout.setVerticalGroup(
             houseHoldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(houseHoldPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(houseHoldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(removeHouseHoldReqBtn)
                 .addContainerGap())
         );
 
         jButton_pay.setBackground(new java.awt.Color(0, 0, 0));
-        jButton_pay.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
+        jButton_pay.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         jButton_pay.setForeground(new java.awt.Color(255, 255, 255));
         jButton_pay.setText("Pay");
         jButton_pay.addActionListener(new java.awt.event.ActionListener() {
@@ -563,44 +576,54 @@ public class ServiceCart extends javax.swing.JPanel {
             }
         });
 
+        jButton_gotoCard.setBackground(new java.awt.Color(0, 0, 0));
+        jButton_gotoCard.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
+        jButton_gotoCard.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_gotoCard.setText("Add Card");
+        jButton_gotoCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_gotoCardActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cartTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cartTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(83, 83, 83)
+                                    .addComponent(removeMoneyReqBtn))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(83, 83, 83)
-                                            .addComponent(removeMoneyReqBtn))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(moneyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_gotoCard, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(moneyTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(90, 90, 90)
-                                        .addComponent(removeLegalReqBtn)))
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(houseHoldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(moneyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TherapyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(moneyTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(removeLegalReqBtn)))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(houseHoldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CovidCarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(508, 508, 508)
-                        .addComponent(confirmBtn)
-                        .addGap(57, 57, 57)
-                        .addComponent(jButton_pay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(431, 431, 431)
+                        .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(jButton_pay, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -610,7 +633,7 @@ public class ServiceCart extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(cartTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                             .addComponent(NursingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -622,11 +645,11 @@ public class ServiceCart extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(moneyTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeMoneyReqBtn)
-                        .addGap(289, 289, 289))
+                        .addGap(111, 111, 111))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -636,11 +659,12 @@ public class ServiceCart extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(removeLegalReqBtn))
                             .addComponent(houseHoldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(confirmBtn)
-                            .addComponent(jButton_pay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(85, 85, 85)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_pay, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jButton_gotoCard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(148, 148, 148))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -745,6 +769,7 @@ public class ServiceCart extends javax.swing.JPanel {
             SendMail email = new SendMail(userAccount.getUserDetails().getEmailId());
             JOptionPane.showMessageDialog(this, "Order Confirmed");
             emptyCart();
+            flagConfirm = true;
         } else {
             JOptionPane.showMessageDialog(this, "No Order Placed");
         }
@@ -786,11 +811,29 @@ public class ServiceCart extends javax.swing.JPanel {
 
     private void jButton_payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_payActionPerformed
         // TODO add your handling code here:
-        Double total = lawCost + moneyCost;
-        PaymentJpanel pay = new PaymentJpanel(userAccount, total);
-        
-        servicesSplitPane.setRightComponent(pay);
+        if (flagConfirm) {
+            if (userAccount.getCardDetails() != null) {
+                Double total = lawCost + moneyCost + nurseCost + therapyCost + householdCost;
+                PaymentJpanel pay = new PaymentJpanel(userAccount, total);
+
+                servicesSplitPane.setRightComponent(pay);
+            } else {
+                JOptionPane.showMessageDialog(null, "Card details not added");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "First confirm the orders");
+        }
     }//GEN-LAST:event_jButton_payActionPerformed
+
+    private void jButton_gotoCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_gotoCardActionPerformed
+        // TODO add your handling code here:
+        if (flagConfirm) {
+            MoneyManagement mm = new MoneyManagement(userProcessContainer, system, userAccount, servicesSplitPane);
+            servicesSplitPane.setRightComponent(mm);
+        } else {
+            JOptionPane.showMessageDialog(null, "First confirm the orders");
+        }
+    }//GEN-LAST:event_jButton_gotoCardActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -807,6 +850,7 @@ public class ServiceCart extends javax.swing.JPanel {
     private javax.swing.JPanel houseHoldPanel;
     private javax.swing.JTable houseHoldTable;
     private javax.swing.JLabel houseHoldTitle;
+    private javax.swing.JButton jButton_gotoCard;
     private javax.swing.JButton jButton_pay;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -846,13 +890,13 @@ public class ServiceCart extends javax.swing.JPanel {
             if (workrequest instanceof MoneyWorkRequest) {
                 System.out.println("money req count in if view....." + ((MoneyWorkRequest) workrequest).getId());
                 moneyRequest = ((MoneyWorkRequest) workrequest);
-                if(!moneyRequest.getStatus().equalsIgnoreCase("Accepted")){
+                if (!moneyRequest.getStatus().equalsIgnoreCase("Accepted")) {
                     moneyCost += moneyRequest.getPrice();
-                     moneyAdviceModel.addRow(new Object[]{
-                    moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(), moneyRequest.getPrice()
-                });
+                    moneyAdviceModel.addRow(new Object[]{
+                        moneyRequest.getId(), moneyRequest.getDate(), moneyRequest.getTimeSlot(), moneyRequest.getPrice()
+                    });
                 }
-               
+
             }
         }
     }
@@ -870,11 +914,11 @@ public class ServiceCart extends javax.swing.JPanel {
         for (WorkRequest workrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workrequest instanceof LawFirmWorkRequest) {
                 lawRequest = ((LawFirmWorkRequest) workrequest);
-                if(!lawRequest.getStatus().equalsIgnoreCase("Accepted")){
+                if (!lawRequest.getStatus().equalsIgnoreCase("Accepted")) {
                     lawCost += lawRequest.getConsultationFee();
-                lawfirmModel.addRow(new Object[]{
-                    lawRequest.getId(), lawRequest.getDate(), lawRequest.getTimeSlot(), lawRequest.getConsultationType()
-                });
+                    lawfirmModel.addRow(new Object[]{
+                        lawRequest.getId(), lawRequest.getDate(), lawRequest.getTimeSlot(), lawRequest.getConsultationType()
+                    });
                 }
             }
         }
@@ -887,7 +931,6 @@ public class ServiceCart extends javax.swing.JPanel {
         nurseModel.getDataVector().removeAllElements();
         therapyModel.getDataVector().removeAllElements();
         houseHoldModel.getDataVector().removeAllElements();
-        
-        
+
     }
 }

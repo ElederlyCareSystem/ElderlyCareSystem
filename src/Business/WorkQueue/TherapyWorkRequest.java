@@ -18,7 +18,9 @@ public class TherapyWorkRequest extends WorkRequest{
     private Date fromDate;
     private Date toDate;
     private int noOfDays;
+    
 
+    
     public Date getFromDate() {
         return fromDate;
     }

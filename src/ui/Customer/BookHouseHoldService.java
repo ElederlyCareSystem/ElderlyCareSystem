@@ -30,6 +30,9 @@ public class BookHouseHoldService extends javax.swing.JPanel {
     UserAccount userAccount;
     JSplitPane servicesSplitPane;
     HashMap services;
+    Date date;
+    Date date1;
+    Double total = 0.0;
     /**
      * Creates new form BookHouseHoldService
      */
@@ -67,26 +70,38 @@ public class BookHouseHoldService extends javax.swing.JPanel {
     
     public HashMap<String, String> setHashValues() {
         HashMap<String, String> hhService = new HashMap<String, String>();
+        date = fromDateText.getDate();
+         date1 = toDateText.getDate();
+         
+        long difference = Math.abs(date.getTime() - date1.getTime());
+        long noOfDays = difference / (24 * 60 * 60 * 1000);
         if(jCheckBox1.isSelected()) {
-            hhService.put(jCheckBox1.getText(), String.valueOf(services.get(jCheckBox1.getText())));
+            double get = (double) services.get(jCheckBox1.getText())*noOfDays;
+            hhService.put(jCheckBox1.getText(), String.valueOf(get));
         }
         if (jCheckBox2.isSelected()) {
-            hhService.put(jCheckBox2.getText(), String.valueOf(services.get(jCheckBox2.getText())));
+            double get = (double) services.get(jCheckBox2.getText())*noOfDays;
+            hhService.put(jCheckBox2.getText(), String.valueOf(get));
         }
         if (jCheckBox3.isSelected()) {
-            hhService.put(jCheckBox3.getText(), String.valueOf(services.get(jCheckBox3.getText())));
+            double get = (double) services.get(jCheckBox3.getText())*noOfDays;
+            hhService.put(jCheckBox3.getText(), String.valueOf(get) );
         }
         if (jCheckBox4.isSelected()) {
-            hhService.put(jCheckBox4.getText(), String.valueOf(services.get(jCheckBox4.getText())));
+            double get = (double) services.get(jCheckBox4.getText())*noOfDays;
+            hhService.put(jCheckBox4.getText(), String.valueOf(get));
         }
         if (jCheckBox5.isSelected()) {
-            hhService.put(jCheckBox5.getText(), String.valueOf(services.get(jCheckBox5.getText())));
+            double get = (double) services.get(jCheckBox5.getText())*noOfDays;
+            hhService.put(jCheckBox5.getText(), String.valueOf(get));
         }
         if (jCheckBox6.isSelected()) {
-            hhService.put(jCheckBox6.getText(), String.valueOf(services.get(jCheckBox6.getText())));
+            double get = (double) services.get(jCheckBox6.getText())*noOfDays;
+            hhService.put(jCheckBox6.getText(), String.valueOf(get));
         }
         if (jCheckBox7.isSelected()) {
-            hhService.put(jCheckBox7.getText(), String.valueOf(services.get(jCheckBox7.getText())));
+            double get = (double) services.get(jCheckBox7.getText())*noOfDays;
+            hhService.put(jCheckBox7.getText(), String.valueOf(get));
         }
         return hhService;
     }
@@ -119,6 +134,8 @@ public class BookHouseHoldService extends javax.swing.JPanel {
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
         jCheckBox7 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField_totalPrice = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1254, 800));
         setSize(new java.awt.Dimension(1254, 800));
@@ -162,11 +179,20 @@ public class BookHouseHoldService extends javax.swing.JPanel {
         durationLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         durationLabel.setText("Time Duration in days");
 
+        durationText.setEditable(false);
+        durationText.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+
         fromLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         fromLabel.setText("From");
 
         toLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         toLabel.setText("To");
+
+        toDateText.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                toDateTextPropertyChange(evt);
+            }
+        });
 
         submitBtn.setBackground(new java.awt.Color(0, 0, 0));
         submitBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,6 +221,11 @@ public class BookHouseHoldService extends javax.swing.JPanel {
 
         jCheckBox7.setText("jCheckBox7");
 
+        jLabel1.setText("Total Cost ");
+
+        jTextField_totalPrice.setEditable(false);
+        jTextField_totalPrice.setFont(new java.awt.Font("Palatino", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout HouseHoldServicePanelLayout = new javax.swing.GroupLayout(HouseHoldServicePanel);
         HouseHoldServicePanel.setLayout(HouseHoldServicePanelLayout);
         HouseHoldServicePanelLayout.setHorizontalGroup(
@@ -203,6 +234,7 @@ public class BookHouseHoldService extends javax.swing.JPanel {
             .addGroup(HouseHoldServicePanelLayout.createSequentialGroup()
                 .addGap(159, 159, 159)
                 .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
                     .addComponent(serviceCatLabel)
                     .addComponent(fromLabel)
                     .addComponent(toLabel)
@@ -210,11 +242,6 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox7)
-                    .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(durationText, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HouseHoldServicePanelLayout.createSequentialGroup()
                         .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox1)
@@ -228,8 +255,14 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                             .addGroup(HouseHoldServicePanelLayout.createSequentialGroup()
                                 .addComponent(jCheckBox2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBox3)))))
-                .addContainerGap(146, Short.MAX_VALUE))
+                                .addComponent(jCheckBox3))))
+                    .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField_totalPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(durationText, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
+                .addContainerGap(515, Short.MAX_VALUE))
         );
         HouseHoldServicePanelLayout.setVerticalGroup(
             HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,23 +294,28 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(toDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(submitBtn))
+                .addGap(18, 18, 18)
+                .addGroup(HouseHoldServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_totalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(29, 29, 29)
+                .addComponent(submitBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
-            .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
+            .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(HouseHoldServicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -304,6 +342,7 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 request.setFromDate(fromDateText.getDate());
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
+                request.setTotalPrice(Double.parseDouble(jTextField_totalPrice.getText()));
                 jCheckBox1.setSelected(false);                
                 jCheckBox2.setSelected(false);
                 jCheckBox3.setSelected(false);
@@ -313,6 +352,7 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 jCheckBox7.setSelected(false);
                 fromDateText.setDate(null);
                 toDateText.setDate(null);
+                jTextField_totalPrice.setText("");
                 durationText.setText("");
                 if (org != null) {
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
@@ -328,6 +368,24 @@ public class BookHouseHoldService extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter all the details correctly");
         }
     }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void toDateTextPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toDateTextPropertyChange
+        // TODO add your handling code here:
+        if(toDateText.getDate() != null && fromDateText.getDate()!=null){
+         date = fromDateText.getDate();
+         date1 = toDateText.getDate();
+         
+        long difference = Math.abs(date.getTime() - date1.getTime());
+        long noOfDays = difference / (24 * 60 * 60 * 1000);
+            HashMap<String, String> setHashValues = setHashValues();
+            for(String val : setHashValues.values()){
+                total += Double.parseDouble(val);
+                System.out.println("cost house..."+total);
+            }
+        durationText.setText(String.valueOf(noOfDays));
+        jTextField_totalPrice.setText(String.valueOf(total));
+        }
+    }//GEN-LAST:event_toDateTextPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -346,6 +404,8 @@ public class BookHouseHoldService extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField_totalPrice;
     private javax.swing.JLabel serviceCatLabel;
     private javax.swing.JLabel serviceTitle;
     private javax.swing.JButton submitBtn;

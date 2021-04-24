@@ -105,6 +105,7 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
         Title = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         finishBtn.setBackground(new java.awt.Color(0, 0, 0));
         finishBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,12 +115,14 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
                 finishBtnActionPerformed(evt);
             }
         });
+        add(finishBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 529, 144, 40));
 
         assignCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignComboActionPerformed(evt);
             }
         });
+        add(assignCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 484, 144, -1));
 
         rejectBtn.setBackground(new java.awt.Color(0, 0, 0));
         rejectBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,10 +132,12 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
                 rejectBtnActionPerformed(evt);
             }
         });
+        add(rejectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 404, 143, 40));
 
         jLabel2.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("View Selected Order");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 189, 511, 28));
 
         orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,6 +152,8 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orderTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 223, 511, 155));
+
         acceptBtn.setBackground(new java.awt.Color(0, 0, 0));
         acceptBtn.setForeground(new java.awt.Color(255, 255, 255));
         acceptBtn.setText("Accept");
@@ -155,6 +162,7 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
                 acceptBtnActionPerformed(evt);
             }
         });
+        add(acceptBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 404, 154, 40));
 
         orderListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,9 +177,12 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(orderListTable);
 
-        assignLabel.setFont(new java.awt.Font("Palatino", 1, 14)); // NOI18N
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 223, 375, 155));
+
+        assignLabel.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         assignLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         assignLabel.setText("Assign Employee");
+        add(assignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 486, 153, -1));
 
         selectedButton.setBackground(new java.awt.Color(0, 0, 0));
         selectedButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,10 +192,12 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
                 selectedButtonActionPerformed(evt);
             }
         });
+        add(selectedButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 273, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Palatino", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("View Orders");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 189, 375, 28));
 
         HeaderPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -211,74 +224,12 @@ public class ManageCovidCareOrders extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
+        add(HeaderPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1224, -1));
+
         Title.setFont(new java.awt.Font("Palatino", 1, 28)); // NOI18N
         Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Title.setText("Manage Orders");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(HeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectedButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(assignLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(assignCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(finishBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(Title)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(selectedButton)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptBtn)
-                    .addComponent(rejectBtn))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(assignLabel))
-                .addGap(18, 18, 18)
-                .addComponent(finishBtn)
-                .addGap(61, 61, 61))
-        );
+        add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1224, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishBtnActionPerformed

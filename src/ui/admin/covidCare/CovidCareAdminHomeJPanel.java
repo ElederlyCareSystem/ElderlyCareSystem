@@ -60,6 +60,7 @@ public class CovidCareAdminHomeJPanel extends javax.swing.JPanel {
         jLabel_OrganizationName = new javax.swing.JLabel();
         jLabel_image = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(178, 215, 229));
         setPreferredSize(new java.awt.Dimension(1480, 800));
         setSize(new java.awt.Dimension(1480, 800));
 
@@ -104,7 +105,7 @@ public class CovidCareAdminHomeJPanel extends javax.swing.JPanel {
             .addComponent(HeaderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1480, Short.MAX_VALUE)
             .addComponent(jLabel_OrganizationName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
+                .addGap(392, 392, 392)
                 .addComponent(jLabel_image, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -114,9 +115,9 @@ public class CovidCareAdminHomeJPanel extends javax.swing.JPanel {
                 .addComponent(HeaderPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabel_OrganizationName)
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel_image, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -12,10 +12,14 @@ import Business.Organization.TherapyOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.TherapyWorkRequest;
 import java.awt.Color;
+import static java.lang.ProcessBuilder.Redirect.to;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import static java.util.Date.from;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.data.time.Day;
 
 /**
  *
@@ -28,7 +32,8 @@ public class TherapyServices extends javax.swing.JPanel {
     DefaultTableModel model;
     TherapyOrganization org;
     UserAccount userAccount;
-
+    Date date;
+    Date date1;
     /**
      * Creates new form TherapyServices
      */
@@ -84,6 +89,8 @@ public class TherapyServices extends javax.swing.JPanel {
         toDateText = new com.toedter.calendar.JDateChooser();
         submitBtn = new javax.swing.JButton();
         serviceTitle = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField_totalPrice = new javax.swing.JTextField();
 
         HeaderPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,7 +107,7 @@ public class TherapyServices extends javax.swing.JPanel {
                 .addComponent(ImageHeader1)
                 .addGap(20, 20, 20)
                 .addComponent(Title1)
-                .addGap(0, 295, Short.MAX_VALUE))
+                .addGap(0, 298, Short.MAX_VALUE))
         );
         HeaderPanelLayout.setVerticalGroup(
             HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,13 +141,22 @@ public class TherapyServices extends javax.swing.JPanel {
         durationLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         durationLabel.setText("Time Duration in days");
 
+        durationText.setEditable(false);
+
         fromLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         fromLabel.setText("From");
 
         toLabel.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         toLabel.setText("To");
 
+        toDateText.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                toDateTextPropertyChange(evt);
+            }
+        });
+
         submitBtn.setBackground(new java.awt.Color(0, 0, 0));
+        submitBtn.setFont(new java.awt.Font("Palatino", 0, 18)); // NOI18N
         submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Add Service");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -153,13 +169,19 @@ public class TherapyServices extends javax.swing.JPanel {
         serviceTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         serviceTitle.setText("Therapy Services");
 
+        jLabel1.setText("Total Cost :");
+
+        jTextField_totalPrice.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(serviceTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(159, 159, 159)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
                     .addComponent(serviceCatLabel)
                     .addComponent(fromLabel)
                     .addComponent(toLabel)
@@ -168,12 +190,12 @@ public class TherapyServices extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField_totalPrice, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(durationText, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(fromDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(toDateText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(serviceTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,8 +218,13 @@ public class TherapyServices extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(toDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(submitBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField_totalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -211,13 +238,21 @@ public class TherapyServices extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
+         date = fromDateText.getDate();
+         date1 = toDateText.getDate();
+        long difference = Math.abs(date.getTime() - date1.getTime());
+        long noOfDays = difference / (24 * 60 * 60 * 1000);
+        System.out.println("diff...."+noOfDays);
+
+        
         if (servicesTable.getSelectedRow() >= 0 && fromDateText.getDate() != null && toDateText.getDate() != null && !fromDateText.getDate().toString().isEmpty() && !toDateText.getDate().toString().isEmpty() && !durationText.getText().isEmpty()) {
             if (fromDateText.getDate().before(new Date()) || toDateText.getDate().before(new Date())) {
                 JOptionPane.showMessageDialog(this, "Start date and End date should be after today's date");
@@ -239,10 +274,12 @@ public class TherapyServices extends javax.swing.JPanel {
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
-                request.setPrice(selectedPrice);
+                request.setPrice(selectedPrice * noOfDays);
+                
                 fromDateText.setDate(null);
                 toDateText.setDate(null);
                 durationText.setText("");
+                jTextField_totalPrice.setText("");
                 if (org != null) {
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
@@ -258,6 +295,19 @@ public class TherapyServices extends javax.swing.JPanel {
 
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    private void toDateTextPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toDateTextPropertyChange
+        // TODO add your handling code here:
+        if(toDateText.getDate() != null && fromDateText.getDate()!=null){
+         date = fromDateText.getDate();
+         date1 = toDateText.getDate();
+        long difference = Math.abs(date.getTime() - date1.getTime());
+        long noOfDays = difference / (24 * 60 * 60 * 1000);
+        Double selectedPrice = Double.parseDouble(String.valueOf(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1)));
+        durationText.setText(String.valueOf(noOfDays));
+        jTextField_totalPrice.setText(String.valueOf(noOfDays * selectedPrice));
+        }
+    }//GEN-LAST:event_toDateTextPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderPanel;
@@ -267,8 +317,10 @@ public class TherapyServices extends javax.swing.JPanel {
     private javax.swing.JTextField durationText;
     private com.toedter.calendar.JDateChooser fromDateText;
     private javax.swing.JLabel fromLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField_totalPrice;
     private javax.swing.JLabel serviceCatLabel;
     private javax.swing.JLabel serviceTitle;
     private javax.swing.JTable servicesTable;

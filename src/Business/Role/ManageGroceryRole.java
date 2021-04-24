@@ -11,6 +11,8 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import ui.admin.homeEssentials.OrganizationAdminJpanel;
+import ui.admin.homeEssentials.AdminHomeJPanel;
+import ui.employee.OrganizationEmployeePanel;
 
 /**
  *
@@ -27,10 +29,10 @@ public class ManageGroceryRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        //if (type.equalsIgnoreCase("admin")) {
+        if (type.equalsIgnoreCase("admin")) {
             return new OrganizationAdminJpanel(userProcessContainer, account, organization, business);
-        //}
-       // return new OrganizationEmployeePanel(userProcessContainer, account, organization, business);
+        }
+        return new OrganizationEmployeePanel(userProcessContainer, account, organization, business);
     }
     
 }
