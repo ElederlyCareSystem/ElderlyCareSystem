@@ -342,6 +342,7 @@ public class BookHouseHoldService extends javax.swing.JPanel {
                 request.setFromDate(fromDateText.getDate());
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
+                request.setReqType(org.getName());
                 request.setTotalPrice(Double.parseDouble(jTextField_totalPrice.getText()));
                 jCheckBox1.setSelected(false);                
                 jCheckBox2.setSelected(false);

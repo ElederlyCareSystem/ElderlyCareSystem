@@ -252,6 +252,7 @@ public class MoneyAdviceAppointment extends javax.swing.JPanel {
             request.setPrice(moneyOrg.getPrice());
             request.setId(moneyOrg.getWorkQueue().getWorkRequestList().size() + 1);
             request.setRequestDate(dateCurrent);
+            request.setReqType(moneyOrg.getName());
             request.setTotal(request.getTotal() + moneyOrg.getPrice());
             if (moneyOrg != null) {
                 System.out.println("before req count....." + userAccount.getWorkQueue().getWorkRequestList().size());

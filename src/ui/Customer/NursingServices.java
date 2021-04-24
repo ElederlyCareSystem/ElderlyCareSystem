@@ -259,7 +259,8 @@ public class NursingServices extends javax.swing.JPanel {
                 request.setToDate(toDateText.getDate());
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
-                request.setPrice(selectedPrice * noOfDays);                
+                request.setPrice(selectedPrice * noOfDays);  
+                request.setReqType(org.getName());
                 if (org != null) {
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
                     org.getWorkQueue().getWorkRequestList().add(request);

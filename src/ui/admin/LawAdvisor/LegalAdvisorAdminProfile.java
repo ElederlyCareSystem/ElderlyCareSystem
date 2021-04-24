@@ -71,6 +71,7 @@ public class LegalAdvisorAdminProfile extends javax.swing.JPanel {
         Title1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(178, 215, 229));
         setPreferredSize(new java.awt.Dimension(1254, 800));
         setSize(new java.awt.Dimension(1254, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
