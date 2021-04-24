@@ -20,7 +20,7 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
-    private CardDetails cardDetails;
+    private CardDetails cardDetails = new CardDetails();
     UserAccountDetails userDetails = new UserAccountDetails();
 
     public UserAccountDetails getUserDetails() {

@@ -84,8 +84,14 @@ public class ConfigureASystem {
         //create user account
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("customer", "customer", employee1, new CustomerRole());
+        ua1.getUserDetails().setCustomerId(1);
         ua1.getUserDetails().setName(employee1.getName());
         ua1.getUserDetails().setEmailId("chavansnehal26@gmail.com");
+        ua1.getCardDetails().setCardNumber("2134 2342 5432 1212");
+        ua1.getCardDetails().setCardHolderName("customer");
+        ua1.getCardDetails().setCardType("Credit Card");
+        ua1.getCardDetails().setCVV("123");
+        ua1.getCardDetails().setExpiryDate("04/2023");
         UserAccount userMoney = system.getUserAccountDirectory().createUserAccount("moneyAdmin", "moneyAdmin", employeeMoneyAdmin, new MoneyAdvisorRole("admin"));
         UserAccount userLegal = system.getUserAccountDirectory().createUserAccount("legalAdmin", "legalAdmin", employeeLegalAdmin, new LegalAdvisorRole("admin"));
         UserAccount nurseUser = system.getUserAccountDirectory().createUserAccount("nurseAdmin", "nurseAdmin", employeeNurseAdmin, new NurseRole("admin"));   
