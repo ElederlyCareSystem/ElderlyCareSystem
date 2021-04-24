@@ -9,6 +9,7 @@ import Business.EcoSystem;
 //import Business.Role.Customer;
 import Business.UserAccount.UserAccount;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -290,6 +291,7 @@ public class NewCustomerJPanel extends javax.swing.JPanel {
                 userList.get(i).getUserDetails().setEmemergencyContactNumber(Integer.parseInt(emergencyNumberTextField.getText()));
             }
         }
+        JOptionPane.showMessageDialog(null, "Details Updated");
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 
 

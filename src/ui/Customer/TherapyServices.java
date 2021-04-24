@@ -275,6 +275,7 @@ public class TherapyServices extends javax.swing.JPanel {
                 request.setNoOfDays(Integer.parseInt(durationText.getText()));
                 request.setServiceCategory(selectedCategory);
                 request.setPrice(selectedPrice * noOfDays);
+                request.setReqType(org.getName());
                 
                 fromDateText.setDate(null);
                 toDateText.setDate(null);

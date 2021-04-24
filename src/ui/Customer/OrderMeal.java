@@ -94,6 +94,8 @@ public class OrderMeal extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(178, 215, 229));
         setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(1254, 1000));
+        setSize(new java.awt.Dimension(1254, 1000));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -109,9 +111,9 @@ public class OrderMeal extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(ImageHeader1)
-                .addGap(20, 20, 20)
+                .addGap(0, 0, 0)
                 .addComponent(Title1)
-                .addGap(0, 420, Short.MAX_VALUE))
+                .addGap(0, 771, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +123,7 @@ public class OrderMeal extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 925, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1254, -1));
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel2.setText("Order Meal");

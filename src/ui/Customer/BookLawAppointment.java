@@ -290,6 +290,7 @@ public class BookLawAppointment extends javax.swing.JPanel {
             request.setConsultationType(consultationType);
             request.setStatus("Sent");
             request.setConsultationFee(Double.parseDouble(jTextField_costLawAdvice.getText()));
+            request.setReqType(legalOrg.getName());
             double total = request.getTotal() + (Double.parseDouble(jTextField_costLawAdvice.getText()));
             request.setTotal(total);
             request.setRequestDate(dateCurrent);

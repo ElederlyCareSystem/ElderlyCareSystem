@@ -51,9 +51,13 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
         houseHoldContentText = new javax.swing.JLabel();
         ViewServiceBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(178, 215, 229));
+        setPreferredSize(new java.awt.Dimension(1254, 1000));
+        setSize(new java.awt.Dimension(1254, 1000));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        headerPanel.setPreferredSize(new java.awt.Dimension(1254, 110));
 
         ImageHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/helpingHandsLogo.jpeg"))); // NOI18N
 
@@ -78,7 +82,7 @@ public class HouseHoldChoreServices extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
-        add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1165, -1));
+        add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1254, -1));
 
         jPanel1.setBackground(new java.awt.Color(178, 215, 229));
         jPanel1.setToolTipText("");

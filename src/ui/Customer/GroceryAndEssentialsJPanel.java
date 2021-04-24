@@ -81,6 +81,8 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
         PlaceOrder = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(178, 215, 229));
+        setPreferredSize(new java.awt.Dimension(1254, 1000));
+        setSize(new java.awt.Dimension(1254, 1000));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -98,7 +100,7 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
                 .addComponent(ImageHeader1)
                 .addGap(20, 20, 20)
                 .addComponent(Title1)
-                .addGap(0, 361, Short.MAX_VALUE))
+                .addGap(0, 751, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +110,7 @@ public class GroceryAndEssentialsJPanel extends javax.swing.JPanel {
                 .addComponent(Title1))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1254, -1));
 
         MenujTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
